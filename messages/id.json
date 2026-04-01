@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "search": "Cari Brand",
+    "values": "Nilai Saya",
+    "community": "Komunitas",
+    "about": "Tentang",
+    "searchPlaceholder": "Cari brand atau produk..."
+  },
+  "home": {
+    "hero": {
+      "title": "Belanja Lebih Bijak,",
+      "titleHighlight": "Sesuai Nilaimu",
+      "subtitle": "Kenali siapa di balik brand yang kamu beli. Evaluasi berdasarkan halal, etika, ESG, dan netralitas politik.",
+      "cta": "Mulai Cek Brand",
+      "ctaSecondary": "Atur Preferensi"
+    },
+    "trending": "Brand Trending",
+    "categories": "Telusuri Kategori",
+    "community": "Komunitas Bicara",
+    "setupValues": "Atur Nilai Anda",
+    "setupValuesDesc": "Sesuaikan skor berdasarkan nilai yang penting bagi Anda",
+    "customize": "Kustomisasi"
+  },
+  "brand": {
+    "overview": "Ringkasan",
+    "transparency": "Transparansi",
+    "community": "Komunitas",
+    "alternatives": "Alternatif",
+    "sources": "Sumber",
+    "parentCompany": "Perusahaan Induk",
+    "ultimateOwner": "Pemilik Akhir",
+    "founded": "Didirikan",
+    "halalStatus": "Status Halal",
+    "certified": "Tersertifikasi",
+    "notCertified": "Tidak Tersertifikasi",
+    "certifiedBy": "Bersertifikat",
+    "controversies": "Kontroversi",
+    "noControversies": "Tidak ada kontroversi tercatat",
+    "boycottActive": "Aktif Diboikot",
+    "lastUpdated": "Terakhir diperbarui",
+    "editorialNote": "Catatan: Skor merupakan penilaian editorial berdasarkan data publik, bukan keputusan hukum.",
+    "suggest": "Usul Koreksi"
+  },
+  "scores": {
+    "overall": "Skor Keseluruhan",
+    "halal": "Kepatuhan Halal",
+    "ethical": "Sumber Etis",
+    "esg": "Kinerja ESG",
+    "political": "Netralitas Politik",
+    "community": "Kepercayaan Komunitas",
+    "breakdown": "Rincian Skor"
+  },
+  "community": {
+    "title": "Komunitas",
+    "sentiment": "Sentimen Komunitas",
+    "vote": "Beri Penilaian",
+    "upvote": "Setuju Transparan",
+    "downvote": "Perlu Evaluasi",
+    "trending": "Sedang Dibahas",
+    "polls": "Polling Aktif",
+    "recent": "Aktivitas Terbaru"
+  },
+  "values": {
+    "title": "Nilai Saya",
+    "subtitle": "Atur bobot setiap dimensi sesuai prioritas Anda",
+    "presets": "Profil Preset",
+    "custom": "Kustomisasi",
+    "preview": "Pratinjau Skor",
+    "save": "Simpan Preferensi",
+    "saved": "Tersimpan!",
+    "reset": "Atur Ulang"
+  },
+  "search": {
+    "results": "Hasil Pencarian",
+    "filter": "Filter",
+    "sort": "Urutkan",
+    "sortByScore": "Skor Tertinggi",
+    "sortByName": "Nama A-Z",
+    "sortByCommunity": "Komunitas",
+    "noResults": "Tidak ada hasil ditemukan",
+    "noResultsDesc": "Coba kata kunci lain atau telusuri kategori"
+  },
+  "about": {
+    "title": "Tentang Bijak Beli",
+    "mission": "Misi Kami",
+    "methodology": "Metodologi",
+    "disclaimer": "Disclaimer",
+    "contact": "Kontak"
+  },
+  "common": {
+    "learnMore": "Pelajari lebih lanjut",
+    "viewAll": "Lihat semua",
+    "back": "Kembali",
+    "close": "Tutup",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "alternatives": "Alternatif Lebih Baik",
+    "boycott": "Diboikot",
+    "noBoycott": "Tidak ada boikot aktif",
+    "verified": "Terverifikasi",
+    "editorial": "Editorial"
+  },
+  "categories": {
+    "food-beverage": "Makanan & Minuman",
+    "personal-care": "Perawatan Diri",
+    "fashion": "Mode & Pakaian",
+    "technology": "Teknologi",
+    "home": "Rumah Tangga",
+    "finance": "Keuangan",
+    "transportation": "Transportasi",
+    "all": "Semua Kategori"
+  }
+}

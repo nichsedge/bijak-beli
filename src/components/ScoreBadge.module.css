@@ -1,0 +1,73 @@
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.sm  { width: 60px; }
+.md  { width: 88px; }
+.lg  { width: 120px; }
+
+.ring {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes drawArc {
+  from { stroke-dashoffset: var(--circumference); }
+  to   { stroke-dashoffset: var(--offset); }
+}
+
+.fillArc {
+  stroke-dashoffset: var(--circumference);
+}
+
+.animate .fillArc {
+  animation: drawArc 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.scoreText {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: var(--font-display);
+}
+
+.gradeText {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  margin-top: var(--space-1);
+}
+
+/* Pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: color-mix(in srgb, var(--score-color) 12%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--score-color) 30%, transparent);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  flex-shrink: 0;
+}
+
+.pillScore {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--score-color);
+  line-height: 1;
+}
+
+.pillGrade {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--score-color);
+  opacity: 0.8;
+}

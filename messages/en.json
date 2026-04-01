@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Home",
+    "search": "Browse Brands",
+    "values": "My Values",
+    "community": "Community",
+    "about": "About",
+    "searchPlaceholder": "Search brands or products..."
+  },
+  "home": {
+    "hero": {
+      "title": "Shop Smarter,",
+      "titleHighlight": "Aligned with Your Values",
+      "subtitle": "Know who's behind the brands you buy. Evaluate based on halal compliance, ethics, ESG, and political neutrality.",
+      "cta": "Check a Brand",
+      "ctaSecondary": "Set Preferences"
+    },
+    "trending": "Trending Brands",
+    "categories": "Browse Categories",
+    "community": "Community Says",
+    "setupValues": "Set Your Values",
+    "setupValuesDesc": "Customize scores based on what matters most to you",
+    "customize": "Customize"
+  },
+  "brand": {
+    "overview": "Overview",
+    "transparency": "Transparency",
+    "community": "Community",
+    "alternatives": "Alternatives",
+    "sources": "Sources",
+    "parentCompany": "Parent Company",
+    "ultimateOwner": "Ultimate Owner",
+    "founded": "Founded",
+    "halalStatus": "Halal Status",
+    "certified": "Certified",
+    "notCertified": "Not Certified",
+    "certifiedBy": "Certified by",
+    "controversies": "Controversies",
+    "noControversies": "No recorded controversies",
+    "boycottActive": "Active Boycott",
+    "lastUpdated": "Last updated",
+    "editorialNote": "Note: Scores are editorial assessments based on public data, not legal determinations.",
+    "suggest": "Suggest a Correction"
+  },
+  "scores": {
+    "overall": "Overall Score",
+    "halal": "Halal Compliance",
+    "ethical": "Ethical Sourcing",
+    "esg": "ESG Performance",
+    "political": "Political Neutrality",
+    "community": "Community Trust",
+    "breakdown": "Score Breakdown"
+  },
+  "community": {
+    "title": "Community",
+    "sentiment": "Community Sentiment",
+    "vote": "Cast Your Vote",
+    "upvote": "Transparent",
+    "downvote": "Needs Review",
+    "trending": "Trending Discussions",
+    "polls": "Active Polls",
+    "recent": "Recent Activity"
+  },
+  "values": {
+    "title": "My Values",
+    "subtitle": "Set the weight for each dimension based on your priorities",
+    "presets": "Preset Profiles",
+    "custom": "Customize",
+    "preview": "Score Preview",
+    "save": "Save Preferences",
+    "saved": "Saved!",
+    "reset": "Reset"
+  },
+  "search": {
+    "results": "Search Results",
+    "filter": "Filter",
+    "sort": "Sort by",
+    "sortByScore": "Highest Score",
+    "sortByName": "Name A-Z",
+    "sortByCommunity": "Community",
+    "noResults": "No results found",
+    "noResultsDesc": "Try a different keyword or browse categories"
+  },
+  "about": {
+    "title": "About Bijak Beli",
+    "mission": "Our Mission",
+    "methodology": "Methodology",
+    "disclaimer": "Disclaimer",
+    "contact": "Contact"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "back": "Back",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "alternatives": "Better Alternatives",
+    "boycott": "Boycotted",
+    "noBoycott": "No active boycott",
+    "verified": "Verified",
+    "editorial": "Editorial"
+  },
+  "categories": {
+    "food-beverage": "Food & Beverage",
+    "personal-care": "Personal Care",
+    "fashion": "Fashion & Apparel",
+    "technology": "Technology",
+    "home": "Home & Living",
+    "finance": "Finance",
+    "transportation": "Transportation",
+    "all": "All Categories"
+  }
+}

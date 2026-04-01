@@ -1,0 +1,215 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(240, 253, 250, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-base);
+  height: var(--nav-height);
+}
+
+.header.scrolled {
+  background: rgba(240, 253, 250, 0.95);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(10, 22, 40, 0.85);
+}
+
+[data-theme="dark"] .header.scrolled {
+  background: rgba(10, 22, 40, 0.97);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--nav-height);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logoText {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.logoTagline {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  background: var(--primary-subtle);
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--primary-light);
+}
+
+/* Search */
+.searchForm {
+  flex: 1;
+  max-width: 380px;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .searchForm { display: block; }
+}
+
+.searchWrap {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  padding-left: calc(var(--space-4) + 16px + var(--space-2)) !important;
+  font-size: var(--text-sm) !important;
+}
+
+/* Desktop nav */
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+@media (min-width: 1024px) {
+  .desktopNav { display: flex; }
+}
+
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+.navLink.active {
+  color: var(--primary);
+  background: var(--primary-subtle);
+  font-weight: 600;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+@media (min-width: 1024px) {
+  .actions { margin-left: 0; }
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.iconBtn:hover {
+  color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+.langLabel {
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.menuBtn {
+  display: flex;
+}
+
+@media (min-width: 1024px) {
+  .menuBtn { display: none; }
+}
+
+/* Mobile menu */
+.mobileMenu {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-lg);
+  animation: fadeInUp 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .mobileMenu { display: none; }
+}
+
+.mobileSearch {
+  margin-bottom: var(--space-4);
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.mobileNavLink {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.active {
+  color: var(--primary);
+  background: var(--primary-subtle);
+}
