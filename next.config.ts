@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
   },
+  turbopack: {
+    root: "./",
+  },
 };
 
 export default withNextIntl(nextConfig);

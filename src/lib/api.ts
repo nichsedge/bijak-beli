@@ -1,7 +1,9 @@
 "use server";
 
 import { db } from "./db";
+import * as schema from "../db/schema";
 import type { Brand, Category, Controversy, Source } from "./types";
+import { inArray, eq } from "drizzle-orm";
 
 function mapDbBrandToBrand(dbBrand: any): Brand {
   return {
@@ -18,7 +20,7 @@ function mapDbBrandToBrand(dbBrand: any): Brand {
     ultimateOwner: dbBrand.ultimateOwner || undefined,
     ownerCountry: dbBrand.ownerCountry || undefined,
     foundedYear: dbBrand.foundedYear || undefined,
-    halalCertified: dbBrand.halalCertified,
+    halalCertified: dbBrand.halalCertified === 1 || dbBrand.halalCertified === true,
     halalCertifier: dbBrand.halalCertifier || undefined,
     scores: {
       halal: dbBrand.scoreHalal,
@@ -33,24 +35,24 @@ function mapDbBrandToBrand(dbBrand: any): Brand {
     sources: dbBrand.sources?.map((s: any) => ({
       title: s.title,
       url: s.url,
-      date: s.date.toISOString().slice(0, 7)
+      date: s.date instanceof Date ? s.date.toISOString().slice(0, 7) : new Date(s.date).toISOString().slice(0, 7)
     })) || [],
     communityVotes: {
       up: dbBrand.communityVotesUp,
       down: dbBrand.communityVotesDown,
     },
-    lastUpdated: dbBrand.lastUpdated.toISOString().slice(0, 10),
+    lastUpdated: dbBrand.lastUpdated instanceof Date ? dbBrand.lastUpdated.toISOString().slice(0, 10) : new Date(dbBrand.lastUpdated).toISOString().slice(0, 10),
     description: dbBrand.description,
     descriptionId: dbBrand.descriptionId,
-    boycottActive: dbBrand.boycottActive,
+    boycottActive: dbBrand.boycottActive === 1 || dbBrand.boycottActive === true,
     boycottReason: dbBrand.boycottReason || undefined,
     boycottReasonId: dbBrand.boycottReasonId || undefined,
   };
 }
 
 export async function fetchAllBrands(): Promise<Brand[]> {
-  const brands = await db.brand.findMany({
-    include: {
+  const brands = await db.query.brands.findMany({
+    with: {
       controversies: true,
       certifications: true,
       sources: true,
@@ -62,7 +64,7 @@ export async function fetchAllBrands(): Promise<Brand[]> {
 }
 
 export async function fetchCategories(): Promise<Category[]> {
-  const cats = await db.category.findMany();
+  const cats = await db.query.categories.findMany();
   return cats.map((c: any) => ({
     id: c.id,
     name: c.name,
@@ -73,12 +75,10 @@ export async function fetchCategories(): Promise<Category[]> {
 }
 
 export async function fetchTrendingBrands(): Promise<Brand[]> {
-  // Fetch brands with highest community votes or just a set of specific ones for now
-  const brands = await db.brand.findMany({
-    where: {
-      id: { in: ["wardah", "indomie", "starbucks", "mcdonald", "kopi-kenangan", "gojek"] }
-    },
-    include: {
+  const trendingIds = ["wardah", "indomie", "starbucks", "mcdonald", "kopi-kenangan", "gojek"];
+  const brands = await db.query.brands.findMany({
+    where: inArray(schema.brands.id, trendingIds),
+    with: {
       controversies: true,
       certifications: true,
       sources: true,
@@ -86,14 +86,13 @@ export async function fetchTrendingBrands(): Promise<Brand[]> {
     }
   });
   
-  // Sort them to match the order if needed, but for now just return
   return brands.map(mapDbBrandToBrand);
 }
 
 export async function fetchBrandById(id: string): Promise<Brand | undefined> {
-  const brand = await db.brand.findUnique({
-    where: { id },
-    include: {
+  const brand = await db.query.brands.findFirst({
+    where: eq(schema.brands.id, id),
+    with: {
       controversies: true,
       certifications: true,
       sources: true,
@@ -107,9 +106,9 @@ export async function fetchBrandById(id: string): Promise<Brand | undefined> {
 
 export async function fetchAlternatives(ids: string[]): Promise<Brand[]> {
   if (ids.length === 0) return [];
-  const brands = await db.brand.findMany({
-    where: { id: { in: ids } },
-    include: {
+  const brands = await db.query.brands.findMany({
+    where: inArray(schema.brands.id, ids),
+    with: {
       controversies: true,
       certifications: true,
       sources: true,
@@ -120,11 +119,13 @@ export async function fetchAlternatives(ids: string[]): Promise<Brand[]> {
 }
 
 export async function fetchControversyById(id: string): Promise<Controversy | undefined> {
-  const c = await db.controversy.findUnique({ where: { id }});
+  const c = await db.query.controversies.findFirst({
+    where: eq(schema.controversies.id, id)
+  });
   if (!c) return undefined;
   return {
     id: c.id,
-    date: c.date.toISOString().slice(0, 10),
+    date: c.date instanceof Date ? c.date.toISOString().slice(0, 10) : new Date(c.date).toISOString().slice(0, 10),
     title: c.title,
     titleId: c.titleId,
     description: c.description,
@@ -134,4 +135,3 @@ export async function fetchControversyById(id: string): Promise<Controversy | un
     sourceUrl: c.sourceUrl,
   };
 }
-
