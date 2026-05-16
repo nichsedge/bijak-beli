@@ -4,14 +4,21 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { TrendingUp, Flag, ThumbsUp, BarChart2, Users, MessageCircle } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
-import { brands } from "@/data/brands";
+import { fetchAllBrands } from "@/lib/api";
+import type { Brand } from "@/lib/types";
 import { calculateAlignment } from "@/lib/scoring";
 import styles from "./community.module.css";
 
 export default function CommunityPage() {
   const { lang, prefs } = useApp();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  const [brands, setBrands] = useState<Brand[]>([]);
+
+  useEffect(() => { 
+    setMounted(true); 
+    fetchAllBrands().then(setBrands).catch(console.error);
+  }, []);
+
   if (!mounted) return null;
 
   const boycottBrands = brands.filter((b) => b.boycottActive);

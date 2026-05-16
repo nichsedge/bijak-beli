@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { ReactNode } from "react";
 import "./globals.css";
 import { AppProvider } from "@/components/AppProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ComparisonBar from "@/components/ComparisonBar";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Bijak Beli — Belanja Lebih Bijak Sesuai Nilaimu",
@@ -20,7 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="id" suppressHydrationWarning>
@@ -28,9 +31,12 @@ export default function RootLayout({
         <AppProvider>
           <Header />
           <main className="page-content">
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
           </main>
           <Footer />
+          <ComparisonBar />
         </AppProvider>
       </body>
     </html>

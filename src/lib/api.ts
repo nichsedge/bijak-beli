@@ -1,0 +1,137 @@
+"use server";
+
+import { db } from "./db";
+import type { Brand, Category, Controversy, Source } from "./types";
+
+function mapDbBrandToBrand(dbBrand: any): Brand {
+  return {
+    id: dbBrand.id,
+    name: dbBrand.name,
+    nameId: dbBrand.nameId || undefined,
+    logo: dbBrand.logo,
+    category: dbBrand.categoryId,
+    subcategory: dbBrand.subcategory || undefined,
+    tagline: dbBrand.tagline,
+    taglineId: dbBrand.taglineId,
+    country: dbBrand.country,
+    parentCompany: dbBrand.parentCompany || undefined,
+    ultimateOwner: dbBrand.ultimateOwner || undefined,
+    ownerCountry: dbBrand.ownerCountry || undefined,
+    foundedYear: dbBrand.foundedYear || undefined,
+    halalCertified: dbBrand.halalCertified,
+    halalCertifier: dbBrand.halalCertifier || undefined,
+    scores: {
+      halal: dbBrand.scoreHalal,
+      ethical: dbBrand.scoreEthical,
+      esg: dbBrand.scoreEsg,
+      political: dbBrand.scorePolitical,
+      community: dbBrand.scoreCommunity,
+    },
+    certifications: dbBrand.certifications?.map((c: any) => c.certification) || [],
+    controversyIds: dbBrand.controversies?.map((c: any) => c.controversyId) || [],
+    alternativeIds: dbBrand.alternatives?.map((a: any) => a.alternativeId) || [],
+    sources: dbBrand.sources?.map((s: any) => ({
+      title: s.title,
+      url: s.url,
+      date: s.date.toISOString().slice(0, 7)
+    })) || [],
+    communityVotes: {
+      up: dbBrand.communityVotesUp,
+      down: dbBrand.communityVotesDown,
+    },
+    lastUpdated: dbBrand.lastUpdated.toISOString().slice(0, 10),
+    description: dbBrand.description,
+    descriptionId: dbBrand.descriptionId,
+    boycottActive: dbBrand.boycottActive,
+    boycottReason: dbBrand.boycottReason || undefined,
+    boycottReasonId: dbBrand.boycottReasonId || undefined,
+  };
+}
+
+export async function fetchAllBrands(): Promise<Brand[]> {
+  const brands = await db.brand.findMany({
+    include: {
+      controversies: true,
+      certifications: true,
+      sources: true,
+      alternatives: true,
+    }
+  });
+
+  return brands.map(mapDbBrandToBrand);
+}
+
+export async function fetchCategories(): Promise<Category[]> {
+  const cats = await db.category.findMany();
+  return cats.map((c: any) => ({
+    id: c.id,
+    name: c.name,
+    nameId: c.nameId,
+    icon: c.icon,
+    brandCount: c.brandCount
+  }));
+}
+
+export async function fetchTrendingBrands(): Promise<Brand[]> {
+  // Fetch brands with highest community votes or just a set of specific ones for now
+  const brands = await db.brand.findMany({
+    where: {
+      id: { in: ["wardah", "indomie", "starbucks", "mcdonald", "kopi-kenangan", "gojek"] }
+    },
+    include: {
+      controversies: true,
+      certifications: true,
+      sources: true,
+      alternatives: true,
+    }
+  });
+  
+  // Sort them to match the order if needed, but for now just return
+  return brands.map(mapDbBrandToBrand);
+}
+
+export async function fetchBrandById(id: string): Promise<Brand | undefined> {
+  const brand = await db.brand.findUnique({
+    where: { id },
+    include: {
+      controversies: true,
+      certifications: true,
+      sources: true,
+      alternatives: true,
+    }
+  });
+  
+  if (!brand) return undefined;
+  return mapDbBrandToBrand(brand);
+}
+
+export async function fetchAlternatives(ids: string[]): Promise<Brand[]> {
+  if (ids.length === 0) return [];
+  const brands = await db.brand.findMany({
+    where: { id: { in: ids } },
+    include: {
+      controversies: true,
+      certifications: true,
+      sources: true,
+      alternatives: true,
+    }
+  });
+  return brands.map(mapDbBrandToBrand);
+}
+
+export async function fetchControversyById(id: string): Promise<Controversy | undefined> {
+  const c = await db.controversy.findUnique({ where: { id }});
+  if (!c) return undefined;
+  return {
+    id: c.id,
+    date: c.date.toISOString().slice(0, 10),
+    title: c.title,
+    titleId: c.titleId,
+    description: c.description,
+    descriptionId: c.descriptionId,
+    severity: c.severity as any,
+    source: c.source,
+    sourceUrl: c.sourceUrl,
+  };
+}
+

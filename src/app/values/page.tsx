@@ -5,9 +5,9 @@ import Link from "next/link";
 import { CheckCircle, Info, RotateCcw } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import ScoreBadge from "@/components/ScoreBadge";
-import { brands } from "@/data/brands";
+import { fetchBrandById } from "@/lib/api";
 import { calculateAlignment } from "@/lib/scoring";
-import { PRESET_PROFILES, DEFAULT_WEIGHTS, type ScoreWeights } from "@/lib/types";
+import { PRESET_PROFILES, DEFAULT_WEIGHTS, type ScoreWeights, type Brand } from "@/lib/types";
 import styles from "./values.module.css";
 
 const DIMENSIONS: { key: keyof ScoreWeights; icon: string; en: string; id: string; descEn: string; descId: string }[] = [
@@ -26,16 +26,20 @@ export default function ValuesPage() {
   const [localWeights, setLocalWeights] = useState<ScoreWeights>(prefs.weights);
   const [saved, setSaved] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [previewBrand, setPreviewBrand] = useState<Brand | null>(null);
+  const [previewBadBrand, setPreviewBadBrand] = useState<Brand | null>(null);
 
   useEffect(() => {
     setMounted(true);
     setLocalWeights(prefs.weights);
+    
+    // Load previews
+    fetchBrandById(PREVIEW_BRAND_ID).then(b => setPreviewBrand(b || null));
+    fetchBrandById(PREVIEW_BAD_BRAND_ID).then(b => setPreviewBadBrand(b || null));
   }, [prefs.weights]);
 
-  if (!mounted) return null;
+  if (!mounted || !previewBrand || !previewBadBrand) return null;
 
-  const previewBrand = brands.find((b) => b.id === PREVIEW_BRAND_ID)!;
-  const previewBadBrand = brands.find((b) => b.id === PREVIEW_BAD_BRAND_ID)!;
   const previewResult = calculateAlignment(previewBrand, localWeights);
   const previewBadResult = calculateAlignment(previewBadBrand, localWeights);
 

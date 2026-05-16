@@ -1,73 +1,52 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Search, TrendingUp, Shield, Users, ChevronRight, Star, Zap } from "lucide-react";
-import { useApp } from "@/components/AppProvider";
+import { TrendingUp, Shield, Users, ChevronRight, Star, Award, Leaf, Zap } from "lucide-react";
 import BrandCard from "@/components/BrandCard";
-import { brands, trendingBrands } from "@/data/brands";
-import { categories } from "@/data/categories";
-import { PRESET_PROFILES } from "@/lib/types";
+import HeroSearch from "@/components/HeroSearch";
+import PresetSelector from "@/components/PresetSelector";
+import { fetchAllBrands, fetchCategories, fetchTrendingBrands } from "@/lib/api";
 import styles from "./home.module.css";
+import { cookies } from "next/headers";
 
-export default function HomePage() {
-  const { lang, setPreset, prefs } = useApp();
-  const [query, setQuery] = useState("");
-  const [mounted, setMounted] = useState(false);
-  const router = useRouter();
+export default async function HomePage() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("locale")?.value === "en" ? "en" : "id";
 
-  useEffect(() => { setMounted(true); }, []);
-
-  const trending = trendingBrands
-    .map((id) => brands.find((b) => b.id === id))
-    .filter(Boolean) as typeof brands;
+  // Fetch DB Data on Server
+  const [brands, categories, trending] = await Promise.all([
+    fetchAllBrands(),
+    fetchCategories(),
+    fetchTrendingBrands(),
+  ]);
 
   const boycottBrands = brands.filter((b) => b.boycottActive).slice(0, 4);
-
-  function handleSearch(e: React.FormEvent) {
-    e.preventDefault();
-    if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
-    }
-  }
-
-  if (!mounted) return null;
 
   const strings = {
     id: {
       heroTitle: "Belanja Lebih Bijak,",
       heroHighlight: "Sesuai Nilaimu",
       heroSub: "Kenali siapa di balik brand yang kamu beli. Evaluasi berbasis data: halal, etika, ESG, dan netralitas politik.",
-      heroCta: "Cek Brand Sekarang",
       heroCtaSub: "Atur Preferensi Saya",
       trending: "Brand Trending",
-      boycott: "Brand yang Diboikot",
       categories: "Telusuri Kategori",
       community: "Sentimen Komunitas",
       setupTitle: "Sesuaikan Skormu",
       setupSub: "Pilih preset atau atur bobot nilai secara manual",
-      statsTitle: "Data Bijak Beli",
-      stats: ["Brand terdaftar", "Sumber verifikasi", "Pengguna aktif"] as [string, string, string],
+      stats: ["Brand terdaftar", "Sumber verifikasi", "Pengguna aktif"],
     },
     en: {
       heroTitle: "Shop Smarter,",
       heroHighlight: "Aligned with Your Values",
       heroSub: "Know who's behind the brands you buy. Data-driven evaluation: halal, ethics, ESG, and political neutrality.",
-      heroCta: "Check a Brand",
       heroCtaSub: "Set My Preferences",
       trending: "Trending Brands",
-      boycott: "Boycotted Brands",
       categories: "Browse Categories",
       community: "Community Sentiment",
       setupTitle: "Personalize Your Scores",
       setupSub: "Pick a preset or fine-tune manually",
-      statsTitle: "Bijak Beli Data",
-      stats: ["Brands tracked", "Verified sources", "Active users"] as [string, string, string],
+      stats: ["Brands tracked", "Verified sources", "Active users"],
     },
   };
   const t = strings[lang];
-
 
   return (
     <div className={styles.page}>
@@ -88,23 +67,7 @@ export default function HomePage() {
 
             <p className={styles.heroSub}>{t.heroSub}</p>
 
-            <form onSubmit={handleSearch} className={styles.heroSearch}>
-              <div className={styles.heroSearchWrap}>
-                <Search size={20} className={styles.heroSearchIcon} />
-                <input
-                  id="hero-search"
-                  type="search"
-                  className={styles.heroSearchInput}
-                  placeholder={lang === "id" ? "Cari brand atau produk... contoh: Indomie, Starbucks" : "Search brand or product... e.g. Indomie, Starbucks"}
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  autoComplete="off"
-                />
-                <button type="submit" className={`btn btn-primary ${styles.heroSearchBtn}`}>
-                  {lang === "id" ? "Cek" : "Check"}
-                </button>
-              </div>
-            </form>
+            <HeroSearch lang={lang} />
 
             <div className={styles.heroActions}>
               <Link href="/values" className="btn btn-outline">
@@ -161,20 +124,7 @@ export default function HomePage() {
               <h2 className={styles.presetTitle}>{t.setupTitle}</h2>
               <p className={styles.presetSub}>{t.setupSub}</p>
             </div>
-            <div className={styles.presets}>
-              {Object.entries(PRESET_PROFILES).map(([key, profile]) => (
-                <button
-                  key={key}
-                  className={`${styles.presetChip} ${prefs.preset === key ? styles.presetActive : ""}`}
-                  onClick={() => setPreset(key)}
-                >
-                  {lang === "id" ? profile.labelId : profile.label}
-                </button>
-              ))}
-              <Link href="/values" className={`${styles.presetChip} ${styles.presetCustom}`}>
-                ⚙ {lang === "id" ? "Kustomisasi" : "Customize"}
-              </Link>
-            </div>
+            <PresetSelector />
           </div>
         </div>
       </section>

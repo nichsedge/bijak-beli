@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, CheckCircle, Flag } from "lucide-react";
+import { AlertTriangle, CheckCircle, Flag, Scale } from "lucide-react";
 import { useApp } from "./AppProvider";
 import { calculateAlignment } from "@/lib/scoring";
 import { ScorePill } from "./ScoreBadge";
@@ -14,7 +14,8 @@ interface BrandCardProps {
 }
 
 export default function BrandCard({ brand, compact = false }: BrandCardProps) {
-  const { prefs, lang } = useApp();
+  const { prefs, lang, toggleCompare, t } = useApp();
+  const isComparing = prefs.compareIds?.includes(brand.id);
   const result = calculateAlignment(brand, prefs.weights);
   const upPercent = Math.round((brand.communityVotes.up / (brand.communityVotes.up + brand.communityVotes.down + 1)) * 100);
 
@@ -44,7 +45,20 @@ export default function BrandCard({ brand, compact = false }: BrandCardProps) {
           </div>
 
           {/* Score pill */}
-          <ScorePill result={result} />
+          <div className={styles.scoreAndActions}>
+            <button 
+              className={`${styles.compareBtn} ${isComparing ? styles.compareActive : ""}`}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCompare(brand.id);
+              }}
+              title={isComparing ? t("common", "removeFromCompare") : t("common", "addToCompare")}
+            >
+              <Scale size={14} />
+            </button>
+            <ScorePill result={result} />
+          </div>
         </div>
 
         {/* Tagline */}
@@ -59,17 +73,17 @@ export default function BrandCard({ brand, compact = false }: BrandCardProps) {
           {brand.halalCertified ? (
             <span className="badge badge-halal">
               <CheckCircle size={11} />
-              {lang === "id" ? "Halal" : "Halal"}
+              {t("brand", "certified")}
             </span>
           ) : (
             <span className="badge" style={{ background: "var(--surface-2)", color: "var(--text-muted)" }}>
-              {lang === "id" ? "Tidak Bersertifikat" : "No Halal Cert"}
+              {t("brand", "notCertified")}
             </span>
           )}
           {brand.boycottActive && (
             <span className="badge badge-boycott">
               <AlertTriangle size={11} />
-              {lang === "id" ? "Boikot" : "Boycott"}
+              {t("common", "boycott")}
             </span>
           )}
           <span className="badge badge-editorial">

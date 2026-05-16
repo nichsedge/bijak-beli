@@ -1,0 +1,190 @@
+.scanPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  color: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.scanHeader {
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.closeBtn {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.viewportContainer {
+  flex: 1;
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewport {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 3/4;
+  background: #111;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.idleOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  cursor: pointer;
+  background: radial-gradient(circle at center, #222 0%, #111 100%);
+}
+
+.cameraIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scanningOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.focusFrame {
+  width: 80%;
+  aspect-ratio: 1;
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  position: relative;
+}
+
+.focusFrame::before, .focusFrame::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #fff;
+}
+
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  box-shadow: 0 0 15px var(--primary);
+  animation: scanMove 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes scanMove {
+  0% { top: 10%; }
+  50% { top: 90%; }
+  100% { top: 10%; }
+}
+
+.progressContainer {
+  width: 60%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--primary);
+}
+
+.foundOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  background: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.foundBadge {
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--primary);
+}
+
+.redirecting {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.instructions {
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--text-sm);
+}
+
+.footer {
+  padding: var(--space-6);
+  display: flex;
+  justify-content: center;
+}
+
+.tip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255, 255, 255, 0.05);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 100px;
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -292,6 +292,76 @@
   border-style: dashed;
 }
 
+/* ─── IMPACT SECTION ─── */
+.impactSection {
+  padding: var(--space-8) 0;
+}
+
+.impactHomeCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background: linear-gradient(135deg, var(--surface), var(--primary-subtle));
+  border: 1px solid var(--primary-light);
+  padding: var(--space-5) var(--space-6) !important;
+  text-decoration: none;
+}
+
+.impactHomeLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.impactHomeIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+}
+
+.impactHomeTitle {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.impactHomeSub {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.impactHomeStats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.impactHomeStat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.impactHomeArrow {
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.impactHomeCard:hover .impactHomeArrow {
+  transform: translateX(4px);
+  color: var(--primary);
+}
+
 /* ─── SECTIONS ─── */
 .section {
   padding: var(--space-12) 0;

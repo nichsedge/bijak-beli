@@ -32,6 +32,49 @@
   margin-bottom: var(--space-3);
 }
 
+.scoreAndActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.compareBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: all var(--transition-base);
+  opacity: 0.4;
+}
+
+.card:hover .compareBtn {
+  opacity: 1;
+}
+
+.compareBtn:hover {
+  background: var(--primary-subtle);
+  color: var(--primary);
+  border-color: var(--primary-light);
+  transform: scale(1.1);
+}
+
+.compareActive {
+  opacity: 1;
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary-dark);
+}
+
+.compareActive:hover {
+  background: var(--primary-dark);
+  color: #fff;
+}
+
 .identity {
   display: flex;
   gap: var(--space-3);

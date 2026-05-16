@@ -99,7 +99,15 @@
     "boycott": "Diboikot",
     "noBoycott": "Tidak ada boikot aktif",
     "verified": "Terverifikasi",
-    "editorial": "Editorial"
+    "editorial": "Editorial",
+    "compare": "Bandingkan",
+    "comparing": "Membandingkan",
+    "addToCompare": "Tambah perbandingan",
+    "removeFromCompare": "Hapus perbandingan",
+    "clearCompare": "Hapus semua",
+    "aiInsight": "Bijak Insights (AI)",
+    "aiSummary": "Mengapa ini cocok untuk Anda",
+    "aiRecommendation": "Rekomendasi Personal"
   },
   "categories": {
     "food-beverage": "Makanan & Minuman",

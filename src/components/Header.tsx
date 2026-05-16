@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Moon, Sun, Globe, Menu, X, Scale } from "lucide-react";
+import { Search, Moon, Sun, Globe, Menu, X, Scale, Camera } from "lucide-react";
 import { useApp } from "./AppProvider";
+import ScannerModal from "./ScannerModal";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const { lang, setLanguage, setDarkMode, prefs, t } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scannerOpen, setScannerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
   const router = useRouter();
@@ -37,6 +39,8 @@ export default function Header() {
     { href: "/", label: t("nav", "home") },
     { href: "/search", label: t("nav", "search") },
     { href: "/values", label: t("nav", "values") },
+    { href: "/compare", label: `${t("common", "compare")} (${prefs.compareIds?.length || 0})` },
+    { href: "/impact", label: lang === "id" ? "Dampak" : "Impact" },
     { href: "/community", label: t("nav", "community") },
     { href: "/about", label: t("nav", "about") },
   ];
@@ -66,8 +70,18 @@ export default function Header() {
               onChange={(e) => setSearchQuery(e.target.value)}
               autoComplete="off"
             />
+            <button 
+              type="button" 
+              className={styles.scanTrigger} 
+              onClick={() => setScannerOpen(true)}
+              title="Scan product"
+            >
+              <Camera size={16} />
+            </button>
           </div>
         </form>
+
+        <ScannerModal isOpen={scannerOpen} onClose={() => setScannerOpen(false)} />
 
         {/* Desktop Nav */}
         <nav className={styles.desktopNav} aria-label="Main navigation">

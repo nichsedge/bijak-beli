@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id         String  @id
+  name       String
+  nameId     String
+  icon       String
+  brandCount Int     @default(0)
+  brands     Brand[]
+}
+
+model Brand {
+  id             String   @id
+  name           String
+  nameId         String?
+  logo           String
+  categoryId     String
+  category       Category @relation(fields: [categoryId], references: [id])
+  subcategory    String?
+  tagline        String
+  taglineId      String
+  country        String
+  parentCompany  String?
+  ultimateOwner  String?
+  ownerCountry   String?
+  foundedYear    Int?
+  halalCertified Boolean
+  halalCertifier String?
+
+  // Scores
+  scoreHalal     Int
+  scoreEthical   Int
+  scoreEsg       Int
+  scorePolitical Int
+  scoreCommunity Int
+
+  communityVotesUp   Int @default(0)
+  communityVotesDown Int @default(0)
+
+  lastUpdated     DateTime
+  description     String
+  descriptionId   String
+  boycottActive   Boolean
+  boycottReason   String?
+  boycottReasonId String?
+
+  controversies  BrandControversy[]
+  certifications BrandCertification[]
+  sources        Source[]
+
+  // Alternatives relation
+  alternatives  BrandAlternative[] @relation("BrandToAlternative")
+  alternativeOf BrandAlternative[] @relation("AlternativeToBrand")
+}
+
+model Controversy {
+  id            String   @id
+  date          DateTime
+  title         String
+  titleId       String
+  description   String
+  descriptionId String
+  severity      String // "low" | "medium" | "high" | "critical"
+  source        String
+  sourceUrl     String
+
+  brands BrandControversy[]
+}
+
+model BrandControversy {
+  brandId       String
+  controversyId String
+  brand         Brand       @relation(fields: [brandId], references: [id])
+  controversy   Controversy @relation(fields: [controversyId], references: [id])
+
+  @@id([brandId, controversyId])
+}
+
+model BrandCertification {
+  id            String @id @default(uuid())
+  brandId       String
+  certification String
+  brand         Brand  @relation(fields: [brandId], references: [id])
+}
+
+model Source {
+  id      String   @id @default(uuid())
+  title   String
+  url     String
+  date    DateTime
+  brandId String
+  brand   Brand    @relation(fields: [brandId], references: [id])
+}
+
+model BrandAlternative {
+  brandId       String
+  alternativeId String
+  brand         Brand  @relation("BrandToAlternative", fields: [brandId], references: [id])
+  alternative   Brand  @relation("AlternativeToBrand", fields: [alternativeId], references: [id])
+
+  @@id([brandId, alternativeId])
+}

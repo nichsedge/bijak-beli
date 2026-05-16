@@ -87,6 +87,8 @@ export interface UserPreferences {
   language: "id" | "en";
   darkMode: boolean;
   preset?: string;
+  compareIds: string[];
+  purchaseIds: string[];
 }
 
 export const DEFAULT_WEIGHTS: ScoreWeights = {

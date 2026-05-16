@@ -5,10 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Search, Filter, ChevronDown } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import BrandCard from "@/components/BrandCard";
-import { brands, searchBrands, getBrandsByCategory } from "@/data/brands";
-import { categories } from "@/data/categories";
+import { fetchAllBrands, fetchCategories } from "@/lib/api";
 import { sortBrands } from "@/lib/scoring";
-import type { Brand } from "@/lib/types";
+import type { Brand, Category } from "@/lib/types";
 import styles from "./search.module.css";
 
 function SearchContent() {
@@ -21,18 +20,40 @@ function SearchContent() {
   const [filterBoycott, setFilterBoycott] = useState<"all" | "active" | "none">("all");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      const [allB, allC] = await Promise.all([fetchAllBrands(), fetchCategories()]);
+      setBrands(allB);
+      setCategories(allC);
+      setLoading(false);
+    }
+    load();
+  }, []);
+
   useEffect(() => {
     setQuery(searchParams.get("q") ?? "");
     const cat = searchParams.get("category");
     if (cat) setCategory(cat);
   }, [searchParams]);
 
-  // Filter brands
-  let results: Brand[] = query
-    ? searchBrands(query)
-    : category !== "all"
-    ? getBrandsByCategory(category)
-    : [...brands];
+  // Filter brands locally
+  const queryLower = query.toLowerCase();
+  
+  let results: Brand[] = [...brands];
+  
+  if (queryLower) {
+    results = results.filter(b => 
+      b.name.toLowerCase().includes(queryLower) ||
+      b.parentCompany?.toLowerCase().includes(queryLower) ||
+      b.category.toLowerCase().includes(queryLower)
+    );
+  } else if (category !== "all") {
+    results = results.filter(b => b.category === category);
+  }
 
   if (filterHalal) results = results.filter((b) => b.halalCertified);
   if (filterBoycott === "active") results = results.filter((b) => b.boycottActive);

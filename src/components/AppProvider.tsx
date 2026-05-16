@@ -9,6 +9,10 @@ interface AppContextType {
   setDarkMode: (dark: boolean) => void;
   setWeights: (weights: UserPreferences["weights"]) => void;
   setPreset: (preset: string) => void;
+  toggleCompare: (id: string) => void;
+  clearComparison: () => void;
+  recordPurchase: (id: string) => void;
+  clearPurchases: () => void;
   t: (namespace: string, key: string) => string;
   lang: "id" | "en";
 }
@@ -50,6 +54,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     weights: DEFAULT_WEIGHTS,
     language: "id",
     darkMode: false,
+    compareIds: [],
+    purchaseIds: [],
   });
   const [msgs, setMsgs] = useState<Record<string, unknown>>({});
 
@@ -58,8 +64,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       const saved = localStorage.getItem("bijak-beli-prefs");
       if (saved) {
-        const parsed = JSON.parse(saved) as UserPreferences;
-        setPrefs(parsed);
+        const parsed = JSON.parse(saved);
+        // Merge with initial state to ensure new fields (like purchaseIds) exist
+        setPrefs(prev => ({
+          ...prev,
+          ...parsed,
+          // Ensure arrays exist even if they weren't in old localStorage
+          compareIds: parsed.compareIds || [],
+          purchaseIds: parsed.purchaseIds || [],
+        }));
         applyDarkMode(parsed.darkMode);
         loadMessages(parsed.language).then(setMsgs);
         return;
@@ -106,6 +119,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function toggleCompare(id: string) {
+    const current = prefs.compareIds || [];
+    const updated = current.includes(id)
+      ? current.filter((i) => i !== id)
+      : [...current, id].slice(-3); // Limit to 3 for comparison
+    savePrefs({ ...prefs, compareIds: updated });
+  }
+
+  function clearComparison() {
+    savePrefs({ ...prefs, compareIds: [] });
+  }
+
+  function recordPurchase(id: string) {
+    const current = prefs.purchaseIds || [];
+    savePrefs({ ...prefs, purchaseIds: [...current, id] });
+  }
+
+  function clearPurchases() {
+    savePrefs({ ...prefs, purchaseIds: [] });
+  }
+
   function t(namespace: string, key: string): string {
     const ns = msgs[namespace] as Record<string, unknown> | undefined;
     if (!ns) return key;
@@ -119,6 +153,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setDarkMode,
       setWeights,
       setPreset,
+      toggleCompare,
+      clearComparison,
+      recordPurchase,
+      clearPurchases,
       t: (ns, key) => t(ns, key),
       lang: prefs.language,
     }}>

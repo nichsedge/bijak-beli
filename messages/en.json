@@ -99,7 +99,15 @@
     "boycott": "Boycotted",
     "noBoycott": "No active boycott",
     "verified": "Verified",
-    "editorial": "Editorial"
+    "editorial": "Editorial",
+    "compare": "Compare",
+    "comparing": "Comparing",
+    "addToCompare": "Add to compare",
+    "removeFromCompare": "Remove from compare",
+    "clearCompare": "Clear comparison",
+    "aiInsight": "Bijak Insights (AI)",
+    "aiSummary": "Why this matches you",
+    "aiRecommendation": "Personalized Recommendation"
   },
   "categories": {
     "food-beverage": "Food & Beverage",

@@ -37,6 +37,18 @@
 
 .backLink:hover { color: var(--primary); }
 
+.topNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: var(--space-6) 0 var(--space-5);
+}
+
+.topNav .backLink {
+  margin: 0;
+}
+
 /* Brand header */
 .brandHeader {
   display: flex;
@@ -169,6 +181,55 @@
 /* Panel */
 .panel {
   margin: 0;
+}
+
+.aiPanel {
+  background: linear-gradient(135deg, var(--surface), var(--primary-subtle));
+  border: 1px solid var(--primary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.aiHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.aiIcon {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.aiTitle {
+  font-size: var(--text-base);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aiText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  font-style: italic;
+}
+
+.aiFooter {
+  font-size: 10px;
+  color: var(--text-subtle);
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--space-2);
 }
 
 .panelTitle {
