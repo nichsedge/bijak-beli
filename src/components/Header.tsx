@@ -37,6 +37,8 @@ export default function Header() {
 
   const navLinks = [
     { href: "/", label: t("nav", "home") },
+    { href: "/warehouse", label: "Warehouse" },
+    { href: "/power", label: "Power Map" },
     { href: "/search", label: t("nav", "search") },
     { href: "/values", label: t("nav", "values") },
     { href: "/compare", label: `${t("common", "compare")} (${prefs.compareIds?.length || 0})` },

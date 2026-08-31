@@ -1,0 +1,20 @@
+{
+  "indomie": { "ticker": "INDF", "note": "Salim Group" },
+  "sarimi": { "ticker": "INDF" },
+  "mie-sedaap": { "ticker": null, "note": "Wings Group private" },
+  "nestle": { "ticker": null, "note": "SWX:NESN foreign" },
+  "mayora": { "ticker": "MYOR" },
+  "starbucks": { "ticker": null, "note": "NASDAQ:SBUX franchise Inti" },
+  "mcdonald": { "ticker": null, "note": "NYSE:MCD franchise" },
+  "kopi-kenangan": { "ticker": null, "note": "private" },
+  "unilever": { "ticker": "UNVR" },
+  "wardah": { "ticker": null, "note": "Paragon private" },
+  "emina": { "ticker": null, "note": "Paragon private" },
+  "zara": { "ticker": null, "note": "BME:ITX foreign" },
+  "hm": { "ticker": null, "note": "STO:HMB foreign" },
+  "gojek": { "ticker": "GOTO" },
+  "grab": { "ticker": null, "note": "NASDAQ:GRAB foreign" },
+  "samsung": { "ticker": null, "note": "KRX foreign" },
+  "oppo": { "ticker": null, "note": "private BBK" },
+  "janji-jiwa": { "ticker": null, "note": "private" }
+}
