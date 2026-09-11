@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Bijak Beli (Smart Ethical Consumer Platform)
 
-## Getting Started
+A modern Next.js 16 + React 19 web application that decodes consumer brands in Indonesia, revealing their **Ultimate Beneficial Owners (UBO)**, conglomerate affiliations, tycoon ties, and ethical scores.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🔍 **Brand-to-Oligarch Transparency**: Look up consumer products (Indomie, Mie Sedaap, Mayora, Unilever, Gojek) and see who actually owns and profits from them.
+- 🏛️ **IDX-BEI Quantitative Integration**: Synchronizes ownership data, shareholding percentages, and Power200 tycoon ranks directly from `~/Projects/idx-bei`.
+- 📷 **Barcode & Product Scanner**: Look up products via `/scan` and inspect brand comparisons.
+- ⚡ **Turbopack & Modern Stack**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Lucide icons.
+
+---
+
+## 🚀 Quick Start
+
+### Installation & Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+bun install
+
+# Sync brand ownership from idx-bei
+bun run sync:ownership
+
+# Start development server on port 3888
+bun run dev
+
+# Build production bundle
+bun run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔄 Ownership Pipeline
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`scripts/sync-idx-ownership.ts` reads `idx-mapping.json`, matches tickers against `~/Projects/idx-bei/data/companyDetailsByKodeEmiten.json` and `power200.json`, and enriches `src/data/brands.ts` with:
+- Top 2 major shareholders & equity percentages.
+- Power200 tycoon / insider ranking.

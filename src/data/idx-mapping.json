@@ -16,5 +16,6 @@
   "grab": { "ticker": null, "note": "NASDAQ:GRAB foreign" },
   "samsung": { "ticker": null, "note": "KRX foreign" },
   "oppo": { "ticker": null, "note": "private BBK" },
-  "janji-jiwa": { "ticker": null, "note": "private" }
+  "janji-jiwa": { "ticker": null, "note": "private" },
+  "pocari-sweat": { "ticker": null, "note": "TYO:4578 Otsuka Pharmaceutical foreign" }
 }

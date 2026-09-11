@@ -17,7 +17,21 @@ try { details = JSON.parse(fs.readFileSync(companyDetailsPath, "utf-8")); } catc
 function getUbo(ticker: string): string {
   const d = details[ticker];
   if (!d) return "";
-  const shareholders = (d.PemegangSaham || []).filter((s:any)=>s.Jumlah>0).slice(0,2).map((s:any)=>s.Nama).join(", ");
+
+  // 1. Match against Power200 tycoons
+  const p200Match = power200.find((p: any) => (p.companies || []).includes(ticker));
+  const p200Name = p200Match ? `${p200Match.insider} (Power200 #${p200Match.rank})` : "";
+
+  // 2. Extract Top 2 Shareholders
+  const shareholders = (d.PemegangSaham || [])
+    .filter((s: any) => s.Jumlah > 0)
+    .slice(0, 2)
+    .map((s: any) => `${s.Nama}${s.Persentase ? ` (${s.Persentase}%)` : ""}`)
+    .join(", ");
+
+  if (p200Name && shareholders) {
+    return `${p200Name} / ${shareholders}`;
+  }
   if (shareholders) return shareholders;
   const profiles = d.Profiles?.[0];
   return profiles?.NamaEmiten || ticker;
