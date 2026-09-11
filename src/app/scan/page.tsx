@@ -7,33 +7,7 @@ import Link from "next/link";
 import styles from "./scan.module.css";
 import { useApp } from "@/components/AppProvider";
 
-// Common Indonesian FMCG barcode prefix dictionary mapping to brand slugs
-const BARCODE_MAP: Record<string, { brandId: string; name: string }> = {
-  // Indomie (Indofood)
-  "8998866200224": { brandId: "indomie", name: "Indomie Goreng Spesial" },
-  "8998866200019": { brandId: "indomie", name: "Indomie Kuah Kari Ayam" },
-  "8998866200057": { brandId: "indomie", name: "Indomie Ayam Bawang" },
-  // Mie Sedaap (Wings)
-  "8992388114120": { brandId: "mie-sedaap", name: "Mie Sedaap Goreng" },
-  // Le Minerale (Mayora)
-  "8992761011118": { brandId: "le-minerale", name: "Le Minerale 600ml" },
-  // Aqua (Danone)
-  "8992696404412": { brandId: "aqua", name: "Aqua 600ml" },
-  // Teh Botol Sosro
-  "8992753112229": { brandId: "teh-botol-sosro", name: "Teh Botol Sosro Kotak" },
-  // Ultra Milk (Ultrajaya)
-  "8992759110010": { brandId: "ultra-milk", name: "Ultra Milk Cokelat 250ml" },
-  // Tolak Angin (Sido Muncul)
-  "8993005120015": { brandId: "tolak-angin", name: "Tolak Angin Cair Herbal" },
-  // Sari Roti
-  "8992751010015": { brandId: "sari-roti", name: "Sari Roti Tawar Spesial" },
-  // Kapal Api
-  "8996001301017": { brandId: "kapal-api", name: "Kopi Kapal Api Special" },
-  // Pepsodent (Unilever)
-  "8999999195518": { brandId: "pepsodent", name: "Pepsodent White 120g" },
-  // Lifebuoy (Unilever)
-  "8999999052026": { brandId: "lifebuoy", name: "Lifebuoy Total 10 Soap" },
-};
+import { resolveBarcode, LOCAL_BARCODE_MAP } from "@/lib/barcode-resolver";
 
 const QUICK_TEST_BRANDS = [
   { id: "indomie", name: "Indomie", code: "8998866200224" },
@@ -46,16 +20,17 @@ const QUICK_TEST_BRANDS = [
 
 export default function ScanPage() {
   const [status, setStatus] = useState<"idle" | "scanning" | "found" | "camera_error">("idle");
-  const [detectedBrand, setDetectedBrand] = useState<{ id: string; name: string } | null>(null);
+  const [detectedBrand, setDetectedBrand] = useState<{ id: string; name: string; company?: string } | null>(null);
   const [manualCode, setManualCode] = useState("");
+  const [isResolving, setIsResolving] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const scanIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
   const { lang } = useApp();
 
-  const handleBrandIdentified = useCallback((brandId: string, brandName: string) => {
-    setDetectedBrand({ id: brandId, name: brandName });
+  const handleBrandIdentified = useCallback((brandId: string, brandName: string, company?: string) => {
+    setDetectedBrand({ id: brandId, name: brandName, company });
     setStatus("found");
 
     // Stop video stream
@@ -71,7 +46,7 @@ export default function ScanPage() {
     // Redirect to brand profile
     setTimeout(() => {
       router.push(`/brand/${brandId}`);
-    }, 1200);
+    }, 1300);
   }, [router]);
 
   const startCamera = async () => {
@@ -99,21 +74,19 @@ export default function ScanPage() {
           });
 
           scanIntervalRef.current = setInterval(async () => {
-            if (!videoRef.current || videoRef.current.readyState < 2) return;
+            if (!videoRef.current || videoRef.current.readyState < 2 || isResolving) return;
             try {
               const barcodes = await detector.detect(videoRef.current);
               if (barcodes && barcodes.length > 0) {
                 const rawValue = barcodes[0].rawValue;
-                const match = BARCODE_MAP[rawValue];
-                if (match) {
-                  handleBrandIdentified(match.brandId, match.name);
-                } else {
-                  // Fallback: If barcode unrecognized, infer brand or match partial
-                  handleBrandIdentified("indomie", `Product (${rawValue})`);
-                }
+                setIsResolving(true);
+                const res = await resolveBarcode(rawValue);
+                handleBrandIdentified(res.brandId, res.name, res.parentCompany);
               }
             } catch {
-              // Ignore frame detection frame errors
+              // Ignore frame detection errors
+            } finally {
+              setIsResolving(false);
             }
           }, 300);
         } catch {
@@ -136,17 +109,17 @@ export default function ScanPage() {
     };
   }, []);
 
-  const handleManualSubmit = (e: React.FormEvent) => {
+  const handleManualSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const clean = manualCode.trim();
     if (!clean) return;
 
-    const match = BARCODE_MAP[clean];
-    if (match) {
-      handleBrandIdentified(match.brandId, match.name);
-    } else {
-      // Direct match or default to search
-      handleBrandIdentified(clean.toLowerCase(), clean);
+    setIsResolving(true);
+    try {
+      const res = await resolveBarcode(clean);
+      handleBrandIdentified(res.brandId, res.name, res.parentCompany);
+    } finally {
+      setIsResolving(false);
     }
   };
 
@@ -208,7 +181,13 @@ export default function ScanPage() {
                 <Zap size={28} />
               </div>
               <h2>{detectedBrand?.name || "Brand"}</h2>
-              <p>{lang === "id" ? "Brand Berhasil Dikenali" : "Brand Recognized"}</p>
+              <p>
+                {detectedBrand?.company ? (
+                  <span style={{ opacity: 0.9 }}>{detectedBrand.company}</span>
+                ) : (
+                  lang === "id" ? "Brand Berhasil Dikenali" : "Brand Recognized"
+                )}
+              </p>
               <div className={styles.redirecting}>
                 <Loader2 size={16} className="animate-spin" />
                 <span>{lang === "id" ? "Mengarahkan ke profil..." : "Redirecting to profile..."}</span>
