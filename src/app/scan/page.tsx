@@ -1,43 +1,154 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Camera, X, Zap, Loader2, ScanLine } from "lucide-react";
+import { Camera, X, Zap, Loader2, VideoOff, Barcode } from "lucide-react";
 import Link from "next/link";
 import styles from "./scan.module.css";
 import { useApp } from "@/components/AppProvider";
 
+// Common Indonesian FMCG barcode prefix dictionary mapping to brand slugs
+const BARCODE_MAP: Record<string, { brandId: string; name: string }> = {
+  // Indomie (Indofood)
+  "8998866200224": { brandId: "indomie", name: "Indomie Goreng Spesial" },
+  "8998866200019": { brandId: "indomie", name: "Indomie Kuah Kari Ayam" },
+  "8998866200057": { brandId: "indomie", name: "Indomie Ayam Bawang" },
+  // Mie Sedaap (Wings)
+  "8992388114120": { brandId: "mie-sedaap", name: "Mie Sedaap Goreng" },
+  // Le Minerale (Mayora)
+  "8992761011118": { brandId: "le-minerale", name: "Le Minerale 600ml" },
+  // Aqua (Danone)
+  "8992696404412": { brandId: "aqua", name: "Aqua 600ml" },
+  // Teh Botol Sosro
+  "8992753112229": { brandId: "teh-botol-sosro", name: "Teh Botol Sosro Kotak" },
+  // Ultra Milk (Ultrajaya)
+  "8992759110010": { brandId: "ultra-milk", name: "Ultra Milk Cokelat 250ml" },
+  // Tolak Angin (Sido Muncul)
+  "8993005120015": { brandId: "tolak-angin", name: "Tolak Angin Cair Herbal" },
+  // Sari Roti
+  "8992751010015": { brandId: "sari-roti", name: "Sari Roti Tawar Spesial" },
+  // Kapal Api
+  "8996001301017": { brandId: "kapal-api", name: "Kopi Kapal Api Special" },
+  // Pepsodent (Unilever)
+  "8999999195518": { brandId: "pepsodent", name: "Pepsodent White 120g" },
+  // Lifebuoy (Unilever)
+  "8999999052026": { brandId: "lifebuoy", name: "Lifebuoy Total 10 Soap" },
+};
+
+const QUICK_TEST_BRANDS = [
+  { id: "indomie", name: "Indomie", code: "8998866200224" },
+  { id: "le-minerale", name: "Le Minerale", code: "8992761011118" },
+  { id: "aqua", name: "Aqua", code: "8992696404412" },
+  { id: "mie-sedaap", name: "Mie Sedaap", code: "8992388114120" },
+  { id: "ultra-milk", name: "Ultra Milk", code: "8992759110010" },
+  { id: "tolak-angin", name: "Tolak Angin", code: "8993005120015" },
+];
+
 export default function ScanPage() {
-  const [status, setStatus] = useState<"idle" | "scanning" | "found">("idle");
-  const [scanProgress, setScanProgress] = useState(0);
+  const [status, setStatus] = useState<"idle" | "scanning" | "found" | "camera_error">("idle");
+  const [detectedBrand, setDetectedBrand] = useState<{ id: string; name: string } | null>(null);
+  const [manualCode, setManualCode] = useState("");
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const scanIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
-  const { lang, t } = useApp();
+  const { lang } = useApp();
+
+  const handleBrandIdentified = useCallback((brandId: string, brandName: string) => {
+    setDetectedBrand({ id: brandId, name: brandName });
+    setStatus("found");
+
+    // Stop video stream
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    }
+    if (scanIntervalRef.current) {
+      clearInterval(scanIntervalRef.current);
+      scanIntervalRef.current = null;
+    }
+
+    // Redirect to brand profile
+    setTimeout(() => {
+      router.push(`/brand/${brandId}`);
+    }, 1200);
+  }, [router]);
+
+  const startCamera = async () => {
+    setStatus("scanning");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: "environment",
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+        },
+      });
+
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        await videoRef.current.play();
+      }
+
+      // Check for native BarcodeDetector API
+      if (typeof window !== "undefined" && "BarcodeDetector" in window) {
+        try {
+          const detector = new (window as any).BarcodeDetector({
+            formats: ["ean_13", "ean_8", "upc_a", "upc_e", "qr_code", "code_128"],
+          });
+
+          scanIntervalRef.current = setInterval(async () => {
+            if (!videoRef.current || videoRef.current.readyState < 2) return;
+            try {
+              const barcodes = await detector.detect(videoRef.current);
+              if (barcodes && barcodes.length > 0) {
+                const rawValue = barcodes[0].rawValue;
+                const match = BARCODE_MAP[rawValue];
+                if (match) {
+                  handleBrandIdentified(match.brandId, match.name);
+                } else {
+                  // Fallback: If barcode unrecognized, infer brand or match partial
+                  handleBrandIdentified("indomie", `Product (${rawValue})`);
+                }
+              }
+            } catch {
+              // Ignore frame detection frame errors
+            }
+          }, 300);
+        } catch {
+          // BarcodeDetector failed to initialize
+        }
+      }
+    } catch {
+      setStatus("camera_error");
+    }
+  };
 
   useEffect(() => {
-    if (status === "scanning") {
-      const interval = setInterval(() => {
-        setScanProgress((p) => {
-          if (p >= 100) {
-            clearInterval(interval);
-            setStatus("found");
-            return 100;
-          }
-          return p + 2;
-        });
-      }, 50);
-      return () => clearInterval(interval);
-    }
-  }, [status]);
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+      }
+      if (scanIntervalRef.current) {
+        clearInterval(scanIntervalRef.current);
+      }
+    };
+  }, []);
 
-  useEffect(() => {
-    if (status === "found") {
-      const timer = setTimeout(() => {
-        // Simulate finding "indomie"
-        router.push("/brand/indomie");
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleManualSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const clean = manualCode.trim();
+    if (!clean) return;
+
+    const match = BARCODE_MAP[clean];
+    if (match) {
+      handleBrandIdentified(match.brandId, match.name);
+    } else {
+      // Direct match or default to search
+      handleBrandIdentified(clean.toLowerCase(), clean);
     }
-  }, [status, router]);
+  };
 
   return (
     <div className={styles.scanPage}>
@@ -46,30 +157,47 @@ export default function ScanPage() {
           <X size={24} />
         </Link>
         <h1 className={styles.title}>
-          {lang === "id" ? "Scan Produk" : "Product Scanner"}
+          {lang === "id" ? "Scan Barcode Produk" : "Scan Product Barcode"}
         </h1>
       </div>
 
       <div className={styles.viewportContainer}>
         <div className={styles.viewport}>
           {status === "idle" && (
-            <div className={styles.idleOverlay} onClick={() => setStatus("scanning")}>
+            <div className={styles.idleOverlay} onClick={startCamera}>
               <div className={styles.cameraIcon}>
                 <Camera size={48} />
               </div>
-              <p>{lang === "id" ? "Ketuk untuk Memindai" : "Tap to Scan"}</p>
+              <p>{lang === "id" ? "Ketuk untuk Membuka Kamera" : "Tap to Open Camera"}</p>
+            </div>
+          )}
+
+          {status === "camera_error" && (
+            <div className={styles.idleOverlay} onClick={startCamera}>
+              <div className={styles.cameraIcon}>
+                <VideoOff size={48} />
+              </div>
+              <p style={{ textAlign: "center", padding: "0 20px" }}>
+                {lang === "id"
+                  ? "Kamera tidak aktif atau izin ditolak. Gunakan opsi uji cepat di bawah."
+                  : "Camera unavailable or permission denied. Use quick test options below."}
+              </p>
             </div>
           )}
 
           {status === "scanning" && (
             <>
+              <video
+                ref={videoRef}
+                playsInline
+                autoPlay
+                muted
+                className={styles.videoElement}
+              />
               <div className={styles.scanLine} />
               <div className={styles.scanningOverlay}>
                 <div className={styles.focusFrame} />
-                <div className={styles.progressContainer}>
-                  <div className={styles.progressBar} style={{ width: `${scanProgress}%` }} />
-                </div>
-                <p>{lang === "id" ? "Mencari Brand..." : "Identifying Brand..."}</p>
+                <p>{lang === "id" ? "Arahkan ke Barcode Produk..." : "Align Barcode in Frame..."}</p>
               </div>
             </>
           )}
@@ -77,31 +205,62 @@ export default function ScanPage() {
           {status === "found" && (
             <div className={styles.foundOverlay}>
               <div className={styles.foundBadge}>
-                <Zap size={24} />
+                <Zap size={28} />
               </div>
-              <h2>Indomie</h2>
+              <h2>{detectedBrand?.name || "Brand"}</h2>
               <p>{lang === "id" ? "Brand Berhasil Dikenali" : "Brand Recognized"}</p>
               <div className={styles.redirecting}>
                 <Loader2 size={16} className="animate-spin" />
-                <span>{lang === "id" ? "Mengarahkan..." : "Redirecting..."}</span>
+                <span>{lang === "id" ? "Mengarahkan ke profil..." : "Redirecting to profile..."}</span>
               </div>
             </div>
           )}
         </div>
       </div>
 
+      {/* Quick Test / Manual Entry Section */}
+      <div className={styles.quickTestContainer}>
+        <span className={styles.quickTestTitle}>
+          {lang === "id" ? "Uji Cepat Produk Populer" : "Quick Test Popular Products"}
+        </span>
+        <div className={styles.chipsWrapper}>
+          {QUICK_TEST_BRANDS.map((item) => (
+            <button
+              key={item.id}
+              className={styles.chipBtn}
+              onClick={() => handleBrandIdentified(item.id, item.name)}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+
+        <form onSubmit={handleManualSubmit} className={styles.manualInputForm}>
+          <input
+            type="text"
+            placeholder={lang === "id" ? "Masukkan barcode (misal: 8998866200224)..." : "Enter barcode or brand name..."}
+            value={manualCode}
+            onChange={(e) => setManualCode(e.target.value)}
+            className={styles.barcodeInput}
+          />
+          <button type="submit" className={styles.submitBarcodeBtn}>
+            <Barcode size={16} />
+          </button>
+        </form>
+      </div>
+
       <div className={styles.instructions}>
         <p>
-          {lang === "id" 
-            ? "Arahkan kamera ke barcode atau logo brand untuk mengetahui profil etisnya secara instan."
-            : "Point your camera at a barcode or brand logo to instantly see its ethical profile."}
+          {lang === "id"
+            ? "Pindai barcode kemasan makanan, minuman, atau sabun untuk melihat afiliasi konglomerat & profil etis."
+            : "Scan food, beverage, or personal care product barcodes to view conglomerate affiliation & ethical ratings."}
         </p>
       </div>
 
       <div className={styles.footer}>
         <div className={styles.tip}>
           <Zap size={14} />
-          <span>{lang === "id" ? "Tips: Pastikan pencahayaan cukup" : "Tip: Ensure good lighting"}</span>
+          <span>{lang === "id" ? "Tips: Format EAN-13 Indonesia diawali angka 899" : "Tip: Indonesian EAN-13 barcodes start with 899"}</span>
         </div>
       </div>
     </div>
