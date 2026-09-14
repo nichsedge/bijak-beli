@@ -2,6 +2,8 @@
 
 A modern Next.js 16 + React 19 web application that decodes consumer brands in Indonesia, revealing their **Ultimate Beneficial Owners (UBO)**, conglomerate affiliations, tycoon ties, and ethical scores.
 
+🌐 **Live App**: [https://bijak-beli.vercel.app](https://bijak-beli.vercel.app)
+
 ---
 
 ## ✨ Features
