@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
   },
-  turbopack: {
-    root: "./",
+  outputFileTracingIncludes: {
+    "/**": ["./drizzle.db"],
   },
 };
 
