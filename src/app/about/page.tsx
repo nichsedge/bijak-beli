@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useSyncExternalStore } from "react";
 import { Scale, Database, Shield, AlertCircle, Mail, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import styles from "./about.module.css";
@@ -29,8 +28,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function AboutPage() {
   const { lang } = useApp();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   if (!mounted) return null;
 
   const content = {

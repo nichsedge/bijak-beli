@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { TrendingUp, Flag, ThumbsUp, BarChart2, Users, MessageCircle } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
@@ -11,11 +11,10 @@ import styles from "./community.module.css";
 
 export default function CommunityPage() {
   const { lang, prefs } = useApp();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [brands, setBrands] = useState<Brand[]>([]);
 
   useEffect(() => { 
-    setMounted(true); 
     fetchAllBrands().then(setBrands).catch(console.error);
   }, []);
 

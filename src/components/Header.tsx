@@ -23,9 +23,11 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setMenuOpen(false);
-  }, [pathname]);
+  }
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -37,6 +39,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/", label: t("nav", "home") },
+    { href: "/conglomerates", label: lang === "id" ? "Konglomerasi" : "Conglomerates" },
     { href: "/warehouse", label: "Warehouse" },
     { href: "/power", label: "Power Map" },
     { href: "/search", label: t("nav", "search") },

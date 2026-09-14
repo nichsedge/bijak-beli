@@ -4,36 +4,44 @@ import { useState } from "react";
 import Link from "next/link";
 import { 
   CheckCircle, ThumbsUp, ThumbsDown, ShoppingBag, 
-  ChevronRight, Building2, Shield, AlertTriangle, Hash,
-  ExternalLink, ChevronUp, ChevronDown, Calendar,
-  FileText, ShieldCheck, Scale
+  ChevronRight, Building2, Shield, AlertTriangle,
+  ExternalLink, FileText, ShieldCheck, Scale, Crown
 } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import ScoreBadge from "@/components/ScoreBadge";
 import ScoreBreakdown from "@/components/ScoreBreakdown";
 import BrandCard from "@/components/BrandCard";
 import AiInsight from "@/components/AiInsight";
-import { formatDate, severityColor, severityLabel } from "@/lib/utils";
+import { formatDate, severityColor } from "@/lib/utils";
 import { getBrandScoreAudit } from "@/lib/scoring";
 import { BrandOwnershipGraph } from "@/components/OwnershipGraph";
-import type { Controversy, Brand } from "@/lib/types";
+import { conglomerates } from "@/data/conglomerates";
+import { brands } from "@/data/brands";
+import type { Controversy, Brand, AlignmentResult } from "@/lib/types";
 import styles from "../app/brand/[id]/brand.module.css";
 
 interface BrandDetailClientProps {
   brand: Brand;
   brandControversies: Controversy[];
   alternatives: Brand[];
-  result: any;
+  result: AlignmentResult;
 }
 
 export default function BrandDetailClient({ brand, brandControversies, alternatives, result }: BrandDetailClientProps) {
   const { prefs, lang, toggleCompare, recordPurchase, t } = useApp();
   const isComparing = prefs.compareIds?.includes(brand.id);
   const [activeTab, setActiveTab] = useState("overview");
-  const [sourcesOpen, setSourcesOpen] = useState(false);
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
   const [purchased, setPurchased] = useState(false);
   const [votes, setVotes] = useState(brand.communityVotes);
+
+  const conglomerate = brand.conglomerateId
+    ? conglomerates.find((c) => c.id === brand.conglomerateId)
+    : null;
+
+  const sisterBrands = brand.conglomerateId
+    ? brands.filter((b) => b.conglomerateId === brand.conglomerateId && b.id !== brand.id)
+    : [];
 
   function handleVote(dir: "up" | "down") {
     if (voted === dir) {
@@ -102,11 +110,19 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
               )}
               {brand.bpomId && (
                 <a
-                  href="https://cekbpom.pom.go.id"
+                  href={
+                    brand.bpomId.includes("PKD") || brand.bpomId.includes("Kemenkes")
+                      ? "https://infoalkes.kemkes.go.id"
+                      : "https://cekbpom.pom.go.id"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.regBadgeLink}
-                  title="Nomor Izin Edar BPOM RI"
+                  title={
+                    brand.bpomId.includes("PKD") || brand.bpomId.includes("Kemenkes")
+                      ? "Izin Edar PKRT Kemenkes RI (Perbekalan Kesehatan Rumah Tangga)"
+                      : "Nomor Izin Edar BPOM RI"
+                  }
                 >
                   <Shield size={11} color="var(--primary)" />
                   <span>{brand.bpomId}</span>
@@ -137,6 +153,18 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                   <ChevronRight size={10} />
                 </Link>
               )}
+              {conglomerate && (
+                <Link
+                  href={`/conglomerates?id=${conglomerate.id}`}
+                  className={styles.regBadgeLink}
+                  style={{ borderColor: "var(--primary)", background: "var(--primary-subtle)" }}
+                  title={`Grup Konglomerasi: ${conglomerate.name} (${conglomerate.tycoon})`}
+                >
+                  <Crown size={11} color="var(--primary-dark)" />
+                  <span style={{ fontWeight: 700, color: "var(--primary-dark)" }}>Grup: {conglomerate.name}</span>
+                  <ChevronRight size={10} color="var(--primary-dark)" />
+                </Link>
+              )}
               {brand.boycottActive && (
                 <span className="badge badge-boycott" title={brand.boycottReason}>
                   <AlertTriangle size={11} />
@@ -161,6 +189,14 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
           >
             {purchased ? <CheckCircle size={14} /> : <ShoppingBag size={14} />}
             {purchased ? t("values", "saved") : (lang === "id" ? "Saya Beli Ini" : "I Bought This")}
+          </button>
+          <button 
+            className={`btn ${isComparing ? 'btn-secondary' : 'btn-outline'} btn-sm`}
+            style={{ marginTop: 'var(--space-2)', width: '100%' }}
+            onClick={() => toggleCompare(brand.id)}
+          >
+            <Scale size={14} />
+            {isComparing ? t("common", "comparing") : t("common", "compare")}
           </button>
         </div>
       </div>
@@ -246,6 +282,61 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                 )}
               </div>
             </div>
+
+            {conglomerate && (
+              <div className={styles.conglomerateCard}>
+                <div className={styles.conglomerateCardHeader}>
+                  <div>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: "11px", fontWeight: 700, textTransform: "uppercase", color: "var(--primary-dark)", background: "var(--primary-light)", padding: "3px 10px", borderRadius: 999, marginBottom: 6 }}>
+                      <Crown size={12} /> {lang === "id" ? "Grup Konglomerasi & Induk Bisnis" : "Conglomerate Group & Parent"}
+                    </div>
+                    <h3 className={styles.conglomerateName}>{conglomerate.name}</h3>
+                    <div className={styles.conglomerateTycoon}>
+                      <span>Taipan / Pemilik Utama:</span>
+                      <strong>{conglomerate.tycoon}</strong>
+                      {conglomerate.powerMapRank && (
+                        <span style={{ marginLeft: 8, color: "#e11d48", fontWeight: 700 }}>
+                          • Power200 #{conglomerate.powerMapRank}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <Link
+                    href={`/conglomerates?id=${conglomerate.id}`}
+                    className="btn btn-outline btn-xs"
+                    style={{ fontSize: "11px", gap: 4 }}
+                  >
+                    <span>{lang === "id" ? "Buka Berkas Lengkap" : "Open Full Dossier"}</span>
+                    <ExternalLink size={11} />
+                  </Link>
+                </div>
+
+                <p style={{ fontSize: "var(--text-xs)", color: "var(--text-secondary)", margin: 0, lineHeight: 1.5 }}>
+                  {lang === "id" ? conglomerate.descriptionId : conglomerate.description}
+                </p>
+
+                {sisterBrands.length > 0 && (
+                  <div style={{ marginTop: 4 }}>
+                    <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--text-muted)", marginBottom: 4 }}>
+                      {lang === "id" ? "Merek Lain dalam Konglomerasi Ini:" : "Sister Brands in this Conglomerate:"}
+                    </div>
+                    <div className={styles.sisterBrandsWrap}>
+                      {sisterBrands.map((sb) => (
+                        <Link
+                          key={sb.id}
+                          href={`/brand/${sb.id}`}
+                          className={styles.sisterBrandPill}
+                          title={sb.name}
+                        >
+                          <span>{sb.name}</span>
+                          <span style={{ fontSize: "10px", opacity: 0.6 }}>({sb.category})</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             <BrandOwnershipGraph brand={brand} lang={lang} />
           </>

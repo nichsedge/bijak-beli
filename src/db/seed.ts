@@ -1,12 +1,42 @@
 import { db } from "./index";
 import * as schema from "./schema";
 import { categories } from "../data/categories";
+import { conglomerates } from "../data/conglomerates";
 import { controversies } from "../data/controversies";
 import { brands } from "../data/brands";
 import { eq, and } from "drizzle-orm";
 
 async function main() {
   console.log("Seeding database with Drizzle...");
+
+  // 0. Seed Conglomerates
+  for (const c of conglomerates) {
+    await db.insert(schema.conglomerates)
+      .values({
+        id: c.id,
+        name: c.name,
+        tycoon: c.tycoon,
+        powerMapRank: c.powerMapRank ?? null,
+        description: c.description,
+        descriptionId: c.descriptionId,
+        headquarters: c.headquarters,
+        keySectors: JSON.stringify(c.keySectors),
+        listedEntities: JSON.stringify(c.listedEntities),
+      })
+      .onConflictDoUpdate({
+        target: schema.conglomerates.id,
+        set: {
+          name: c.name,
+          tycoon: c.tycoon,
+          powerMapRank: c.powerMapRank ?? null,
+          description: c.description,
+          descriptionId: c.descriptionId,
+          headquarters: c.headquarters,
+          keySectors: JSON.stringify(c.keySectors),
+          listedEntities: JSON.stringify(c.listedEntities),
+        },
+      });
+  }
 
   // 1. Seed Categories
   for (const cat of categories) {
@@ -72,6 +102,7 @@ async function main() {
         taglineId: b.taglineId,
         country: b.country,
         parentCompany: b.parentCompany ?? null,
+        conglomerateId: b.conglomerateId ?? null,
         ultimateOwner: b.ultimateOwner ?? null,
         ownerCountry: b.ownerCountry ?? null,
         foundedYear: b.foundedYear ?? null,
@@ -108,6 +139,7 @@ async function main() {
           taglineId: b.taglineId,
           country: b.country,
           parentCompany: b.parentCompany ?? null,
+          conglomerateId: b.conglomerateId ?? null,
           ultimateOwner: b.ultimateOwner ?? null,
           ownerCountry: b.ownerCountry ?? null,
           foundedYear: b.foundedYear ?? null,

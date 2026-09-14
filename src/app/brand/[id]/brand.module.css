@@ -799,3 +799,69 @@
   border-color: var(--primary);
   color: var(--primary);
 }
+
+/* Conglomerate Dossier Panel */
+.conglomerateCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.conglomerateCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.conglomerateName {
+  font-size: var(--text-base);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.conglomerateTycoon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.sisterBrandsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sisterBrandPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.sisterBrandPill:hover {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+

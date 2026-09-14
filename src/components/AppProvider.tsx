@@ -66,13 +66,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (saved) {
         const parsed = JSON.parse(saved);
         // Merge with initial state to ensure new fields (like purchaseIds) exist
-        setPrefs(prev => ({
-          ...prev,
-          ...parsed,
-          // Ensure arrays exist even if they weren't in old localStorage
-          compareIds: parsed.compareIds || [],
-          purchaseIds: parsed.purchaseIds || [],
-        }));
+        queueMicrotask(() => {
+          setPrefs(prev => ({
+            ...prev,
+            ...parsed,
+            // Ensure arrays exist even if they weren't in old localStorage
+            compareIds: parsed.compareIds || [],
+            purchaseIds: parsed.purchaseIds || [],
+          }));
+        });
         applyDarkMode(parsed.darkMode);
         loadMessages(parsed.language).then(setMsgs);
         return;
@@ -81,7 +83,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     // Default
     const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setPrefs((p) => ({ ...p, darkMode: dark }));
+    queueMicrotask(() => {
+      setPrefs((p) => ({ ...p, darkMode: dark }));
+    });
     applyDarkMode(dark);
     loadMessages("id").then(setMsgs);
   }, []);

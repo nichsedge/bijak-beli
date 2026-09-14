@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrendingUp, Shield, Users, ChevronRight, Star, Award, Leaf, Zap } from "lucide-react";
+import { TrendingUp, Shield, Users, ChevronRight, Star, Zap } from "lucide-react";
 import BrandCard from "@/components/BrandCard";
 import HeroSearch from "@/components/HeroSearch";
 import PresetSelector from "@/components/PresetSelector";

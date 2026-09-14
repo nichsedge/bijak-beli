@@ -34,11 +34,14 @@ function SearchContent() {
     load();
   }, []);
 
-  useEffect(() => {
-    setQuery(searchParams.get("q") ?? "");
-    const cat = searchParams.get("category");
-    if (cat) setCategory(cat);
-  }, [searchParams]);
+  const paramQ = searchParams.get("q") ?? "";
+  const paramCat = searchParams.get("category") ?? "all";
+  const [prevParams, setPrevParams] = useState({ q: paramQ, cat: paramCat });
+  if (prevParams.q !== paramQ || prevParams.cat !== paramCat) {
+    setPrevParams({ q: paramQ, cat: paramCat });
+    setQuery(paramQ);
+    if (paramCat !== "all") setCategory(paramCat);
+  }
 
   // Filter brands locally
   const queryLower = query.toLowerCase();
@@ -180,7 +183,11 @@ function SearchContent() {
         </p>
 
         {/* Results grid */}
-        {results.length > 0 ? (
+        {loading ? (
+          <div style={{ textAlign: "center", padding: "4rem 0", color: "var(--text-muted)" }}>
+            {lang === "id" ? "Memuat katalog brand..." : "Loading brand catalog..."}
+          </div>
+        ) : results.length > 0 ? (
           <div className={styles.grid}>
             {results.map((brand) => (
               <BrandCard key={brand.id} brand={brand} />

@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { 
-  Leaf, Users, ShieldCheck, Heart, ArrowLeft, 
-  TrendingUp, Award, Zap, Info, Share2, Trash2
+  Leaf, Users, ArrowLeft, ShieldCheck,
+  TrendingUp, Award, Zap, Share2, Trash2
 } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import { fetchBrandById } from "@/lib/api";
@@ -36,12 +36,11 @@ export default function ImpactPage() {
   const totalItems = purchases.length;
   const avgEthical = purchases.length > 0 ? purchases.reduce((a, b) => a + b.scores.ethical, 0) / purchases.length : 0;
   const avgEsg = purchases.length > 0 ? purchases.reduce((a, b) => a + b.scores.esg, 0) / purchases.length : 0;
-  const localCount = purchases.filter(p => p.country === "Indonesia").length;
+  const localCount = purchases.filter(p => p.country === "ID" || p.country === "Indonesia").length;
   const localPct = totalItems > 0 ? Math.round((localCount / totalItems) * 100) : 0;
 
   // Mock impact metrics
   const kgCarbonSaved = (avgEsg / 100) * totalItems * 0.5;
-  const localJobsSupported = localCount * 2;
   const communityPoints = totalItems * 10 + Math.round(avgEthical);
 
   if (totalItems === 0) {
@@ -111,8 +110,8 @@ export default function ImpactPage() {
             <div className={styles.statIcon} style={{background: '#DBEAFE', color: '#1E40AF'}}>
               <Users size={24} />
             </div>
-            <div className={styles.statVal}>{localJobsSupported}</div>
-            <div className={styles.statLabel}>{lang === "id" ? "Pekerjaan Lokal Didukung" : "Local Jobs Supported"}</div>
+            <div className={styles.statVal}>{localPct}%</div>
+            <div className={styles.statLabel}>{lang === "id" ? `Produk Lokal (${localCount} dari ${totalItems})` : `Local Products (${localCount} of ${totalItems})`}</div>
           </div>
 
           <div className={`card card-body ${styles.statCard}`}>

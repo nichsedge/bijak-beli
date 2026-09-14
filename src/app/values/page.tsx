@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { CheckCircle, Info, RotateCcw } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
@@ -23,20 +23,23 @@ const PREVIEW_BAD_BRAND_ID = "starbucks";
 
 export default function ValuesPage() {
   const { prefs, setWeights, setPreset, lang } = useApp();
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [localWeights, setLocalWeights] = useState<ScoreWeights>(prefs.weights);
+  const [prevWeights, setPrevWeights] = useState<ScoreWeights>(prefs.weights);
+  if (prevWeights !== prefs.weights) {
+    setPrevWeights(prefs.weights);
+    setLocalWeights(prefs.weights);
+  }
+
   const [saved, setSaved] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [previewBrand, setPreviewBrand] = useState<Brand | null>(null);
   const [previewBadBrand, setPreviewBadBrand] = useState<Brand | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-    setLocalWeights(prefs.weights);
-    
     // Load previews
     fetchBrandById(PREVIEW_BRAND_ID).then(b => setPreviewBrand(b || null));
     fetchBrandById(PREVIEW_BAD_BRAND_ID).then(b => setPreviewBadBrand(b || null));
-  }, [prefs.weights]);
+  }, []);
 
   if (!mounted || !previewBrand || !previewBadBrand) return null;
 

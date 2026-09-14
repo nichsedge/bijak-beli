@@ -72,6 +72,74 @@ export const LOCAL_BARCODE_MAP: Record<string, { brandId: string; name: string; 
   "8993137703094": { brandId: "emina", name: "Emina Bright Stuff Face Wash", company: "Paragon Technology" },
   // Nestle Bear Brand
   "8992695123017": { brandId: "nestle", name: "Bear Brand Susu Steril", company: "Nestle Indonesia" },
+  // Bimoli (Salim Group)
+  "8992745100018": { brandId: "bimoli", name: "Bimoli Minyak Goreng Sawit 2L", company: "PT Salim Ivomas Pratama Tbk" },
+  // Filma (Sinar Mas)
+  "8992745200022": { brandId: "filma", name: "Filma Minyak Goreng Non-Kolesterol 2L", company: "PT SMART Tbk" },
+  // Sania (Wilmar)
+  "8993175100016": { brandId: "sania", name: "Sania Minyak Goreng Premium 2L", company: "Wilmar International" },
+  // Tropical (Musim Mas)
+  "8992747100012": { brandId: "tropical", name: "Tropical Minyak Goreng 2x Penyaringan 2L", company: "Musim Mas Group" },
+  // Dancow (Nestle)
+  "8992695200015": { brandId: "dancow", name: "Dancow FortiGro Cokelat 800g", company: "Nestle Indonesia" },
+  // SGM (Danone)
+  "8992696100017": { brandId: "sgm", name: "SGM Eksplor 1+ Madu 900g", company: "PT Sarihusada / Danone" },
+  // Frisian Flag
+  "8992759200018": { brandId: "frisian-flag", name: "Frisian Flag Bendera Kental Manis 370g", company: "PT Frisian Flag Indonesia" },
+  // Indomilk (Indofood)
+  "8998866300016": { brandId: "indomilk", name: "Indomilk Kental Manis Putih 370g", company: "PT Indolakto / Indofood CBP" },
+  // Kecap ABC (Kraft Heinz)
+  "8992741100016": { brandId: "kecap-abc", name: "Kecap Manis ABC 520ml", company: "PT Heinz ABC Indonesia" },
+  // Dua Belibis
+  "8992769100012": { brandId: "dua-belibis", name: "Saus Cabe Dua Belibis Botol 340ml", company: "PT Anggana Catur Prima" },
+  // Kecap Sedaap (Wings)
+  "8992388130014": { brandId: "kecap-sedaap", name: "Kecap Manis Sedaap Kedelai Hitam 550ml", company: "Wings Group" },
+  // Sunlight (Unilever)
+  "8999999456789": { brandId: "sunlight", name: "Sunlight Jeruk Nipis Pencuci Piring 750ml", company: "PT Unilever Indonesia Tbk" },
+  // Mama Lemon (Lion Wings)
+  "8992742100015": { brandId: "mama-lemon", name: "Mama Lemon Pencuci Piring Jeruk Nipis 680ml", company: "PT Lion Wings" },
+  // Ekonomi (Wings)
+  "8992388210013": { brandId: "ekonomi", name: "Sabun Ekonomi Putih Colek 380g", company: "Wings Group" },
+  // Beng-Beng (Mayora)
+  "8992761100010": { brandId: "beng-beng", name: "Beng-Beng Wafer Cokelat Karamel 25g", company: "PT Mayora Indah Tbk" },
+  // Roma Kelapa (Mayora)
+  "8992761110026": { brandId: "roma-kelapa", name: "Biskuit Roma Kelapa 300g", company: "PT Mayora Indah Tbk" },
+  // Kopiko (Mayora)
+  "8992761120032": { brandId: "kopiko", name: "Kopiko Permen Kopi Asli 150g", company: "PT Mayora Indah Tbk" },
+  // Kopi Gadjah (Djarum)
+  "8996001401015": { brandId: "kopi-gadjah", name: "Kopi Tubruk Gadjah Manis 150g", company: "PT Sumber Kopi Prima / Djarum Group" },
+  // Caffino (Djarum)
+  "8996001402022": { brandId: "caffino", name: "Caffino Kopi Latte Chococino 10x20g", company: "PT Sumber Kopi Prima / Djarum Group" },
+  // Hydro Coco (Kalbe Farma)
+  "8998866700014": { brandId: "hydro-coco", name: "Hydro Coco Original 250ml", company: "PT Kalbe Farma Tbk" },
+  // Promag (Kalbe Farma)
+  "8998866700021": { brandId: "promag", name: "Promag Obat Maag Tablet Blister", company: "PT Kalbe Farma Tbk" },
+  // Bodrex (Tempo Scan)
+  "8992753200018": { brandId: "bodrex", name: "Bodrex Sakit Kepala Strip 10 Tablet", company: "PT Tempo Scan Pacific Tbk" },
+  // Marina (Tempo Scan)
+  "8992753300022": { brandId: "marina", name: "Marina UV White Healthy & Glow 185ml", company: "PT Tempo Scan Pacific Tbk" },
+  // Cimory (Cimory Group)
+  "8997010410015": { brandId: "cimory", name: "Cimory Yogurt Squeeze Original 120g", company: "PT Cisarua Mountain Dairy Tbk" },
+  // Kanzler (Cimory Group)
+  "8997010420021": { brandId: "kanzler", name: "Kanzler Singles Keju 65g", company: "Cimory Group" },
+  // Ciptadent (Lion Wings)
+  "8992742200012": { brandId: "ciptadent", name: "Ciptadent Maxi Complete 190g", company: "PT Lion Wings" },
+  // Biore (Kao)
+  "8992751200010": { brandId: "biore", name: "Biore Body Foam Pure Mild 450ml Refill", company: "PT Kao Indonesia" },
+  // Attack (Kao)
+  "8992751300024": { brandId: "attack", name: "Attack Plus Softener Deterjen 800g", company: "PT Kao Indonesia" },
+  // Masako (Ajinomoto)
+  "8992771100016": { brandId: "masako", name: "Masako Rasa Ayam 250g", company: "PT Ajinomoto Indonesia" },
+  // Sasa (Rodamas)
+  "8992754100010": { brandId: "sasa", name: "Sasa Penyedap Rasa MSG 250g", company: "PT Sasa Inti" },
+  // Milku (Wings)
+  "8992388300011": { brandId: "milku", name: "Milku Susu UHT Cokelat 200ml", company: "Wings Group" },
+  // Floridina (Wings)
+  "8992388400025": { brandId: "floridina", name: "Floridina Florida Orange 350ml", company: "Wings Group" },
+  // Kahf (Paragon)
+  "8993137704015": { brandId: "kahf", name: "Kahf Oil & Acne Care Face Wash 100ml", company: "PT Paragon Technology and Innovation" },
+  // Cap Lang (Eagle Indo Pharma)
+  "8992743100014": { brandId: "cap-lang", name: "Minyak Kayu Putih Cap Lang 120ml", company: "PT Eagle Indo Pharma" },
 };
 
 // Brand alias resolver to map external brand names to bijak-beli brand slugs
@@ -135,6 +203,29 @@ const BRAND_ALIASES: Record<string, string> = {
   samsung: "samsung",
   oppo: "oppo",
   "janji jiwa": "janji-jiwa",
+  bimoli: "bimoli",
+  filma: "filma",
+  sania: "sania",
+  tropical: "tropical",
+  dancow: "dancow",
+  sgm: "sgm",
+  "frisian flag": "frisian-flag",
+  "susu bendera": "frisian-flag",
+  indomilk: "indomilk",
+  "kecap abc": "kecap-abc",
+  "dua belibis": "dua-belibis",
+  belibis: "dua-belibis",
+  "kecap sedaap": "kecap-sedaap",
+  sunlight: "sunlight",
+  "mama lemon": "mama-lemon",
+  mamalemon: "mama-lemon",
+  ekonomi: "ekonomi",
+  "beng beng": "beng-beng",
+  "beng-beng": "beng-beng",
+  bengbeng: "beng-beng",
+  "roma kelapa": "roma-kelapa",
+  roma: "roma-kelapa",
+  kopiko: "kopiko",
 };
 
 export async function resolveBarcode(barcode: string): Promise<BarcodeResolution> {

@@ -7,7 +7,7 @@ import Link from "next/link";
 import styles from "./scan.module.css";
 import { useApp } from "@/components/AppProvider";
 
-import { resolveBarcode, LOCAL_BARCODE_MAP } from "@/lib/barcode-resolver";
+import { resolveBarcode } from "@/lib/barcode-resolver";
 
 const QUICK_TEST_BRANDS = [
   { id: "indomie", name: "Indomie", code: "8998866200224" },
@@ -69,7 +69,11 @@ export default function ScanPage() {
       // Check for native BarcodeDetector API
       if (typeof window !== "undefined" && "BarcodeDetector" in window) {
         try {
-          const detector = new (window as any).BarcodeDetector({
+          const detector = new (window as unknown as {
+            BarcodeDetector: new (opts: { formats: string[] }) => {
+              detect: (src: HTMLVideoElement) => Promise<Array<{ rawValue: string }>>;
+            };
+          }).BarcodeDetector({
             formats: ["ean_13", "ean_8", "upc_a", "upc_e", "qr_code", "code_128"],
           });
 

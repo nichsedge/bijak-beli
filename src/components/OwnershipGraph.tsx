@@ -11,7 +11,6 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Info,
-  Search,
   Network,
   ChevronRight
 } from "lucide-react";
@@ -244,32 +243,29 @@ export function BrandOwnershipGraph({ brand, lang = "id" }: BrandOwnershipGraphP
   );
 }
 
-// Macro Network Explorer for /power
+export type PowerInsider = {
+  insider: string;
+  board_seats: number;
+  companies: string[];
+  rank: number;
+  source_url: string;
+};
+
 interface MacroPowerExplorerProps {
-  initialPower200?: Array<{
-    insider: string;
-    board_seats: number;
-    companies: string[];
-    rank: number;
-    source_url: string;
-  }>;
+  initialPower200?: PowerInsider[];
   lang?: "id" | "en";
 }
 
 export function MacroPowerExplorer({ initialPower200 = [], lang = "id" }: MacroPowerExplorerProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterType, setFilterType] = useState<"all" | "fmcg" | "tycoon" | "multi">("all");
-  const [selectedInsider, setSelectedInsider] = useState<any | null>(initialPower200[0] || null);
-
-  React.useEffect(() => {
+  const [searchQuery, setSearchQuery] = useState<string>(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const q = params.get("q") || params.get("highlight");
-      if (q) {
-        setSearchQuery(q);
-      }
+      return params.get("q") || params.get("highlight") || "";
     }
-  }, []);
+    return "";
+  });
+  const [filterType, setFilterType] = useState<"all" | "fmcg" | "tycoon" | "multi">("all");
+  const [selectedInsider, setSelectedInsider] = useState<PowerInsider | null>(initialPower200[0] || null);
 
   // FMCG prominent tickers in Bijak-Beli
   const fmcgTickers = new Set(["ICBP", "INDF", "MYOR", "ULTJ", "SIDO", "ROTI", "GOOD", "UNVR", "MAPI", "MAPB", "GOTO"]);

@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Zap, Loader2 } from "lucide-react";
-import type { Brand } from "@/lib/types";
+import type { Brand, AlignmentResult } from "@/lib/types";
 import styles from "./AiInsight.module.css";
 
 interface AiInsightProps {
   brand: Brand;
-  result: any;
+  result: AlignmentResult;
   lang: string;
 }
 
@@ -16,19 +16,24 @@ export default function AiInsight({ brand, result, lang }: AiInsightProps) {
   const [isThinking, setIsThinking] = useState(true);
   const [displayedText, setDisplayedText] = useState("");
 
-  useEffect(() => {
+  const currentKey = `${brand.id}-${result.score}-${lang}`;
+  const [prevKey, setPrevKey] = useState(currentKey);
+  if (prevKey !== currentKey) {
+    setPrevKey(currentKey);
     setIsThinking(true);
     setDisplayedText("");
-    
+  }
+
+  useEffect(() => {
     // Simulate AI thinking
     const timer = setTimeout(() => {
       const generated = generateMockInsight(brand, result, lang);
       setInsight(generated);
       setIsThinking(false);
-    }, 1500);
+    }, 1200);
 
     return () => clearTimeout(timer);
-  }, [brand.id, result.score, lang]);
+  }, [brand, result, lang]);
 
   useEffect(() => {
     if (!isThinking && insight) {
@@ -72,7 +77,7 @@ export default function AiInsight({ brand, result, lang }: AiInsightProps) {
   );
 }
 
-function generateMockInsight(brand: Brand, result: any, lang: string) {
+function generateMockInsight(brand: Brand, result: AlignmentResult, lang: string) {
   const isGood = result.score >= 70;
   const dimension = Object.entries(brand.scores).sort((a, b) => b[1] - a[1])[0][0];
   

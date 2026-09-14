@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start -p 3888",
     "lint": "eslint",
+    "db:seed": "bun run src/db/seed.ts",
+    "db:push": "drizzle-kit push",
     "sync:ownership": "bun run scripts/sync-idx-ownership.ts"
   },
   "dependencies": {

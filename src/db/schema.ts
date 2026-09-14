@@ -1,5 +1,5 @@
 import { sqliteTable, text, integer, primaryKey } from "drizzle-orm/sqlite-core";
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 
 export const categories = sqliteTable("categories", {
   id: text("id").primaryKey(),
@@ -7,6 +7,18 @@ export const categories = sqliteTable("categories", {
   nameId: text("name_id").notNull(),
   icon: text("icon").notNull(),
   brandCount: integer("brand_count").default(0).notNull(),
+});
+
+export const conglomerates = sqliteTable("conglomerates", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  tycoon: text("tycoon").notNull(),
+  powerMapRank: integer("power_map_rank"),
+  description: text("description").notNull(),
+  descriptionId: text("description_id").notNull(),
+  headquarters: text("headquarters").notNull(),
+  keySectors: text("key_sectors").notNull(),
+  listedEntities: text("listed_entities").notNull(),
 });
 
 export const brands = sqliteTable("brands", {
@@ -22,6 +34,7 @@ export const brands = sqliteTable("brands", {
   taglineId: text("tagline_id").notNull(),
   country: text("country").notNull(),
   parentCompany: text("parent_company"),
+  conglomerateId: text("conglomerate_id"),
   ultimateOwner: text("ultimate_owner"),
   ownerCountry: text("owner_country"),
   foundedYear: integer("founded_year"),
@@ -125,10 +138,18 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
   brands: many(brands),
 }));
 
+export const conglomeratesRelations = relations(conglomerates, ({ many }) => ({
+  brands: many(brands),
+}));
+
 export const brandsRelations = relations(brands, ({ one, many }) => ({
   category: one(categories, {
     fields: [brands.categoryId],
     references: [categories.id],
+  }),
+  conglomerate: one(conglomerates, {
+    fields: [brands.conglomerateId],
+    references: [conglomerates.id],
   }),
   controversies: many(brandControversies),
   certifications: many(brandCertifications),

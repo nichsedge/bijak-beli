@@ -7,7 +7,7 @@ import { useApp } from "@/components/AppProvider";
 import { fetchBrandById } from "@/lib/api";
 import { calculateAlignment } from "@/lib/scoring";
 import ScoreBadge from "@/components/ScoreBadge";
-import type { Brand } from "@/lib/types";
+import type { Brand, AlignmentResult } from "@/lib/types";
 import styles from "./compare.module.css";
 
 const DIMENSIONS = [
@@ -203,7 +203,7 @@ export default function ComparePage() {
   );
 }
 
-function generateMockInsight(brand: Brand, result: any, lang: string) {
+function generateMockInsight(brand: Brand, result: AlignmentResult, lang: string) {
   const isGood = result.score >= 70;
   const dimension = Object.entries(brand.scores).sort((a, b) => b[1] - a[1])[0][0];
   

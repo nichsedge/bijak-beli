@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, AlertTriangle, Scale } from "lucide-react";
+import { ArrowLeft, AlertTriangle } from "lucide-react";
 import { fetchBrandById, fetchAlternatives, fetchControversyById } from "@/lib/api";
 import { calculateAlignment } from "@/lib/scoring";
 import { cookies } from "next/headers";
 import BrandDetailClient from "@/components/BrandDetailClient";
+import type { Controversy } from "@/lib/types";
 import styles from "./brand.module.css";
 
 interface PageProps {
@@ -29,11 +30,11 @@ export default async function BrandDetailPage({ params }: PageProps) {
     Promise.all(brand.controversyIds.map(id => fetchControversyById(id)))
   ]);
 
-  const controversies = brandControversies.filter(Boolean) as any[];
+  const controversies = brandControversies.filter((c): c is Controversy => Boolean(c));
 
   const t = (ns: string, key: string) => {
     // Simple mock of the t function for the server side
-    const strings: any = {
+    const strings: Record<string, Record<string, Record<string, string>>> = {
       en: { common: { back: "Back", compare: "Compare", comparing: "Comparing", boycott: "Boycotted" }, brand: { boycottActive: "Active Boycott" } },
       id: { common: { back: "Kembali", compare: "Bandingkan", comparing: "Membandingkan", boycott: "Diboikot" }, brand: { boycottActive: "Aktif Diboikot" } }
     };

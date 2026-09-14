@@ -58,6 +58,7 @@ export interface Brand {
   taglineId: string;
   country: string;
   parentCompany?: string;
+  conglomerateId?: string;
   ultimateOwner?: string;
   ownerCountry?: string;
   foundedYear?: number;
@@ -80,6 +81,19 @@ export interface Brand {
   boycottActive: boolean;
   boycottReason?: string;
   boycottReasonId?: string;
+}
+
+export interface Conglomerate {
+  id: string;
+  name: string;
+  tycoon: string;
+  powerMapRank?: number;
+  description: string;
+  descriptionId: string;
+  headquarters: string;
+  listedEntities: string[];
+  keySectors: string[];
+  brandCount?: number;
 }
 
 export interface Category {

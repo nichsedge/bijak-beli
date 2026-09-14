@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { Scale, X, ArrowRight, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +12,7 @@ import styles from "./ComparisonBar.module.css";
 export default function ComparisonBar() {
   const { prefs, clearComparison, toggleCompare, lang, t } = useApp();
   const [brands, setBrands] = useState<Brand[]>([]);
-  const ids = prefs.compareIds || [];
+  const ids = useMemo(() => prefs.compareIds || [], [prefs.compareIds]);
 
   useEffect(() => {
     async function load() {
