@@ -21,23 +21,49 @@ export const LOCAL_BARCODE_MAP: Record<string, { brandId: string; name: string; 
   // Le Minerale (Mayora)
   "8992761011118": { brandId: "le-minerale", name: "Le Minerale 600ml", company: "Mayora Indah" },
   // Mayora - Teh Pucuk
-  "8992761132110": { brandId: "mayora", name: "Teh Pucuk Harum 350ml", company: "Mayora Indah" },
+  "8992761132110": { brandId: "teh-pucuk", name: "Teh Pucuk Harum 350ml", company: "Mayora Indah" },
   // Aqua (Danone)
   "8992696404412": { brandId: "aqua", name: "Aqua 600ml", company: "Danone" },
   // Teh Botol Sosro
   "8992753112229": { brandId: "teh-botol-sosro", name: "Teh Botol Sosro Kotak 250ml", company: "Rekso Group" },
   // Ultra Milk (Ultrajaya)
   "8992759110010": { brandId: "ultra-milk", name: "Ultra Milk Cokelat 250ml", company: "Ultrajaya" },
+  // Teh Kotak (Ultrajaya)
+  "8992759110027": { brandId: "teh-kotak", name: "Teh Kotak Jasmine 300ml", company: "Ultrajaya" },
   // Tolak Angin (Sido Muncul)
   "8993005120015": { brandId: "tolak-angin", name: "Tolak Angin Cair Herbal", company: "Sido Muncul" },
+  // Antangin (Deltomed)
+  "8991002100015": { brandId: "antangin", name: "Antangin JRG Cair Herbal", company: "Deltomed" },
   // Sari Roti
   "8992751010015": { brandId: "sari-roti", name: "Sari Roti Tawar Spesial", company: "Nippon Indosari Corpindo" },
+  // Chitato (Indofood)
+  "8998866200255": { brandId: "chitato", name: "Chitato Sapi Panggang 68g", company: "Indofood CBP" },
+  // Tango (Orang Tua Group)
+  "8991001111123": { brandId: "tango", name: "Wafer Tango Cokelat 130g", company: "Orang Tua Group" },
+  // Teh Gelas (Orang Tua Group)
+  "8991001222234": { brandId: "teh-gelas", name: "Teh Gelas Cup 180ml", company: "Orang Tua Group" },
+  // Chocolatos (Garudafood)
+  "8992735111112": { brandId: "chocolatos", name: "Chocolatos Wafer Roll", company: "Garudafood" },
+  // Kacang Garuda (Garudafood)
+  "8992735222223": { brandId: "kacang-garuda", name: "Kacang Garuda Kulit 100g", company: "Garudafood" },
   // Kapal Api
   "8996001301017": { brandId: "kapal-api", name: "Kopi Kapal Api Special", company: "Kapal Api Global" },
+  // Good Day
+  "8996001302021": { brandId: "good-day", name: "Good Day Mocacinno 30x20g", company: "Kapal Api Global" },
   // Pepsodent (Unilever)
   "8999999195518": { brandId: "pepsodent", name: "Pepsodent White 120g", company: "Unilever Indonesia" },
   // Lifebuoy (Unilever)
   "8999999052026": { brandId: "lifebuoy", name: "Lifebuoy Total 10 Soap", company: "Unilever Indonesia" },
+  // Rinso (Unilever)
+  "8999999123456": { brandId: "rinso", name: "Rinso Anti Noda 770g", company: "Unilever Indonesia" },
+  // Bango (Unilever)
+  "8999999234567": { brandId: "bango", name: "Kecap Bango Manis 550ml", company: "Unilever Indonesia" },
+  // Royco (Unilever)
+  "8999999345678": { brandId: "royco", name: "Royco Bumbu Kaldu Sapi 230g", company: "Unilever Indonesia" },
+  // So Klin (Wings)
+  "8992388123456": { brandId: "so-klin", name: "So Klin Softergent 800g", company: "Wings Group" },
+  // Daia (Wings)
+  "8992388654321": { brandId: "daia", name: "Daia Bunga Deterjen 850g", company: "Wings Group" },
   // Pocari Sweat (Otsuka)
   "8992741982001": { brandId: "pocari-sweat", name: "Pocari Sweat 500ml", company: "Amerta Indah Otsuka" },
   // Wardah (Paragon)
@@ -55,16 +81,42 @@ const BRAND_ALIASES: Record<string, string> = {
   "mie sedaap": "mie-sedaap",
   wings: "mie-sedaap",
   sarimi: "sarimi",
+  chitato: "chitato",
   mayora: "mayora",
   "le minerale": "le-minerale",
+  "teh pucuk": "teh-pucuk",
+  pucuk: "teh-pucuk",
   danone: "aqua",
   aqua: "aqua",
+  sosro: "teh-botol-sosro",
+  "teh botol": "teh-botol-sosro",
+  ultrajaya: "ultra-milk",
+  "ultra milk": "ultra-milk",
+  "teh kotak": "teh-kotak",
+  "kapal api": "kapal-api",
+  "good day": "good-day",
+  "tolak angin": "tolak-angin",
+  "sido muncul": "tolak-angin",
+  sidomuncul: "tolak-angin",
+  antangin: "antangin",
+  deltomed: "antangin",
+  "so klin": "so-klin",
+  soklin: "so-klin",
+  daia: "daia",
   unilever: "unilever",
   pepsodent: "pepsodent",
   lifebuoy: "lifebuoy",
-  rinso: "unilever",
-  sunsilk: "unilever",
-  bango: "unilever",
+  rinso: "rinso",
+  bango: "bango",
+  royco: "royco",
+  "sari roti": "sari-roti",
+  tango: "tango",
+  "teh gelas": "teh-gelas",
+  "orang tua": "tango",
+  ot: "tango",
+  chocolatos: "chocolatos",
+  "kacang garuda": "kacang-garuda",
+  garudafood: "kacang-garuda",
   nestle: "nestle",
   "nestlé": "nestle",
   "pocari sweat": "pocari-sweat",
@@ -83,9 +135,6 @@ const BRAND_ALIASES: Record<string, string> = {
   samsung: "samsung",
   oppo: "oppo",
   "janji jiwa": "janji-jiwa",
-  sosro: "teh-botol-sosro",
-  ultrajaya: "ultra-milk",
-  "sido muncul": "tolak-angin",
 };
 
 export async function resolveBarcode(barcode: string): Promise<BarcodeResolution> {

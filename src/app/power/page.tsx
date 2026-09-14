@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { MacroPowerExplorer } from "@/components/OwnershipGraph";
 
 type PowerMap = {
   power200: { insider: string; board_seats: number; companies: string[]; rank: number; source_url: string }[];
@@ -21,6 +22,9 @@ export default function PowerPage() {
     <div style={{padding:"24px", maxWidth:1100, margin:"0 auto"}}>
       <h1 style={{fontSize:28, fontWeight:800}}>Indonesia Power Map — LittleSis</h1>
       <p style={{opacity:0.7, marginBottom:16}}>Pareto-filtered top 200 insiders from IDX + ormas Jabar pilot + LHKPN politicians. Every fact has source_url + confidence. No editorial drama, just numbers.</p>
+
+      {/* Interactive Conglomerate & Tycoon Explorer */}
+      <MacroPowerExplorer initialPower200={data.power200} />
 
       <section style={{marginBottom:24}}>
         <h2 style={{fontSize:20, fontWeight:700}}>Power200 — by Board Seats (Pareto)</h2>

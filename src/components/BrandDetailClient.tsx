@@ -15,6 +15,7 @@ import BrandCard from "@/components/BrandCard";
 import AiInsight from "@/components/AiInsight";
 import { formatDate, severityColor, severityLabel } from "@/lib/utils";
 import { getBrandScoreAudit } from "@/lib/scoring";
+import { BrandOwnershipGraph } from "@/components/OwnershipGraph";
 import type { Controversy, Brand } from "@/lib/types";
 import styles from "../app/brand/[id]/brand.module.css";
 
@@ -182,60 +183,79 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
 
       <div className={styles.tabContent}>
         {activeTab === "overview" && (
-          <div className={styles.overviewGrid}>
-            <div className={`card card-body ${styles.panel}`}>
-              <h2 className="section-title" style={{ fontSize: "var(--text-base)", marginBottom: "var(--space-4)" }}>
-                {t("scores", "breakdown")}
-              </h2>
-              <ScoreBreakdown brand={brand} weights={prefs.weights} />
-            </div>
-
-            <AiInsight brand={brand} result={result} lang={lang} />
-
-            <div className={styles.sidePanel}>
+          <>
+            <div className={styles.overviewGrid}>
               <div className={`card card-body ${styles.panel}`}>
-                <h2 className={styles.panelTitle}><Building2 size={16} />{t("brand", "parentCompany")}</h2>
-                <div className="ownership-tree">
-                  <div className="ownership-node">
-                    <div className={styles.ownerBadge}>Brand</div>
-                    <span className={styles.ownerName}>{brand.name}</span>
-                  </div>
-                  {brand.parentCompany && (
-                    <>
-                      <div className="ownership-connector" />
-                      <div className="ownership-node">
-                        <div className={styles.ownerBadge} style={{ background: "var(--surface-2)" }}>Parent</div>
-                        <span className={styles.ownerName}>{brand.parentCompany}</span>
-                      </div>
-                    </>
-                  )}
-                </div>
+                <h2 className="section-title" style={{ fontSize: "var(--text-base)", marginBottom: "var(--space-4)" }}>
+                  {t("scores", "breakdown")}
+                </h2>
+                <ScoreBreakdown brand={brand} weights={prefs.weights} />
               </div>
 
-              {brandControversies.length > 0 && (
+              <AiInsight brand={brand} result={result} lang={lang} />
+
+              <div className={styles.sidePanel}>
                 <div className={`card card-body ${styles.panel}`}>
-                  <h2 className={styles.panelTitle}><AlertTriangle size={16} />{t("brand", "controversies")}</h2>
-                  <div className={styles.controversyList}>
-                    {brandControversies.map((c) => (
-                      <div key={c.id} className={styles.controversyItem}>
-                        <div className={styles.severityDot} style={{ background: severityColor(c.severity) }} />
-                        <div>
-                          <div className={styles.controversyTitle}>{lang === "id" ? c.titleId : c.title}</div>
-                          <div className={styles.controversyDate}>
-                            {formatDate(c.date, lang === "id" ? "id-ID" : "en-US")}
-                          </div>
+                  <h2 className={styles.panelTitle}><Building2 size={16} />{t("brand", "parentCompany")}</h2>
+                  <div className="ownership-tree">
+                    <div className="ownership-node">
+                      <div className={styles.ownerBadge}>Brand</div>
+                      <span className={styles.ownerName}>{brand.name}</span>
+                    </div>
+                    {brand.parentCompany && (
+                      <>
+                        <div className="ownership-connector" />
+                        <div className="ownership-node">
+                          <div className={styles.ownerBadge} style={{ background: "var(--surface-2)" }}>Parent</div>
+                          <span className={styles.ownerName}>{brand.parentCompany}</span>
                         </div>
-                      </div>
-                    ))}
+                      </>
+                    )}
+                    {brand.ultimateOwner && (
+                      <>
+                        <div className="ownership-connector" />
+                        <div className="ownership-node">
+                          <div className={styles.ownerBadge} style={{ background: "#fef3c7", color: "#b45309" }}>UBO</div>
+                          <span className={styles.ownerName}>
+                            {brand.ultimateOwner.split("/")[0].trim()}
+                            {brand.powerMapRank ? ` (Rank #${brand.powerMapRank})` : ""}
+                          </span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
-              )}
+
+                {brandControversies.length > 0 && (
+                  <div className={`card card-body ${styles.panel}`}>
+                    <h2 className={styles.panelTitle}><AlertTriangle size={16} />{t("brand", "controversies")}</h2>
+                    <div className={styles.controversyList}>
+                      {brandControversies.map((c) => (
+                        <div key={c.id} className={styles.controversyItem}>
+                          <div className={styles.severityDot} style={{ background: severityColor(c.severity) }} />
+                          <div>
+                            <div className={styles.controversyTitle}>{lang === "id" ? c.titleId : c.title}</div>
+                            <div className={styles.controversyDate}>
+                              {formatDate(c.date, lang === "id" ? "id-ID" : "en-US")}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+
+            <BrandOwnershipGraph brand={brand} lang={lang} />
+          </>
         )}
 
         {activeTab === "transparency" && (
           <div className={styles.transparencyContent}>
+            {/* Visual Corporate Ownership Chain */}
+            <BrandOwnershipGraph brand={brand} lang={lang} />
+
             {/* 1. Verifiable Audit Trail & Public Filings */}
             <div className={`card card-body ${styles.panel}`}>
               <div className={styles.sectionHeaderRow}>
