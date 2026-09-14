@@ -100,4 +100,15 @@ export const controversies: Controversy[] = [
     source: "Tempo",
     sourceUrl: "https://bisnis.tempo.co/read/1374521/buruh-demo-tuntut-status-karyawan-tetap",
   },
+  {
+    id: "c-danone-kppu",
+    date: "2017-12-19",
+    title: "KPPU Anti-Monopoly Penalty (Aqua vs Le Minerale)",
+    titleId: "Sanksi Monopoli Distribusi KPPU (Aqua vs Le Minerale)",
+    description: "KPPU ruled that PT Tirta Investama (Aqua) engaged in anti-competitive practices by penalizing distributors that sold competitor Le Minerale.",
+    descriptionId: "KPPU menyatakan PT Tirta Investama (Aqua) terbukti melakukan praktik monopoli dengan menekan toko agar tidak menjual produk Le Minerale.",
+    severity: "medium",
+    source: "KPPU RI",
+    sourceUrl: "https://kppu.go.id/putusan/",
+  },
 ];

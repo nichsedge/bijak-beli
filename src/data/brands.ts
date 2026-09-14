@@ -1201,5 +1201,1495 @@ export const brands: Brand[] = [
     ],
     "halalCertId": "ID00410000008120120",
     "bpomId": "BPOM RI MD 266810001007"
+  },
+  {
+    "id": "aqua",
+    "name": "Aqua",
+    "logo": "/logos/aqua.svg",
+    "category": "food-beverage",
+    "subcategory": "Mineral Water",
+    "tagline": "Indonesia's pioneer bottled water brand",
+    "taglineId": "Pelopor air minum dalam kemasan di Indonesia",
+    "country": "ID",
+    "parentCompany": "Danone / PT Tirta Investama",
+    "ultimateOwner": "Danone S.A. (Paris, France)",
+    "ownerCountry": "FR",
+    "foundedYear": 1973,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000210120",
+    "bpomId": "BPOM RI MD 265210001001",
+    "scores": {
+      "halal": 95,
+      "ethical": 65,
+      "esg": 68,
+      "political": 60,
+      "community": 62
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "SNI",
+      "BPOM",
+      "B-Corp"
+    ],
+    "controversyIds": [
+      "c-danone-kppu"
+    ],
+    "alternativeIds": [
+      "le-minerale",
+      "cleo"
+    ],
+    "communityVotes": {
+      "up": 3100,
+      "down": 2800
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Aqua is Indonesia's most recognized bottled water brand, founded by Tirto Utomo and acquired by French multinational Danone. It operates under PT Tirta Investama.",
+    "descriptionId": "Aqua adalah merek air minum dalam kemasan paling terkenal di Indonesia, didirikan oleh Tirto Utomo dan diakuisisi oleh multinasional Prancis Danone di bawah PT Tirta Investama.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "KPPU Decision No. 22/KPPU-I/2016 (Distribution Exclusivity Ruling)",
+        "url": "https://kppu.go.id/putusan/",
+        "publisher": "Komisi Pengawas Persaingan Usaha (KPPU)",
+        "docType": "court_or_antitrust",
+        "confidence": "high",
+        "documentId": "KPPU-22/KPPU-I/2016",
+        "date": "2017-12-19"
+      },
+      {
+        "title": "BPJPH Halal Certificate Registry ID00410000000210120",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000210120",
+        "date": "2025-01-15"
+      },
+      {
+        "title": "BPOM RI Registration MD 265210001001",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-RI-MD-265210001001",
+        "date": "2025-01-10"
+      }
+    ]
+  },
+  {
+    "id": "le-minerale",
+    "name": "Le Minerale",
+    "logo": "/logos/le-minerale.svg",
+    "category": "food-beverage",
+    "subcategory": "Mineral Water",
+    "tagline": "Natural mountain mineral water by Mayora",
+    "taglineId": "Air mineral pegunungan alami dari Mayora",
+    "country": "ID",
+    "parentCompany": "PT Mayora Indah Tbk",
+    "ultimateOwner": "Hendra Kurniawan (Power200 #86) / UNITA BRANINDO (32.93%), MAYORA DHANA UTAMA (26.14%)",
+    "ownerCountry": "ID",
+    "foundedYear": 2015,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000010210120",
+    "bpomId": "BPOM RI MD 265210002014",
+    "idxTicker": "MYOR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MYOR",
+    "powerMapRank": 86,
+    "scores": {
+      "halal": 95,
+      "ethical": 85,
+      "esg": 75,
+      "political": 90,
+      "community": 88
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "SNI",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "aqua",
+      "cleo"
+    ],
+    "communityVotes": {
+      "up": 4200,
+      "down": 320
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Le Minerale is a rapidly growing bottled water brand produced by PT Tirta Fresindo Jaya, a subsidiary of publicly listed PT Mayora Indah Tbk.",
+    "descriptionId": "Le Minerale adalah merek air mineral yang diproduksi oleh PT Tirta Fresindo Jaya, anak usaha dari PT Mayora Indah Tbk yang terdaftar di bursa.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Mayora Indah Tbk (MYOR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MYOR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-MYOR",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Tirta Fresindo Jaya",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000010210120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "teh-pucuk",
+    "name": "Teh Pucuk Harum",
+    "logo": "/logos/teh-pucuk.svg",
+    "category": "food-beverage",
+    "subcategory": "Ready-to-drink Tea",
+    "tagline": "Popular jasmine tea made from selected tea shoots",
+    "taglineId": "Teh melati populer dari pucuk daun teh pilihan",
+    "country": "ID",
+    "parentCompany": "PT Mayora Indah Tbk",
+    "ultimateOwner": "Hendra Kurniawan (Power200 #86) / UNITA BRANINDO (32.93%), MAYORA DHANA UTAMA (26.14%)",
+    "ownerCountry": "ID",
+    "foundedYear": 2011,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000010210120",
+    "bpomId": "BPOM RI MD 268310001014",
+    "idxTicker": "MYOR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MYOR",
+    "powerMapRank": 86,
+    "scores": {
+      "halal": 95,
+      "ethical": 82,
+      "esg": 72,
+      "political": 90,
+      "community": 86
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "teh-botol-sosro",
+      "teh-kotak"
+    ],
+    "communityVotes": {
+      "up": 3800,
+      "down": 210
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Teh Pucuk Harum is Indonesia's leading ready-to-drink jasmine tea brand, manufactured by Mayora Group's beverage division.",
+    "descriptionId": "Teh Pucuk Harum adalah merek teh melati dalam kemasan terkemuka di Indonesia, diproduksi oleh divisi minuman Mayora Group.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Mayora Indah Tbk (MYOR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MYOR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-MYOR",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate Registry",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000010210120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "teh-botol-sosro",
+    "name": "Teh Botol Sosro",
+    "logo": "/logos/teh-botol-sosro.svg",
+    "category": "food-beverage",
+    "subcategory": "Ready-to-drink Tea",
+    "tagline": "Indonesia's legendary original bottled tea",
+    "taglineId": "Pelopor teh dalam botol legendaris Indonesia",
+    "country": "ID",
+    "parentCompany": "Rekso Group / PT Sinar Sosro",
+    "ultimateOwner": "Keluarga Sosrodjojo (Sukowati Sosrodjojo)",
+    "ownerCountry": "ID",
+    "foundedYear": 1969,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000550120",
+    "bpomId": "BPOM RI MD 268310005001",
+    "scores": {
+      "halal": 96,
+      "ethical": 85,
+      "esg": 78,
+      "political": 92,
+      "community": 90
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "SNI"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "teh-kotak",
+      "teh-pucuk"
+    ],
+    "communityVotes": {
+      "up": 4900,
+      "down": 180
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Teh Botol Sosro is the world's first ready-to-drink bottled tea, created by the Sosrodjojo family. It remains 100% locally Indonesian family-owned under Rekso Group.",
+    "descriptionId": "Teh Botol Sosro adalah pelopor teh siap minum dalam botol pertama di dunia, diciptakan oleh keluarga Sosrodjojo dan tetap dimiliki 100% lokal di bawah Rekso Group.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Sinar Sosro",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000550120",
+        "date": "2025-01-15"
+      },
+      {
+        "title": "BPOM RI Food Registration MD 268310005001",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-RI-MD-268310005001",
+        "date": "2025-01-10"
+      }
+    ]
+  },
+  {
+    "id": "ultra-milk",
+    "name": "Ultra Milk",
+    "logo": "/logos/ultra-milk.svg",
+    "category": "food-beverage",
+    "subcategory": "Dairy",
+    "tagline": "Pioneer of UHT liquid milk in Indonesia",
+    "taglineId": "Pelopor susu cair UHT di Indonesia",
+    "country": "ID",
+    "parentCompany": "PT Ultrajaya Milk Industry & Trading Company Tbk",
+    "ultimateOwner": "PT PRAWIRAWIDJAJA PRAKARSA (23.78%), Masyarakat Warkat (3.7%)",
+    "ownerCountry": "ID",
+    "foundedYear": 1971,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000620120",
+    "bpomId": "BPOM RI MD 400810001001",
+    "idxTicker": "ULTJ",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ULTJ",
+    "scores": {
+      "halal": 96,
+      "ethical": 88,
+      "esg": 82,
+      "political": 92,
+      "community": 94
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000",
+      "HACCP"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "indomilk",
+      "cimory"
+    ],
+    "communityVotes": {
+      "up": 5400,
+      "down": 120
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Ultra Milk is Indonesia's market leader in aseptic UHT fresh liquid milk, produced in Bandung by publicly listed PT Ultrajaya Milk Industry Tbk.",
+    "descriptionId": "Ultra Milk adalah pemimpin pasar susu segar cair UHT aseptik di Indonesia, diproduksi di Bandung oleh PT Ultrajaya Milk Industry Tbk yang terdaftar di bursa.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Ultrajaya Milk Industry Tbk (ULTJ)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ULTJ",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-ULTJ",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Ultrajaya Milk Industry",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000620120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "teh-kotak",
+    "name": "Teh Kotak",
+    "logo": "/logos/teh-kotak.svg",
+    "category": "food-beverage",
+    "subcategory": "Ready-to-drink Tea",
+    "tagline": "Natural jasmine tea in aseptic carton packaging",
+    "taglineId": "Teh melati alami dalam kemasan karton aseptik",
+    "country": "ID",
+    "parentCompany": "PT Ultrajaya Milk Industry & Trading Company Tbk",
+    "ultimateOwner": "PT PRAWIRAWIDJAJA PRAKARSA (23.78%), Masyarakat Warkat (3.7%)",
+    "ownerCountry": "ID",
+    "foundedYear": 1979,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000620120",
+    "bpomId": "BPOM RI MD 268310002001",
+    "idxTicker": "ULTJ",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ULTJ",
+    "scores": {
+      "halal": 96,
+      "ethical": 88,
+      "esg": 80,
+      "political": 92,
+      "community": 92
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "FSC Certified Carton"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "teh-botol-sosro",
+      "teh-pucuk"
+    ],
+    "communityVotes": {
+      "up": 4600,
+      "down": 150
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Teh Kotak is Indonesia's pioneer ready-to-drink jasmine tea packed in aseptic cartons, produced by PT Ultrajaya Milk Industry Tbk.",
+    "descriptionId": "Teh Kotak adalah pelopor teh melati siap minum dalam kemasan karton aseptik di Indonesia, diproduksi oleh PT Ultrajaya Milk Industry Tbk.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Ultrajaya Milk Industry Tbk (ULTJ)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ULTJ",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-ULTJ",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Ultrajaya Milk Industry",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000620120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "kapal-api",
+    "name": "Kopi Kapal Api",
+    "logo": "/logos/kapal-api.svg",
+    "category": "food-beverage",
+    "subcategory": "Coffee",
+    "tagline": "Clear aroma and rich taste of Indonesian coffee",
+    "taglineId": "Jelas lebih enak, kopi legendaris Indonesia",
+    "country": "ID",
+    "parentCompany": "PT Santos Jaya Abadi / Kapal Api Global",
+    "ultimateOwner": "Soedomo Mergonoto (Keluarga Soedomo)",
+    "ownerCountry": "ID",
+    "foundedYear": 1927,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000001050120",
+    "bpomId": "BPOM RI MD 268713001017",
+    "scores": {
+      "halal": 96,
+      "ethical": 85,
+      "esg": 74,
+      "political": 90,
+      "community": 92
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "SNI"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "torabika",
+      "kopi-kenangan"
+    ],
+    "communityVotes": {
+      "up": 5100,
+      "down": 210
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Kopi Kapal Api is Indonesia's most iconic ground roast coffee brand, holding the largest domestic market share under Surabaya-based PT Santos Jaya Abadi.",
+    "descriptionId": "Kopi Kapal Api adalah merek kopi bubuk sangrai paling ikonik di Indonesia dengan pangsa pasar terbesar, di bawah naungan PT Santos Jaya Abadi di Surabaya.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Santos Jaya Abadi",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000001050120",
+        "date": "2025-01-15"
+      },
+      {
+        "title": "BPOM RI Registration MD 268713001017",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-RI-MD-268713001017",
+        "date": "2025-01-10"
+      }
+    ]
+  },
+  {
+    "id": "good-day",
+    "name": "Good Day",
+    "logo": "/logos/good-day.svg",
+    "category": "food-beverage",
+    "subcategory": "Coffee",
+    "tagline": "Colorful and flavored coffee for youths",
+    "taglineId": "Kopi gaul aneka rasa untuk anak muda",
+    "country": "ID",
+    "parentCompany": "PT Santos Jaya Abadi / Kapal Api Global",
+    "ultimateOwner": "Soedomo Mergonoto (Kapal Api Global)",
+    "ownerCountry": "ID",
+    "foundedYear": 2001,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000001050120",
+    "bpomId": "BPOM RI MD 268713005017",
+    "scores": {
+      "halal": 96,
+      "ethical": 84,
+      "esg": 72,
+      "political": 90,
+      "community": 90
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "kapal-api",
+      "kopi-kenangan"
+    ],
+    "communityVotes": {
+      "up": 4100,
+      "down": 180
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Good Day is an Indonesian instant flavored coffee brand (Mocacinno, Chococinno, Vanilla Latte) produced by Kapal Api Global.",
+    "descriptionId": "Good Day adalah merek kopi instan aneka rasa populer Indonesia (Mocacinno, Chococinno, Vanilla Latte) yang diproduksi oleh Kapal Api Global.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Santos Jaya Abadi",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000001050120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "tolak-angin",
+    "name": "Tolak Angin",
+    "logo": "/logos/tolak-angin.svg",
+    "category": "food-beverage",
+    "subcategory": "Herbal Health",
+    "tagline": "Standardized herbal supplement for immune and digestive health",
+    "taglineId": "Obat herbal terstandar untuk masuk angin dan daya tahan tubuh",
+    "country": "ID",
+    "parentCompany": "PT Industri Jamu dan Farmasi Sido Muncul Tbk",
+    "ultimateOwner": "Lindawati Gani (Power200 #7) / PT. Hotel Candi Baru (77.6%), Saham Treasury (1.88%)",
+    "ownerCountry": "ID",
+    "foundedYear": 1951,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000330120",
+    "bpomId": "BPOM RI TR 032622221",
+    "idxTicker": "SIDO",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/SIDO",
+    "powerMapRank": 7,
+    "scores": {
+      "halal": 98,
+      "ethical": 90,
+      "esg": 88,
+      "political": 92,
+      "community": 96
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM OHT",
+      "CPOTB",
+      "ISO 14001"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "antangin"
+    ],
+    "communityVotes": {
+      "up": 6800,
+      "down": 90
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Tolak Angin is Indonesia's most trusted standardized herbal liquid medicine (OHT), produced by publicly listed PT Industri Jamu dan Farmasi Sido Muncul Tbk.",
+    "descriptionId": "Tolak Angin adalah obat herbal terstandar (OHT) cair terpercaya di Indonesia, diproduksi oleh PT Industri Jamu dan Farmasi Sido Muncul Tbk yang terdaftar di bursa.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Industri Jamu dan Farmasi Sido Muncul Tbk (SIDO)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/SIDO",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-SIDO",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPOM RI Obat Herbal Terstandar Registry TR 032622221",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-TR-032622221",
+        "date": "2025-01-10"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Industri Jamu dan Farmasi Sido Muncul Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000330120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "antangin",
+    "name": "Antangin",
+    "logo": "/logos/antangin.svg",
+    "category": "food-beverage",
+    "subcategory": "Herbal Health",
+    "tagline": "Natural herbal medicine with real ginger and honey",
+    "taglineId": "Herbal alami dengan jahe dan madu asli",
+    "country": "ID",
+    "parentCompany": "PT Deltomed Laboratories",
+    "ultimateOwner": "Purwanto Rahardjo & Keluarga Rahardjo",
+    "ownerCountry": "ID",
+    "foundedYear": 1976,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000001880120",
+    "bpomId": "BPOM RI TR 082676881",
+    "scores": {
+      "halal": 96,
+      "ethical": 88,
+      "esg": 80,
+      "political": 92,
+      "community": 90
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM OHT",
+      "CPOTB"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "tolak-angin"
+    ],
+    "communityVotes": {
+      "up": 4200,
+      "down": 110
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Antangin is a premier Indonesian standardized herbal medicine brand formulated with natural ginger, honey, and royal jelly, manufactured by PT Deltomed Laboratories in Wonogiri.",
+    "descriptionId": "Antangin adalah merek obat herbal terstandar terkemuka di Indonesia berbahan jahe, madu, dan royal jelly, diproduksi oleh PT Deltomed Laboratories di Wonogiri.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPOM RI OHT Registration TR 082676881",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-TR-082676881",
+        "date": "2025-01-10"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Deltomed Laboratories",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000001880120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "so-klin",
+    "name": "So Klin",
+    "logo": "/logos/so-klin.svg",
+    "category": "personal-care",
+    "subcategory": "Household Detergent",
+    "tagline": "Leading Indonesian fabric care and laundry detergent",
+    "taglineId": "Deterjen pembersih dan perawatan pakaian nomor satu Indonesia",
+    "country": "ID",
+    "parentCompany": "Wings Group / PT Sayap Mas Utama",
+    "ultimateOwner": "William Katuari & Harjo Sutanto (Keluarga Katuari)",
+    "ownerCountry": "ID",
+    "foundedYear": 1980,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000021510221",
+    "bpomId": "Kemenkes RI PKD 20202020001",
+    "scores": {
+      "halal": 94,
+      "ethical": 76,
+      "esg": 65,
+      "political": 90,
+      "community": 86
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "Kemenkes PKD",
+      "ISO 9001"
+    ],
+    "controversyIds": [
+      "c-wings-labor"
+    ],
+    "alternativeIds": [
+      "rinso",
+      "daia"
+    ],
+    "communityVotes": {
+      "up": 3800,
+      "down": 280
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "So Klin is Indonesia's top-selling fabric care detergent brand, owned by Surabaya-based privately held conglomerate Wings Group.",
+    "descriptionId": "So Klin adalah merek deterjen perawatan pakaian terlaris di Indonesia, dimiliki oleh konglomerat swasta Wings Group di Surabaya.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Sayap Mas Utama (Wings)",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000021510221",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "daia",
+    "name": "Daia",
+    "logo": "/logos/daia.svg",
+    "category": "personal-care",
+    "subcategory": "Household Detergent",
+    "tagline": "Affordable scented laundry detergent by Wings",
+    "taglineId": "Deterjen wangi busa melimpah dan terjangkau dari Wings",
+    "country": "ID",
+    "parentCompany": "Wings Group / PT Sayap Mas Utama",
+    "ultimateOwner": "William Katuari (Wings Group)",
+    "ownerCountry": "ID",
+    "foundedYear": 1998,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000021510221",
+    "bpomId": "Kemenkes RI PKD 20202020002",
+    "scores": {
+      "halal": 94,
+      "ethical": 76,
+      "esg": 64,
+      "political": 90,
+      "community": 85
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "Kemenkes PKD"
+    ],
+    "controversyIds": [
+      "c-wings-labor"
+    ],
+    "alternativeIds": [
+      "so-klin",
+      "rinso"
+    ],
+    "communityVotes": {
+      "up": 3400,
+      "down": 220
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Daia is a budget-friendly scented detergent brand by Wings Group, popular for its high lather and stain-removal properties.",
+    "descriptionId": "Daia adalah merek deterjen bubuk wangi terjangkau dari Wings Group yang sangat populer di kalangan rumah tangga Indonesia.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Sayap Mas Utama (Wings)",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000021510221",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "pepsodent",
+    "name": "Pepsodent",
+    "logo": "/logos/pepsodent.svg",
+    "category": "personal-care",
+    "subcategory": "Oral Care",
+    "tagline": "Indonesia's pioneer toothpaste and oral health advocate",
+    "taglineId": "Pelopor pasta gigi dan kesehatan mulut nomor satu Indonesia",
+    "country": "ID",
+    "parentCompany": "PT Unilever Indonesia Tbk",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
+    "ownerCountry": "GB",
+    "foundedYear": 1933,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000410120",
+    "bpomId": "BPOM RI NA 18211400001",
+    "idxTicker": "UNVR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+    "powerMapRank": 93,
+    "scores": {
+      "halal": 95,
+      "ethical": 72,
+      "esg": 70,
+      "political": 75,
+      "community": 78
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "PDGI Certified"
+    ],
+    "controversyIds": [
+      "c-unilever-palm"
+    ],
+    "alternativeIds": [
+      "sensodyne",
+      "ciptadent"
+    ],
+    "communityVotes": {
+      "up": 3600,
+      "down": 1200
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Pepsodent is Indonesia's most trusted toothpaste brand, certified halal by BPJPH and produced by PT Unilever Indonesia Tbk.",
+    "descriptionId": "Pepsodent adalah merek pasta gigi paling terpercaya di Indonesia, tersertifikasi halal resmi BPJPH dan diproduksi oleh PT Unilever Indonesia Tbk.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Unilever Indonesia Tbk (UNVR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-UNVR",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Unilever Indonesia Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000410120",
+        "date": "2025-01-15"
+      },
+      {
+        "title": "BPOM RI Cosmetic Notification NA 18211400001",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-NA-18211400001",
+        "date": "2025-01-10"
+      }
+    ]
+  },
+  {
+    "id": "lifebuoy",
+    "name": "Lifebuoy",
+    "logo": "/logos/lifebuoy.svg",
+    "category": "personal-care",
+    "subcategory": "Soap & Hygiene",
+    "tagline": "Antibacterial soap promoting family hygiene",
+    "taglineId": "Sabun antibakteri pelindung kesehatan keluarga",
+    "country": "ID",
+    "parentCompany": "PT Unilever Indonesia Tbk",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
+    "ownerCountry": "GB",
+    "foundedYear": 1933,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000410120",
+    "bpomId": "BPOM RI NA 18210500001",
+    "idxTicker": "UNVR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+    "powerMapRank": 93,
+    "scores": {
+      "halal": 95,
+      "ethical": 72,
+      "esg": 68,
+      "political": 75,
+      "community": 76
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM"
+    ],
+    "controversyIds": [
+      "c-unilever-palm"
+    ],
+    "alternativeIds": [
+      "nuvo",
+      "dettol"
+    ],
+    "communityVotes": {
+      "up": 3200,
+      "down": 1100
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Lifebuoy is an antibacterial soap and shampoo brand marketed by Unilever Indonesia, certified halal and widely distributed across the archipelago.",
+    "descriptionId": "Lifebuoy adalah merek sabun mandi antibakteri dan sampo yang dipasarkan oleh Unilever Indonesia dengan sertifikasi halal penuh BPJPH.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Unilever Indonesia Tbk (UNVR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-UNVR",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Unilever Indonesia Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000410120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "rinso",
+    "name": "Rinso",
+    "logo": "/logos/rinso.svg",
+    "category": "personal-care",
+    "subcategory": "Household Detergent",
+    "tagline": "Indonesia's first detergent brand: Berani Kotor Itu Baik",
+    "taglineId": "Pelopor deterjen di Indonesia: Berani Kotor Itu Baik",
+    "country": "ID",
+    "parentCompany": "PT Unilever Indonesia Tbk",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
+    "ownerCountry": "GB",
+    "foundedYear": 1970,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000410120",
+    "bpomId": "Kemenkes RI PKD 20202010001",
+    "idxTicker": "UNVR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+    "powerMapRank": 93,
+    "scores": {
+      "halal": 95,
+      "ethical": 72,
+      "esg": 68,
+      "political": 75,
+      "community": 78
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "Kemenkes PKD"
+    ],
+    "controversyIds": [
+      "c-unilever-palm"
+    ],
+    "alternativeIds": [
+      "so-klin",
+      "daia"
+    ],
+    "communityVotes": {
+      "up": 3100,
+      "down": 950
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Rinso is Indonesia's pioneer laundry detergent brand, holding widespread brand recognition under PT Unilever Indonesia Tbk.",
+    "descriptionId": "Rinso adalah pelopor merek deterjen pakaian di Indonesia yang diproduksi dan dipasarkan oleh PT Unilever Indonesia Tbk.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Unilever Indonesia Tbk (UNVR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-UNVR",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Unilever Indonesia Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000410120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "bango",
+    "name": "Kecap Bango",
+    "logo": "/logos/bango.svg",
+    "category": "food-beverage",
+    "subcategory": "Sauces & Condiments",
+    "tagline": "Authentic sweet soy sauce made from selected black Mallika soybeans",
+    "taglineId": "Kecap manis gurih alami dari kedelai hitam Mallika pilihan",
+    "country": "ID",
+    "parentCompany": "PT Unilever Indonesia Tbk",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
+    "ownerCountry": "GB",
+    "foundedYear": 1928,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000410120",
+    "bpomId": "BPOM RI MD 257210001001",
+    "idxTicker": "UNVR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+    "powerMapRank": 93,
+    "scores": {
+      "halal": 96,
+      "ethical": 75,
+      "esg": 74,
+      "political": 78,
+      "community": 85
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [
+      "c-unilever-palm"
+    ],
+    "alternativeIds": [
+      "kecap-sedap",
+      "kecap-indofood"
+    ],
+    "communityVotes": {
+      "up": 4800,
+      "down": 420
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Kecap Bango is Indonesia's most celebrated sweet soy sauce brand, acquired by Unilever in 2001 and made from sustainable black Mallika soybeans.",
+    "descriptionId": "Kecap Bango adalah kecap manis legendaris Indonesia yang diakuisisi Unilever pada 2001 dan dibuat dari fermentasi kedelai hitam Mallika.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Unilever Indonesia Tbk (UNVR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-UNVR",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Unilever Indonesia Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000410120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "royco",
+    "name": "Royco",
+    "logo": "/logos/royco.svg",
+    "category": "food-beverage",
+    "subcategory": "Seasoning",
+    "tagline": "Flavor booster bouillon made from authentic bone broth",
+    "taglineId": "Bumbu penyedap rasa dari kaldu tulang sapi & ayam pilihan",
+    "country": "ID",
+    "parentCompany": "PT Unilever Indonesia Tbk",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
+    "ownerCountry": "GB",
+    "foundedYear": 1972,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000410120",
+    "bpomId": "BPOM RI MD 255610001001",
+    "idxTicker": "UNVR",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+    "powerMapRank": 93,
+    "scores": {
+      "halal": 96,
+      "ethical": 74,
+      "esg": 72,
+      "political": 78,
+      "community": 84
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM"
+    ],
+    "controversyIds": [
+      "c-unilever-palm"
+    ],
+    "alternativeIds": [
+      "masako",
+      "sasa"
+    ],
+    "communityVotes": {
+      "up": 4100,
+      "down": 390
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Royco is the leading culinary bouillon and food seasoning brand in Indonesia, manufactured by PT Unilever Indonesia Tbk.",
+    "descriptionId": "Royco adalah merek kaldu penyedap rasa terkemuka di Indonesia yang diproduksi dan didistribusikan oleh PT Unilever Indonesia Tbk.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Unilever Indonesia Tbk (UNVR)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-UNVR",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Unilever Indonesia Tbk",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000410120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "sari-roti",
+    "name": "Sari Roti",
+    "logo": "/logos/sari-roti.svg",
+    "category": "food-beverage",
+    "subcategory": "Bakery",
+    "tagline": "Indonesia's #1 mass-production fresh bread",
+    "taglineId": "Roti nomor satu di Indonesia: Halal, Sehat, dan Higienis",
+    "country": "ID",
+    "parentCompany": "PT Nippon Indosari Corpindo Tbk",
+    "ultimateOwner": "Benny Setiawan Santoso (Power200 #5) / PT. INDORITEL MAKMUR INTERNASIONAL TBK (25.77%), BONLIGHT INVESTMENT LIMITED (20.79%)",
+    "ownerCountry": "ID",
+    "foundedYear": 1995,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000120120",
+    "bpomId": "BPOM RI MD 235410001001",
+    "idxTicker": "ROTI",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ROTI",
+    "powerMapRank": 5,
+    "scores": {
+      "halal": 98,
+      "ethical": 85,
+      "esg": 78,
+      "political": 82,
+      "community": 86
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000",
+      "HACCP"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "my-roti",
+      "garmelia"
+    ],
+    "communityVotes": {
+      "up": 4700,
+      "down": 410
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Sari Roti is Indonesia's largest mass-produced bread manufacturer, operated by publicly listed PT Nippon Indosari Corpindo Tbk with backing from Salim Group.",
+    "descriptionId": "Sari Roti adalah produsen roti massal terbesar di Indonesia, dioperasikan oleh PT Nippon Indosari Corpindo Tbk yang terafiliasi dengan Salim Group.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Nippon Indosari Corpindo Tbk (ROTI)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ROTI",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-ROTI",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Nippon Indosari Corpindo",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000120120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "chitato",
+    "name": "Chitato",
+    "logo": "/logos/chitato.svg",
+    "category": "food-beverage",
+    "subcategory": "Snacks",
+    "tagline": "Iconic corrugated wavy potato chips",
+    "taglineId": "Keripik kentang bergelombang legendaris dengan rasa berani",
+    "country": "ID",
+    "parentCompany": "PT Indofood CBP Sukses Makmur Tbk",
+    "ultimateOwner": "Franciscus Welirang (Power200 #17) / PT Indofood Sukses Makmur Tbk (80.53%), Masyarakat Warkat",
+    "ownerCountry": "ID",
+    "foundedYear": 1990,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000003010120",
+    "bpomId": "BPOM RI MD 272909001001",
+    "idxTicker": "ICBP",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ICBP",
+    "powerMapRank": 17,
+    "scores": {
+      "halal": 96,
+      "ethical": 75,
+      "esg": 68,
+      "political": 90,
+      "community": 90
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "qtela",
+      "lays"
+    ],
+    "communityVotes": {
+      "up": 5200,
+      "down": 180
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Chitato is Indonesia's most famous corrugated potato chip brand, manufactured by Indofood CBP's snack food division.",
+    "descriptionId": "Chitato adalah merek keripik kentang bergelombang terpopuler di Indonesia, diproduksi oleh divisi makanan ringan Indofood CBP.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Indofood CBP Sukses Makmur Tbk (ICBP)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/ICBP",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-ICBP",
+        "date": "2024-03-31"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Indofood CBP",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000003010120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "tango",
+    "name": "Wafer Tango",
+    "logo": "/logos/tango.svg",
+    "category": "food-beverage",
+    "subcategory": "Biscuits & Wafers",
+    "tagline": "Berapa lapis? Ratusan! Indonesia's iconic crispy layered wafer",
+    "taglineId": "Berapa lapis? Ratusan! Wafer renyah berlapis legendaris",
+    "country": "ID",
+    "parentCompany": "PT Ultra Prima Abadi / Orang Tua (OT) Group",
+    "ultimateOwner": "Hamid Djojonegoro (Keluarga Djojonegoro)",
+    "ownerCountry": "ID",
+    "foundedYear": 1995,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000820120",
+    "bpomId": "BPOM RI MD 236110001001",
+    "scores": {
+      "halal": 96,
+      "ethical": 85,
+      "esg": 75,
+      "political": 92,
+      "community": 92
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "nabati",
+      "chocolatos"
+    ],
+    "communityVotes": {
+      "up": 4900,
+      "down": 120
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Wafer Tango is the market-leading layered wafer brand in Indonesia, owned by the Indonesian family conglomerate Orang Tua (OT) Group.",
+    "descriptionId": "Wafer Tango adalah merek wafer renyah berlapis nomor satu di Indonesia yang diproduksi oleh konglomerat nasional Orang Tua (OT) Group.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT Ultra Prima Abadi (OT Group)",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000820120",
+        "date": "2025-01-15"
+      },
+      {
+        "title": "BPOM RI Registration MD 236110001001",
+        "url": "https://cekbpom.pom.go.id",
+        "publisher": "BPOM RI",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "BPOM-RI-MD-236110001001",
+        "date": "2025-01-10"
+      }
+    ]
+  },
+  {
+    "id": "teh-gelas",
+    "name": "Teh Gelas",
+    "logo": "/logos/teh-gelas.svg",
+    "category": "food-beverage",
+    "subcategory": "Ready-to-drink Tea",
+    "tagline": "Refreshing cup tea brewed with real cane sugar",
+    "taglineId": "Teh seduh alami dalam kemasan cup praktis dengan gula asli",
+    "country": "ID",
+    "parentCompany": "PT CS2 Pola Sehat / Orang Tua (OT) Group",
+    "ultimateOwner": "Hamid Djojonegoro (Orang Tua Group)",
+    "ownerCountry": "ID",
+    "foundedYear": 2007,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000820120",
+    "bpomId": "BPOM RI MD 268310008001",
+    "scores": {
+      "halal": 96,
+      "ethical": 84,
+      "esg": 70,
+      "political": 92,
+      "community": 88
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "teh-botol-sosro",
+      "teh-pucuk"
+    ],
+    "communityVotes": {
+      "up": 4300,
+      "down": 160
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Teh Gelas is Indonesia's dominant cup tea brand, brewed from genuine tea leaves and cane sugar by OT Group subsidiary PT CS2 Pola Sehat.",
+    "descriptionId": "Teh Gelas adalah pelopor teh kemasan cup nomor satu di Indonesia yang diproduksi dari daun teh alami oleh anak usaha OT Group PT CS2 Pola Sehat.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "BPJPH Halal Certificate: PT CS2 Pola Sehat",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000820120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "chocolatos",
+    "name": "Chocolatos",
+    "logo": "/logos/chocolatos.svg",
+    "category": "food-beverage",
+    "subcategory": "Snacks & Wafers",
+    "tagline": "Premium Italian-style chocolate wafer roll",
+    "taglineId": "Wafer roll cokelat tebal ala Italia",
+    "country": "ID",
+    "parentCompany": "PT Garudafood Putra Putri Jaya Tbk",
+    "ultimateOwner": "HSBC CMB S/A HORMEL FOOD (30.173%), Kusumo Dewiningrum Sunjoto (9.847%)",
+    "ownerCountry": "ID",
+    "foundedYear": 2006,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000490120",
+    "bpomId": "BPOM RI MD 236111001001",
+    "idxTicker": "GOOD",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOOD",
+    "scores": {
+      "halal": 96,
+      "ethical": 86,
+      "esg": 76,
+      "political": 92,
+      "community": 92
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "ISO 22000"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "tango",
+      "gery"
+    ],
+    "communityVotes": {
+      "up": 4800,
+      "down": 110
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Chocolatos is a flagship chocolate wafer roll and snack brand produced by publicly listed snack giant PT Garudafood Putra Putri Jaya Tbk.",
+    "descriptionId": "Chocolatos adalah merek wafer roll dan minuman cokelat unggulan yang diproduksi oleh PT Garudafood Putra Putri Jaya Tbk yang terdaftar di bursa.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Garudafood Putra Putri Jaya Tbk (GOOD)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOOD",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-GOOD",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Garudafood",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000490120",
+        "date": "2025-01-15"
+      }
+    ]
+  },
+  {
+    "id": "kacang-garuda",
+    "name": "Kacang Garuda",
+    "logo": "/logos/kacang-garuda.svg",
+    "category": "food-beverage",
+    "subcategory": "Snacks & Nuts",
+    "tagline": "Indonesia's quintessential roasted peanut snack",
+    "taglineId": "Kacang kulit garing dan gurih kebanggaan Indonesia",
+    "country": "ID",
+    "parentCompany": "PT Garudafood Putra Putri Jaya Tbk",
+    "ultimateOwner": "HSBC CMB S/A HORMEL FOOD (30.173%), Kusumo Dewiningrum Sunjoto (9.847%)",
+    "ownerCountry": "ID",
+    "foundedYear": 1979,
+    "halalCertified": true,
+    "halalCertifier": "BPJPH / MUI",
+    "halalCertId": "ID00410000000490120",
+    "bpomId": "BPOM RI MD 273811001001",
+    "idxTicker": "GOOD",
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOOD",
+    "scores": {
+      "halal": 96,
+      "ethical": 86,
+      "esg": 78,
+      "political": 92,
+      "community": 94
+    },
+    "certifications": [
+      "Halal BPJPH",
+      "BPOM",
+      "SNI"
+    ],
+    "controversyIds": [],
+    "alternativeIds": [
+      "kacang-dua-kelinci"
+    ],
+    "communityVotes": {
+      "up": 5100,
+      "down": 80
+    },
+    "lastUpdated": "2025-12-01",
+    "description": "Kacang Garuda is the foundational brand of Garudafood, producing premium roasted and flavored peanuts popular for gatherings and everyday snacking.",
+    "descriptionId": "Kacang Garuda adalah merek pionir berdirinya Garudafood, menyajikan kacang kulit sangrai berkualitas tinggi yang menjadi teman kumpul masyarakat Indonesia.",
+    "boycottActive": false,
+    "sources": [
+      {
+        "title": "IDX Public Disclosure: PT Garudafood Putra Putri Jaya Tbk (GOOD)",
+        "url": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOOD",
+        "publisher": "Bursa Efek Indonesia",
+        "docType": "regulatory_filing",
+        "confidence": "high",
+        "documentId": "IDX-GOOD",
+        "date": "2024-04-30"
+      },
+      {
+        "title": "BPJPH Halal Certificate: PT Garudafood",
+        "url": "https://bpjph.halal.go.id",
+        "publisher": "BPJPH Kementerian Agama",
+        "docType": "government_registry",
+        "confidence": "high",
+        "documentId": "ID00410000000490120",
+        "date": "2025-01-15"
+      }
+    ]
   }
 ];
