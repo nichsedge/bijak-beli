@@ -77,6 +77,11 @@ async function main() {
         foundedYear: b.foundedYear ?? null,
         halalCertified: b.halalCertified,
         halalCertifier: b.halalCertifier ?? null,
+        halalCertId: b.halalCertId ?? null,
+        bpomId: b.bpomId ?? null,
+        idxTicker: b.idxTicker ?? null,
+        idxUrl: b.idxUrl ?? null,
+        powerMapRank: b.powerMapRank ?? null,
         scoreHalal: b.scores.halal,
         scoreEthical: b.scores.ethical,
         scoreEsg: b.scores.esg,
@@ -108,6 +113,11 @@ async function main() {
           foundedYear: b.foundedYear ?? null,
           halalCertified: b.halalCertified,
           halalCertifier: b.halalCertifier ?? null,
+          halalCertId: b.halalCertId ?? null,
+          bpomId: b.bpomId ?? null,
+          idxTicker: b.idxTicker ?? null,
+          idxUrl: b.idxUrl ?? null,
+          powerMapRank: b.powerMapRank ?? null,
           scoreHalal: b.scores.halal,
           scoreEthical: b.scores.ethical,
           scoreEsg: b.scores.esg,
@@ -127,6 +137,9 @@ async function main() {
 
   // 4. Seed Related Data
   for (const b of brands) {
+    // Clear old sources for brand to ensure clean audit trail
+    await db.delete(schema.sources).where(eq(schema.sources.brandId, b.id));
+
     // Controversies
     for (const cId of b.controversyIds) {
       const exists = controversies.some((c) => c.id === cId);
@@ -156,26 +169,23 @@ async function main() {
       }
     }
 
-    // Sources
+    // Sources (Verifiable Audit Trail)
     for (const src of (b.sources || [])) {
-      const existing = await db.query.sources.findFirst({
-        where: and(
-          eq(schema.sources.brandId, b.id),
-          eq(schema.sources.url, src.url)
-        ),
-      });
-      if (!existing) {
-        let dateValue = new Date(src.date);
-        if (isNaN(dateValue.getTime())) {
-          dateValue = new Date(`${src.date}-01`);
-        }
-        await db.insert(schema.sources).values({
-          brandId: b.id,
-          title: src.title,
-          url: src.url,
-          date: dateValue,
-        });
+      let dateValue = new Date(src.date);
+      if (isNaN(dateValue.getTime())) {
+        dateValue = new Date(`${src.date}-01`);
       }
+      await db.insert(schema.sources).values({
+        brandId: b.id,
+        title: src.title,
+        url: src.url,
+        publisher: src.publisher ?? null,
+        docType: src.docType ?? null,
+        confidence: src.confidence ?? "high",
+        documentId: src.documentId ?? null,
+        archiveUrl: src.archiveUrl ?? null,
+        date: dateValue,
+      });
     }
 
     // Alternatives

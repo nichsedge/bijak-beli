@@ -607,3 +607,195 @@
   font-size: var(--text-sm);
   text-align: center;
 }
+
+/* Verifiable Audit Trail & Sources */
+.auditSection {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.auditTableWrap {
+  overflow-x: auto;
+  margin-top: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.auditTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+  text-align: left;
+}
+
+.auditTable th {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.auditTable td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.sourceCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sourceCard:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.sourceTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.sourceTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.sourceBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.confBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.confHigh {
+  background: color-mix(in srgb, var(--score-excellent) 15%, transparent);
+  color: var(--score-excellent);
+  border: 1px solid color-mix(in srgb, var(--score-excellent) 30%, transparent);
+}
+
+.confMedium {
+  background: color-mix(in srgb, var(--score-good) 15%, transparent);
+  color: var(--score-good);
+  border: 1px solid color-mix(in srgb, var(--score-good) 30%, transparent);
+}
+
+.confLow {
+  background: color-mix(in srgb, var(--score-concerning) 15%, transparent);
+  color: var(--score-concerning);
+  border: 1px solid color-mix(in srgb, var(--score-concerning) 30%, transparent);
+}
+
+.docBadge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.sourceFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+.verifyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.verifyLink:hover {
+  text-decoration: underline;
+}
+
+.disputeBox {
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.disputeText h4 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.disputeText p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.regBadgeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.regBadgeLink:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

@@ -27,6 +27,11 @@ export const brands = sqliteTable("brands", {
   foundedYear: integer("founded_year"),
   halalCertified: integer("halal_certified", { mode: "boolean" }).notNull(),
   halalCertifier: text("halal_certifier"),
+  halalCertId: text("halal_cert_id"),
+  bpomId: text("bpom_id"),
+  idxTicker: text("idx_ticker"),
+  idxUrl: text("idx_url"),
+  powerMapRank: integer("power_map_rank"),
 
   // Scores
   scoreHalal: integer("score_halal").notNull(),
@@ -89,6 +94,11 @@ export const sources = sqliteTable("sources", {
     .$defaultFn(() => crypto.randomUUID()),
   title: text("title").notNull(),
   url: text("url").notNull(),
+  archiveUrl: text("archive_url"),
+  publisher: text("publisher"),
+  docType: text("doc_type"),
+  confidence: text("confidence"),
+  documentId: text("document_id"),
   date: integer("date", { mode: "timestamp" }).notNull(),
   brandId: text("brand_id")
     .notNull()

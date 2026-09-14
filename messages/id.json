@@ -39,8 +39,14 @@
     "noControversies": "Tidak ada kontroversi tercatat",
     "boycottActive": "Aktif Diboikot",
     "lastUpdated": "Terakhir diperbarui",
-    "editorialNote": "Catatan: Skor merupakan penilaian editorial berdasarkan data publik, bukan keputusan hukum.",
-    "suggest": "Usul Koreksi"
+    "editorialNote": "Catatan: Skor merupakan penilaian berdasarkan formula transparan dari data publik resmi, bukan keputusan hukum.",
+    "suggest": "Usul Koreksi",
+    "auditTrail": "Jejak Audit & Dokumen Resmi",
+    "scoreRubric": "Metodologi & Dasar Penilaian",
+    "verifyDoc": "Verifikasi Dokumen",
+    "disputeTitle": "Transparansi & Hak Jawab",
+    "disputeDesc": "Seluruh data dirujuk dari pendaftaran resmi regulator (BEI, BPOM, BPJPH, KPK, pengadilan). Ada bukti pembaruan?",
+    "disputeBtn": "Ajukan Bukti Verifikasi"
   },
   "scores": {
     "overall": "Skor Keseluruhan",

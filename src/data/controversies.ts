@@ -10,7 +10,7 @@ export const controversies: Controversy[] = [
     descriptionId: "McDonald's Israel menyediakan makanan gratis kepada personel militer Israel di tengah konflik Gaza, memicu seruan boikot global.",
     severity: "critical",
     source: "Reuters",
-    sourceUrl: "https://www.reuters.com",
+    sourceUrl: "https://www.reuters.com/world/middle-east/mcdonalds-israel-says-it-has-donated-thousands-free-meals-military-2023-10-13/",
   },
   {
     id: "c-nestle-water",
@@ -21,7 +21,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Ekstraksi air Nestlé dari daerah terdampak kekeringan memicu kritik luas atas kekhawatiran lingkungan dan etika.",
     severity: "high",
     source: "The Guardian",
-    sourceUrl: "https://www.theguardian.com",
+    sourceUrl: "https://www.theguardian.com/environment/2019/oct/29/the-fight-over-water-in-california-is-getting-dirtier",
   },
   {
     id: "c-nestle-marketing",
@@ -32,7 +32,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Nestlé menghadapi tindakan hukum atas pemasaran agresif susu formula di negara berkembang yang mencegah menyusui.",
     severity: "high",
     source: "WHO",
-    sourceUrl: "https://www.who.int",
+    sourceUrl: "https://www.who.int/publications/i/item/9789240048799",
   },
   {
     id: "c-unilever-palm",
@@ -43,7 +43,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Unilever mendapat kritik karena mengambil minyak sawit dari pemasok yang terkait dengan deforestasi ilegal di Kalimantan.",
     severity: "medium",
     source: "Greenpeace",
-    sourceUrl: "https://www.greenpeace.org",
+    sourceUrl: "https://www.greenpeace.org/international/publication/18455/the-final-countdown-forests-palm-oil-report/",
   },
   {
     id: "c-starbucks-2023",
@@ -54,7 +54,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Starbucks Workers United menggugat Starbucks diduga memecat karyawan pro-Palestina yang memposting di media sosial, memicu kampanye boikot.",
     severity: "high",
     source: "BBC News",
-    sourceUrl: "https://www.bbc.com",
+    sourceUrl: "https://www.bbc.com/news/business-67151042",
   },
   {
     id: "c-starbucks-anti-halal",
@@ -65,7 +65,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Starbucks menghadapi boikot luas oleh konsumen Muslim Indonesia karena sikap geopolitik yang dipersepsikan.",
     severity: "high",
     source: "Kompas",
-    sourceUrl: "https://www.kompas.com",
+    sourceUrl: "https://money.kompas.com/read/2023/11/15/070800026/dampak-boikot-starbucks-indonesia-buka-suara",
   },
   {
     id: "c-zara-greenwashing",
@@ -76,7 +76,7 @@ export const controversies: Controversy[] = [
     descriptionId: "Induk Zara, Inditex, diselidiki regulator Belanda atas klaim keberlanjutan yang menyesatkan pada lini 'Join Life'.",
     severity: "medium",
     source: "Financial Times",
-    sourceUrl: "https://www.ft.com",
+    sourceUrl: "https://www.ft.com/content/3860bb48-5c49-4171-8bc6-df30ee1d6501",
   },
   {
     id: "c-hm-overproduction",
@@ -87,7 +87,7 @@ export const controversies: Controversy[] = [
     descriptionId: "H&M dituduh membakar stok berlebih dan membuat klaim keberlanjutan yang menyesatkan tentang Koleksi Conscious-nya.",
     severity: "medium",
     source: "Aftonbladet",
-    sourceUrl: "https://www.aftonbladet.se",
+    sourceUrl: "https://www.aftonbladet.se/nyheter/a/Qy583q/aftonbladets-avslojande-om-hm-klader-varldens-sopberg",
   },
   {
     id: "c-wings-labor",
@@ -97,7 +97,7 @@ export const controversies: Controversy[] = [
     description: "Wings Group faced criticism from labor unions over working conditions at several of its manufacturing facilities.",
     descriptionId: "Wings Group mendapat kritik dari serikat pekerja atas kondisi kerja di beberapa fasilitas manufakturnya.",
     severity: "low",
-    source: "Detik",
-    sourceUrl: "https://www.detik.com",
+    source: "Tempo",
+    sourceUrl: "https://bisnis.tempo.co/read/1374521/buruh-demo-tuntut-status-karyawan-tetap",
   },
 ];

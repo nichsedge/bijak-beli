@@ -26,11 +26,26 @@ export interface ScoreWeights {
   community: number;
 }
 
+export type DocType =
+  | "regulatory_filing"
+  | "government_registry"
+  | "court_or_antitrust"
+  | "investigative_report"
+  | "official_campaign"
+  | "corporate_disclosure";
+
 export interface Source {
   title: string;
   url: string;
   date: string;
+  publisher?: string;
+  docType?: DocType;
+  confidence?: "high" | "medium" | "low";
+  documentId?: string;
+  archiveUrl?: string;
 }
+
+export type VerifiableSource = Source;
 
 export interface Brand {
   id: string;
@@ -48,6 +63,11 @@ export interface Brand {
   foundedYear?: number;
   halalCertified: boolean;
   halalCertifier?: string;
+  halalCertId?: string;
+  bpomId?: string;
+  idxTicker?: string;
+  idxUrl?: string;
+  powerMapRank?: number;
   scores: Score;
   certifications: string[];
   controversyIds: string[];

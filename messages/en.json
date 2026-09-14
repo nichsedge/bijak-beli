@@ -39,8 +39,14 @@
     "noControversies": "No recorded controversies",
     "boycottActive": "Active Boycott",
     "lastUpdated": "Last updated",
-    "editorialNote": "Note: Scores are editorial assessments based on public data, not legal determinations.",
-    "suggest": "Suggest a Correction"
+    "editorialNote": "Note: Scores are transparent rule-based calculations derived from official public filings, not legal verdicts.",
+    "suggest": "Suggest a Correction",
+    "auditTrail": "Audit Trail & Public Filings",
+    "scoreRubric": "Methodology & Scoring Basis",
+    "verifyDoc": "Verify Document",
+    "disputeTitle": "Transparency & Right of Reply",
+    "disputeDesc": "All facts reference official public registries (IDX, BPOM, BPJPH, KPK, court filings). Found an update or dispute?",
+    "disputeBtn": "Submit Verified Correction"
   },
   "scores": {
     "overall": "Overall Score",

@@ -22,6 +22,11 @@ function mapDbBrandToBrand(dbBrand: any): Brand {
     foundedYear: dbBrand.foundedYear || undefined,
     halalCertified: dbBrand.halalCertified === 1 || dbBrand.halalCertified === true,
     halalCertifier: dbBrand.halalCertifier || undefined,
+    halalCertId: dbBrand.halalCertId || undefined,
+    bpomId: dbBrand.bpomId || undefined,
+    idxTicker: dbBrand.idxTicker || undefined,
+    idxUrl: dbBrand.idxUrl || undefined,
+    powerMapRank: dbBrand.powerMapRank ?? undefined,
     scores: {
       halal: dbBrand.scoreHalal,
       ethical: dbBrand.scoreEthical,
@@ -35,7 +40,12 @@ function mapDbBrandToBrand(dbBrand: any): Brand {
     sources: dbBrand.sources?.map((s: any) => ({
       title: s.title,
       url: s.url,
-      date: s.date instanceof Date ? s.date.toISOString().slice(0, 7) : new Date(s.date).toISOString().slice(0, 7)
+      archiveUrl: s.archiveUrl || undefined,
+      publisher: s.publisher || undefined,
+      docType: s.docType || undefined,
+      confidence: s.confidence || "high",
+      documentId: s.documentId || undefined,
+      date: s.date instanceof Date ? s.date.toISOString().slice(0, 10) : new Date(s.date).toISOString().slice(0, 10)
     })) || [],
     communityVotes: {
       up: dbBrand.communityVotesUp,

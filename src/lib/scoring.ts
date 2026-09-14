@@ -67,3 +67,64 @@ export function sortBrands(brands: Brand[], weights: ScoreWeights, direction: "a
     return direction === "desc" ? scoreB - scoreA : scoreA - scoreB;
   });
 }
+
+export interface ScoreAuditExplanation {
+  dimension: string;
+  score: number;
+  rubric: string;
+  rubricId: string;
+  evidence: string;
+  evidenceId: string;
+}
+
+export function getBrandScoreAudit(brand: Brand, lang: "id" | "en" = "id"): ScoreAuditExplanation[] {
+  const halalAudit: ScoreAuditExplanation = {
+    dimension: lang === "id" ? "Kepatuhan Halal" : "Halal Compliance",
+    score: brand.scores.halal,
+    rubric: brand.halalCertified
+      ? (brand.halalCertId ? `Verified BPJPH registry (#${brand.halalCertId})` : "Certified by official halal certifier")
+      : "Not certified / pending verification",
+    rubricId: brand.halalCertified
+      ? (brand.halalCertId ? `Sertifikat resmi BPJPH terdaftar (#${brand.halalCertId})` : "Tersertifikasi oleh lembaga halal berwenang")
+      : "Belum tersertifikasi / menunggu pendaftaran",
+    evidence: brand.halalCertId ? `BPJPH ID: ${brand.halalCertId}` : (brand.halalCertifier || "Self-Reported"),
+    evidenceId: brand.halalCertId ? `Nomor BPJPH: ${brand.halalCertId}` : (brand.halalCertifier || "Deklarasi Mandiri"),
+  };
+
+  const politicalAudit: ScoreAuditExplanation = {
+    dimension: lang === "id" ? "Netralitas Politik & Konglomerasi" : "Political Neutrality & UBO",
+    score: brand.scores.political,
+    rubric: brand.powerMapRank
+      ? `Board seats linked to Power200 tycoon rank #${brand.powerMapRank}`
+      : "Independent or dispersed shareholding without concentrated tycoon board seats",
+    rubricId: brand.powerMapRank
+      ? `Kursi direksi/komisaris terafiliasi konglomerat Power200 (Peringkat #${brand.powerMapRank})`
+      : "Kepemilikan mandiri / tersebar tanpa dominasi konglomerasi oligarki",
+    evidence: brand.idxTicker ? `IDX: ${brand.idxTicker}` : "KSEI / AHU Public Disclosures",
+    evidenceId: brand.idxTicker ? `BEI: ${brand.idxTicker}` : "Keterbukaan KSEI / Kemenkumham",
+  };
+
+  const ethicalAudit: ScoreAuditExplanation = {
+    dimension: lang === "id" ? "Etika Rantai Pasok & Buruh" : "Ethical Sourcing & Labor",
+    score: brand.scores.ethical,
+    rubric: brand.controversyIds.length > 0
+      ? `${brand.controversyIds.length} active verified controversy deduction(s)`
+      : "Zero active recorded labor disputes or violations",
+    rubricId: brand.controversyIds.length > 0
+      ? `Terdapat ${brand.controversyIds.length} sengketa etika/buruh terverifikasi`
+      : "Nihil catatan sengketa ketenagakerjaan atau etika",
+    evidence: brand.controversyIds.join(", ") || "Clean Audit",
+    evidenceId: brand.controversyIds.join(", ") || "Audit Bersih",
+  };
+
+  const esgAudit: ScoreAuditExplanation = {
+    dimension: lang === "id" ? "Kinerja Lingkungan & ESG" : "ESG Performance",
+    score: brand.scores.esg,
+    rubric: brand.scores.esg >= 80 ? "PROPER Hijau/Emas rating or SRI-KEHATI index constituent" : brand.scores.esg >= 60 ? "Compliant with industrial emissions standard (PROPER Biru)" : "Identified packaging waste or carbon reduction challenges",
+    rubricId: brand.scores.esg >= 80 ? "Peringkat PROPER Emas/Hijau KLHK atau indeks SRI-KEHATI" : brand.scores.esg >= 60 ? "Memenuhi baku mutu standar lingkungan industri (PROPER Biru)" : "Catatan pembuangan limbah plastik / jejak karbon manufaktur",
+    evidence: "KLHK PROPER & Corporate Sustainability Report",
+    evidenceId: "Laporan PROPER KLHK & Keterbukaan Keberlanjutan",
+  };
+
+  return [halalAudit, politicalAudit, ethicalAudit, esgAudit];
+}

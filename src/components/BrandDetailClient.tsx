@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { 
   CheckCircle, ThumbsUp, ThumbsDown, ShoppingBag, 
   ChevronRight, Building2, Shield, AlertTriangle, Hash,
-  ExternalLink, ChevronUp, ChevronDown, Calendar
+  ExternalLink, ChevronUp, ChevronDown, Calendar,
+  FileText, ShieldCheck, Scale
 } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import ScoreBadge from "@/components/ScoreBadge";
@@ -12,6 +14,7 @@ import ScoreBreakdown from "@/components/ScoreBreakdown";
 import BrandCard from "@/components/BrandCard";
 import AiInsight from "@/components/AiInsight";
 import { formatDate, severityColor, severityLabel } from "@/lib/utils";
+import { getBrandScoreAudit } from "@/lib/scoring";
 import type { Controversy, Brand } from "@/lib/types";
 import styles from "../app/brand/[id]/brand.module.css";
 
@@ -73,17 +76,69 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
             )}
             <div className={styles.headerBadges}>
               {brand.halalCertified ? (
-                <span className="badge badge-halal">
-                  <CheckCircle size={11} />
-                  {brand.halalCertifier || "Halal"}
-                </span>
+                brand.halalCertId ? (
+                  <a
+                    href="https://bpjph.halal.go.id"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.regBadgeLink}
+                    title="Terdaftar Resmi di BPJPH Kementerian Agama"
+                  >
+                    <CheckCircle size={11} color="var(--score-excellent)" />
+                    <span>BPJPH #{brand.halalCertId}</span>
+                    <ExternalLink size={9} />
+                  </a>
+                ) : (
+                  <span className="badge badge-halal">
+                    <CheckCircle size={11} />
+                    {brand.halalCertifier || "Halal"}
+                  </span>
+                )
               ) : (
                 <span className="badge" style={{ background: "var(--surface-2)", color: "var(--text-muted)" }}>
                   {t("brand", "notCertified")}
                 </span>
               )}
+              {brand.bpomId && (
+                <a
+                  href="https://cekbpom.pom.go.id"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.regBadgeLink}
+                  title="Nomor Izin Edar BPOM RI"
+                >
+                  <Shield size={11} color="var(--primary)" />
+                  <span>{brand.bpomId}</span>
+                  <ExternalLink size={9} />
+                </a>
+              )}
+              {brand.idxTicker && (
+                <a
+                  href={brand.idxUrl || `https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/${brand.idxTicker}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.regBadgeLink}
+                  title="Keterbukaan Informasi Bursa Efek Indonesia"
+                >
+                  <Building2 size={11} color="#0284c7" />
+                  <span>BEI: {brand.idxTicker}</span>
+                  <ExternalLink size={9} />
+                </a>
+              )}
+              {brand.powerMapRank && (
+                <Link
+                  href="/power"
+                  className={styles.regBadgeLink}
+                  title="Konglomerasi Power200 LittleSis"
+                >
+                  <Scale size={11} color="#e11d48" />
+                  <span>Power200 #{brand.powerMapRank}</span>
+                  <ChevronRight size={10} />
+                </Link>
+              )}
               {brand.boycottActive && (
-                <span className="badge badge-boycott">
+                <span className="badge badge-boycott" title={brand.boycottReason}>
+                  <AlertTriangle size={11} />
                   {t("common", "boycott")}
                 </span>
               )}
@@ -181,8 +236,102 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
 
         {activeTab === "transparency" && (
           <div className={styles.transparencyContent}>
+            {/* 1. Verifiable Audit Trail & Public Filings */}
             <div className={`card card-body ${styles.panel}`}>
-              <h2 className={styles.panelTitle}><Hash size={16} />{t("brand", "transparency")}</h2>
+              <div className={styles.sectionHeaderRow}>
+                <h2 className={styles.panelTitle}><ShieldCheck size={18} color="var(--score-excellent)" />{t("brand", "auditTrail")}</h2>
+                <span className="badge" style={{ background: "var(--surface-2)", color: "var(--text-secondary)", fontSize: "11px" }}>
+                  {brand.sources?.length || 0} {lang === "id" ? "Dokumen Terverifikasi" : "Verified Documents"}
+                </span>
+              </div>
+              <p style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)", marginTop: "var(--space-1)", marginBottom: "var(--space-3)" }}>
+                {lang === "id" 
+                  ? "Seluruh klaim dan penilaian dirujuk langsung dari keterbukaan informasi emiten BEI, pendaftaran izin edar BPOM, sertifikasi BPJPH Kemenag, dan laporan investigasi primer." 
+                  : "All claims are grounded in official public regulatory registries, BPOM licensing, BPJPH certificates, and primary disclosures."}
+              </p>
+
+              {(!brand.sources || brand.sources.length === 0) ? (
+                <div className={styles.emptyState}>
+                  <FileText size={28} color="var(--text-muted)" />
+                  <p>{lang === "id" ? "Belum ada dokumen publik terarsip." : "No archived public filings recorded."}</p>
+                </div>
+              ) : (
+                <div className={styles.sourceGrid}>
+                  {brand.sources.map((src, i) => (
+                    <div key={i} className={styles.sourceCard}>
+                      <div className={styles.sourceTop}>
+                        <div className={styles.sourceTitle}>{src.title}</div>
+                        <div className={styles.sourceBadges}>
+                          <span className={`${styles.confBadge} ${src.confidence === "high" ? styles.confHigh : src.confidence === "medium" ? styles.confMedium : styles.confLow}`}>
+                            <ShieldCheck size={10} />
+                            {src.confidence === "high" ? (lang === "id" ? "Dokumen Resmi" : "Official Proof") : (lang === "id" ? "Media Terpercaya" : "Verified Press")}
+                          </span>
+                          {src.docType && (
+                            <span className={styles.docBadge}>
+                              {src.docType === "regulatory_filing" ? (lang === "id" ? "Regulasi / BEI" : "Regulatory") :
+                               src.docType === "government_registry" ? (lang === "id" ? "Pemerintah" : "Gov Registry") :
+                               src.docType === "court_or_antitrust" ? (lang === "id" ? "Pengadilan / KPPU" : "Court/Antitrust") :
+                               src.docType === "official_campaign" ? (lang === "id" ? "Resolusi Kampanye" : "Campaign Resolution") :
+                               src.docType === "investigative_report" ? (lang === "id" ? "Investigasi Pers" : "Investigative") :
+                               (lang === "id" ? "Laporan Korporasi" : "Disclosure")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className={styles.sourceFooter}>
+                        <span>
+                          {src.publisher ? `${src.publisher} • ` : ""}
+                          {src.documentId ? `${src.documentId} • ` : ""}
+                          {formatDate(src.date, lang === "id" ? "id-ID" : "en-US")}
+                        </span>
+                        <a href={src.url} target="_blank" rel="noopener noreferrer" className={styles.verifyLink}>
+                          <span>{t("brand", "verifyDoc")}</span>
+                          <ExternalLink size={11} />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* 2. Transparent Scoring Rubric Breakdown */}
+            <div className={`card card-body ${styles.panel}`} style={{ marginTop: "var(--space-5)" }}>
+              <div className={styles.sectionHeaderRow}>
+                <h2 className={styles.panelTitle}><Scale size={18} color="var(--primary)" />{t("brand", "scoreRubric")}</h2>
+                <span style={{ fontSize: "11px", color: "var(--text-muted)" }}>UU ITE Safe Harbor Compliant</span>
+              </div>
+              <p style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)", marginTop: "var(--space-1)" }}>
+                {t("brand", "editorialNote")}
+              </p>
+              
+              <div className={styles.auditTableWrap}>
+                <table className={styles.auditTable}>
+                  <thead>
+                    <tr>
+                      <th>{lang === "id" ? "Dimensi" : "Dimension"}</th>
+                      <th>{lang === "id" ? "Skor" : "Score"}</th>
+                      <th>{lang === "id" ? "Kriteria & Dasar Hitung" : "Criteria & Formula"}</th>
+                      <th>{lang === "id" ? "Rujukan Bukti" : "Evidence"}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {getBrandScoreAudit(brand, lang).map((audit, idx) => (
+                      <tr key={idx}>
+                        <td style={{ fontWeight: 600 }}>{audit.dimension}</td>
+                        <td style={{ fontWeight: 700, color: "var(--primary)" }}>{audit.score} / 100</td>
+                        <td style={{ color: "var(--text-secondary)" }}>{lang === "id" ? audit.rubricId : audit.rubric}</td>
+                        <td style={{ fontSize: "11px", color: "var(--text-muted)" }}>{lang === "id" ? audit.evidenceId : audit.evidence}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* 3. Recorded Controversies Timeline */}
+            <div className={`card card-body ${styles.panel}`} style={{ marginTop: "var(--space-5)" }}>
+              <h2 className={styles.panelTitle}><AlertTriangle size={16} />{t("brand", "controversies")}</h2>
               {brandControversies.length === 0 ? (
                 <div className={styles.emptyState}><CheckCircle size={32} color="var(--score-excellent)" /><p>{t("brand", "noControversies")}</p></div>
               ) : (
@@ -194,12 +343,29 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                       <div className={styles.timelineContent}>
                         <h3 className={styles.timelineTitle}>{lang === "id" ? c.titleId : c.title}</h3>
                         <p className={styles.timelineDesc}>{lang === "id" ? c.descriptionId : c.description}</p>
-                        <a href={c.sourceUrl} target="_blank" rel="noopener" className={styles.sourceLink}><ExternalLink size={12} />{c.source}</a>
+                        <a href={c.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.sourceLink}><ExternalLink size={12} />{c.source} ↗</a>
                       </div>
                     </div>
                   ))}
                 </div>
               )}
+            </div>
+
+            {/* 4. Safe Harbor Dispute & Correction CTA */}
+            <div className={styles.disputeBox}>
+              <div className={styles.disputeText}>
+                <h4>{t("brand", "disputeTitle")}</h4>
+                <p>{t("brand", "disputeDesc")}</p>
+              </div>
+              <a
+                href={`https://github.com/nichsedge/bijak-beli/issues/new?title=${encodeURIComponent(`[Koreksi Data] Brand: ${brand.name}`)}&body=${encodeURIComponent(`### Laporan Koreksi Data\n- **Brand**: ${brand.name}\n- **ID**: ${brand.id}\n- **Dokumen Bukti**: [Lampirkan tautan atau nomor registrasi resmi]\n- **Catatan**: `)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-sm"
+              >
+                <FileText size={13} />
+                <span>{t("brand", "disputeBtn")}</span>
+              </a>
             </div>
           </div>
         )}

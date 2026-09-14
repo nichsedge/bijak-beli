@@ -43,10 +43,11 @@ for (const [brandId, meta] of Object.entries(idxMap) as any) {
   if (!meta.ticker) continue;
   const ubo = getUbo(meta.ticker);
   if (!ubo) continue;
-  // replace ultimateOwner in brands.ts
-  const re = new RegExp(`(id:\\s*\"${brandId}\"[\\s\\S]*?ultimateOwner:\\s*\")[^\"]*\"`);
+  
+  // Match both "id": "foo" and id: "foo"
+  const re = new RegExp(`(["']?id["']?\\s*:\\s*["']${brandId}["'][\\s\\S]*?["']?ultimateOwner["']?\\s*:\\s*["'])[^\"]*(["'])`);
   if (re.test(txt)) {
-    txt = txt.replace(re, `$1${ubo.replace(/\"/g,'\\"')}\"`);
+    txt = txt.replace(re, `$1${ubo.replace(/\"/g,'\\"')}$2`);
     updated++;
   }
 }
