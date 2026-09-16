@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrendingUp, Shield, Users, ChevronRight, Star, Zap } from "lucide-react";
+import { TrendingUp, Shield, ChevronRight, Star, Zap, Building2, Search } from "lucide-react";
 import BrandCard from "@/components/BrandCard";
 import HeroSearch from "@/components/HeroSearch";
 import PresetSelector from "@/components/PresetSelector";
@@ -70,7 +70,11 @@ export default async function HomePage() {
             <HeroSearch lang={lang} />
 
             <div className={styles.heroActions}>
-              <Link href="/values" className="btn btn-outline">
+              <Link href="/conglomerates" className="btn btn-outline">
+                <Building2 size={16} />
+                <span>{lang === "id" ? "Peta 38 Konglomerasi" : "38 Conglomerate Groups"}</span>
+              </Link>
+              <Link href="/values" className="btn btn-ghost">
                 {t.heroCtaSub}
               </Link>
               <Link href="/about" className="btn btn-ghost">
@@ -83,9 +87,9 @@ export default async function HomePage() {
           <div className={styles.heroVisual}>
             <div className={styles.statsGrid}>
               {[
-                { val: brands.length + "+", label: t.stats[0], icon: <Shield size={20} /> },
-                { val: "200+", label: t.stats[1], icon: <Star size={20} /> },
-                { val: "50K+", label: t.stats[2], icon: <Users size={20} /> },
+                { val: brands.length + "+", label: t.stats[0], icon: <Shield size={18} /> },
+                { val: "38", label: lang === "id" ? "Grup Konglomerasi" : "Conglomerates", icon: <Building2 size={18} /> },
+                { val: "100%", label: lang === "id" ? "Rujukan BEI/BPOM" : "BEI & BPOM Verified", icon: <Star size={18} /> },
               ].map((s, i) => (
                 <div key={i} className={styles.statCard}>
                   <div className={styles.statIcon}>{s.icon}</div>
@@ -99,18 +103,84 @@ export default async function HomePage() {
             <div className={styles.alertPanel}>
               <div className={styles.alertPanelHeader}>
                 <TrendingUp size={14} />
-                {lang === "id" ? "Sedang diboikot" : "Currently boycotted"}
+                <span>{lang === "id" ? "Sorotan Boikot & Transparansi" : "Boycott & Transparency Alerts"}</span>
               </div>
               {boycottBrands.slice(0, 3).map((b) => (
                 <Link key={b.id} href={`/brand/${b.id}`} className={styles.alertItem}>
-                  <span className={styles.alertName}>{b.name}</span>
+                  <div className={styles.alertItemLeft}>
+                    <span className={styles.alertName}>{b.name}</span>
+                    <span className={styles.alertParent}>{b.parentCompany}</span>
+                  </div>
                   <div className={styles.alertPill}>
                     <span style={{ color: "var(--score-poor)", fontWeight: 700, fontSize: "var(--text-xs)" }}>
-                      {b.scores.political}
+                      Skor: {b.scores.political}
                     </span>
                   </div>
                 </Link>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3-Step Value Proposition: How It Works */}
+      <section className={styles.howItWorksSection}>
+        <div className="container">
+          <div className={styles.howItWorksHeader}>
+            <span className={styles.subHeadingBadge}>
+              {lang === "id" ? "TRANSPARANSI KONSUMEN" : "CONSUMER TRANSPARENCY"}
+            </span>
+            <h2 className={styles.howItWorksTitle}>
+              {lang === "id"
+                ? "3 Langkah Menjadi Konsumen Sadar & Berdaya"
+                : "3 Steps to Conscious & Empowered Shopping"}
+            </h2>
+          </div>
+
+          <div className={styles.stepsGrid}>
+            <div className={`card ${styles.stepCard}`}>
+              <div className={styles.stepNum}>01</div>
+              <div className={styles.stepIconWrap}>
+                <Search size={22} color="var(--primary)" />
+              </div>
+              <h3 className={styles.stepTitle}>
+                {lang === "id" ? "Scan Barcode atau Cari Brand" : "Scan Barcode or Search Brand"}
+              </h3>
+              <p className={styles.stepDesc}>
+                {lang === "id"
+                  ? "Pindai barcode kemasan produk fisik di minimarket secara instan via kamera atau cari berdasarkan nama merek favorit."
+                  : "Scan packaged products in supermarkets instantly via your device camera or search by brand name."}
+              </p>
+            </div>
+
+            <div className={`card ${styles.stepCard}`}>
+              <div className={styles.stepNum}>02</div>
+              <div className={styles.stepIconWrap}>
+                <Building2 size={22} color="var(--accent)" />
+              </div>
+              <h3 className={styles.stepTitle}>
+                {lang === "id" ? "Ungkap Pemilik Akhir (UBO)" : "Uncover Ultimate Beneficial Owners"}
+              </h3>
+              <p className={styles.stepDesc}>
+                {lang === "id"
+                  ? "Lacak anak perusahaan, holding emiten BEI, dinasti taipan, dan peringkat kekuasaan Power200 yang selama ini tersembunyi."
+                  : "Trace corporate subsidiaries, listed holding entities, tycoon dynasties, and Power200 ties behind everyday products."}
+              </p>
+            </div>
+
+            <div className={`card ${styles.stepCard}`}>
+              <div className={styles.stepNum}>03</div>
+              <div className={styles.stepIconWrap}>
+                <Shield size={22} color="var(--score-excellent)" />
+              </div>
+              <h3 className={styles.stepTitle}>
+                {lang === "id" ? "Bandingkan Alternatif Berintegritas" : "Choose Ethical Alternatives"}
+              </h3>
+              <p className={styles.stepDesc}>
+                {lang === "id"
+                  ? "Evaluasi skor halal BPJPH, integritas etis, dan netralitas politik. Temukan alternatif produsen lokal yang sejalan dengan nilaimu."
+                  : "Evaluate official BPJPH halal certificates, ethical scores, and political neutrality. Discover conscious local alternatives."}
+              </p>
             </div>
           </div>
         </div>

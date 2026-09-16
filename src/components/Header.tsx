@@ -1,32 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Moon, Sun, Globe, Menu, X, Scale, Camera } from "lucide-react";
+import { 
+  Search, Moon, Sun, Globe, Menu, X, Scale, 
+  Camera, ChevronDown, Sparkles, Building2, Sliders, 
+  Layers, HeartHandshake, Info, Shield
+} from "lucide-react";
 import { useApp } from "./AppProvider";
 import ScannerModal from "./ScannerModal";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const { lang, setLanguage, setDarkMode, prefs, t } = useApp();
+  const { lang, setLanguage, setDarkMode, prefs } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [scannerOpen, setScannerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const moreRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 10);
+    const handler = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close mobile menu and dropdown on page navigation
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
     setMenuOpen(false);
+    setMoreOpen(false);
   }
 
   function handleSearch(e: React.FormEvent) {
@@ -37,17 +56,24 @@ export default function Header() {
     }
   }
 
-  const navLinks = [
-    { href: "/", label: t("nav", "home") },
-    { href: "/conglomerates", label: lang === "id" ? "Konglomerasi" : "Conglomerates" },
-    { href: "/warehouse", label: "Warehouse" },
-    { href: "/power", label: "Power Map" },
-    { href: "/search", label: t("nav", "search") },
-    { href: "/values", label: t("nav", "values") },
-    { href: "/compare", label: `${t("common", "compare")} (${prefs.compareIds?.length || 0})` },
-    { href: "/impact", label: lang === "id" ? "Dampak" : "Impact" },
-    { href: "/community", label: t("nav", "community") },
-    { href: "/about", label: t("nav", "about") },
+  const primaryNav = [
+    { href: "/search", label: lang === "id" ? "Jelajah Brand" : "Explore Brands", icon: Search },
+    { href: "/conglomerates", label: lang === "id" ? "Konglomerasi" : "Conglomerates", icon: Building2 },
+    { href: "/power", label: "Power Map", icon: Shield },
+  ];
+
+  const secondaryNav = [
+    { 
+      href: "/compare", 
+      label: lang === "id" ? "Bandingkan Brand" : "Compare Brands", 
+      icon: Scale,
+      count: prefs.compareIds?.length || 0 
+    },
+    { href: "/values", label: lang === "id" ? "Preferensi Nilai" : "Value Preferences", icon: Sliders },
+    { href: "/impact", label: lang === "id" ? "Dampak Pengeluaran" : "Spending Impact", icon: Sparkles },
+    { href: "/warehouse", label: lang === "id" ? "Gudang Brand" : "Brand Warehouse", icon: Layers },
+    { href: "/community", label: lang === "id" ? "Suara Komunitas" : "Community Votes", icon: HeartHandshake },
+    { href: "/about", label: lang === "id" ? "Metodologi & Tentang" : "Methodology & About", icon: Info },
   ];
 
   return (
@@ -56,21 +82,23 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
-            <Scale size={20} />
+            <Scale size={19} />
           </div>
-          <span className={styles.logoText}>Bijak Beli</span>
-          <span className={styles.logoTagline}>ID</span>
+          <div className={styles.logoTextWrap}>
+            <span className={styles.logoText}>Bijak Beli</span>
+            <span className={styles.logoTagline}>ID</span>
+          </div>
         </Link>
 
-        {/* Desktop Search */}
+        {/* Desktop Search Bar */}
         <form onSubmit={handleSearch} className={styles.searchForm}>
           <div className={styles.searchWrap}>
-            <Search size={16} className={styles.searchIcon} />
+            <Search size={15} className={styles.searchIcon} />
             <input
               id="header-search"
               type="search"
-              className={`input ${styles.searchInput}`}
-              placeholder={t("nav", "searchPlaceholder")}
+              className={styles.searchInput}
+              placeholder={lang === "id" ? "Cari brand, emiten, atau taipan... (tekan enter)" : "Search brand, ticker, or tycoon..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               autoComplete="off"
@@ -79,39 +107,98 @@ export default function Header() {
               type="button" 
               className={styles.scanTrigger} 
               onClick={() => setScannerOpen(true)}
-              title="Scan product"
+              title={lang === "id" ? "Pindai Barcode Produk" : "Scan Product Barcode"}
             >
-              <Camera size={16} />
+              <Camera size={15} />
             </button>
           </div>
         </form>
 
         <ScannerModal isOpen={scannerOpen} onClose={() => setScannerOpen(false)} />
 
-        {/* Desktop Nav */}
+        {/* Desktop Navigation */}
         <nav className={styles.desktopNav} aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${pathname === link.href ? styles.active : ""}`}
+          {primaryNav.map((link) => {
+            const Icon = link.icon;
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+              >
+                <Icon size={14} className={styles.navIcon} />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+
+          {/* More Menu Dropdown */}
+          <div className={styles.moreDropdownWrap} ref={moreRef}>
+            <button
+              type="button"
+              className={`${styles.navLink} ${styles.moreTrigger} ${moreOpen ? styles.active : ""}`}
+              onClick={() => setMoreOpen(!moreOpen)}
+              aria-expanded={moreOpen}
             >
-              {link.label}
-            </Link>
-          ))}
+              <span>{lang === "id" ? "Lainnya" : "More"}</span>
+              {prefs.compareIds?.length > 0 && (
+                <span className={styles.compareCountBadge}>{prefs.compareIds.length}</span>
+              )}
+              <ChevronDown size={14} className={`${styles.chevron} ${moreOpen ? styles.chevronRotated : ""}`} />
+            </button>
+
+            {moreOpen && (
+              <div className={styles.moreDropdownMenu}>
+                {secondaryNav.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`${styles.moreMenuItem} ${isActive ? styles.moreMenuItemActive : ""}`}
+                      onClick={() => setMoreOpen(false)}
+                    >
+                      <div className={styles.moreMenuIconWrap}>
+                        <Icon size={15} />
+                      </div>
+                      <div className={styles.moreMenuText}>
+                        <span>{item.label}</span>
+                        {item.count !== undefined && item.count > 0 && (
+                          <span className={styles.compareCountBadge}>{item.count}</span>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Actions */}
         <div className={styles.actions}>
+          {/* Quick Scan Button */}
+          <button
+            type="button"
+            className={styles.scanBtn}
+            onClick={() => setScannerOpen(true)}
+            title={lang === "id" ? "Buka Scanner Barcode" : "Open Barcode Scanner"}
+          >
+            <Camera size={15} />
+            <span className={styles.scanBtnLabel}>{lang === "id" ? "Pindai" : "Scan"}</span>
+          </button>
+
           {/* Language toggle */}
           <button
             id="lang-toggle"
             className={styles.iconBtn}
             onClick={() => setLanguage(lang === "id" ? "en" : "id")}
             aria-label="Toggle language"
-            title={lang === "id" ? "Switch to English" : "Ganti ke Indonesia"}
+            title={lang === "id" ? "Ganti ke English" : "Switch to Indonesian"}
           >
-            <Globe size={18} />
+            <Globe size={16} />
             <span className={styles.langLabel}>{lang.toUpperCase()}</span>
           </button>
 
@@ -120,9 +207,10 @@ export default function Header() {
             id="dark-mode-toggle"
             className={styles.iconBtn}
             onClick={() => setDarkMode(!prefs.darkMode)}
-            aria-label="Toggle dark mode"
+            aria-label="Toggle theme"
+            title={prefs.darkMode ? "Mode Terang" : "Mode Gelap"}
           >
-            {prefs.darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {prefs.darkMode ? <Sun size={17} /> : <Moon size={17} />}
           </button>
 
           {/* Mobile menu toggle */}
@@ -137,36 +225,83 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer menu */}
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          {/* Mobile search */}
           <form onSubmit={handleSearch} className={styles.mobileSearch}>
             <div className={styles.searchWrap}>
               <Search size={16} className={styles.searchIcon} />
               <input
                 type="search"
-                className={`input ${styles.searchInput}`}
-                placeholder={t("nav", "searchPlaceholder")}
+                className={styles.searchInput}
+                placeholder={lang === "id" ? "Cari brand, emiten, atau produk..." : "Search brands, tickers..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+              <button 
+                type="button" 
+                className={styles.scanTrigger} 
+                onClick={() => {
+                  setMenuOpen(false);
+                  setScannerOpen(true);
+                }}
+              >
+                <Camera size={16} />
+              </button>
             </div>
           </form>
 
-          <nav className={styles.mobileNav}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.mobileNavLink} ${pathname === link.href ? styles.active : ""}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div className={styles.mobileNavSection}>
+            <div className={styles.mobileSectionTitle}>
+              {lang === "id" ? "Menu Utama" : "Main Navigation"}
+            </div>
+            <nav className={styles.mobileNav}>
+              {primaryNav.map((link) => {
+                const Icon = link.icon;
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`${styles.mobileNavLink} ${isActive ? styles.active : ""}`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Icon size={17} />
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className={styles.mobileNavSection}>
+            <div className={styles.mobileSectionTitle}>
+              {lang === "id" ? "Alat & Komunitas" : "Tools & Community"}
+            </div>
+            <nav className={styles.mobileNav}>
+              {secondaryNav.map((link) => {
+                const Icon = link.icon;
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`${styles.mobileNavLink} ${isActive ? styles.active : ""}`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Icon size={17} />
+                    <span>{link.label}</span>
+                    {link.count !== undefined && link.count > 0 && (
+                      <span className={styles.compareCountBadge}>{link.count}</span>
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
         </div>
       )}
     </header>
   );
 }
+

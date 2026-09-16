@@ -5,30 +5,37 @@
 ════════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Colors — Brand (Teal/Emerald trust palette) */
-  --primary:         #0D9488;
-  --primary-dark:    #0F766E;
+  /* Colors — Brand (Modern Emerald / Sage Trust Palette) */
+  --primary:         #0F766E;
+  --primary-hover:   #0D9488;
+  --primary-dark:    #115E59;
   --primary-light:   #CCFBF1;
   --primary-subtle:  #F0FDFA;
-  --accent:          #6366F1;
-  --accent-dark:     #4F46E5;
+  --primary-glow:    rgba(15, 118, 110, 0.18);
+  
+  --accent:          #4F46E5;
+  --accent-hover:    #6366F1;
+  --accent-light:    #EEF2FF;
+  --accent-glow:     rgba(79, 70, 229, 0.16);
 
-  /* Colors — Score semantic */
+  /* Colors — Score Semantic */
   --score-excellent: #059669;
   --score-good-high: #10B981;
-  --score-good:      #3B82F6;
+  --score-good:      #2563EB;
   --score-fair:      #D97706;
   --score-concerning:#EA580C;
   --score-poor:      #DC2626;
 
-  /* Colors — Surfaces */
-  --bg:              #F0FDFA;
-  --bg-alt:          #F8FAFC;
+  /* Colors — Surfaces (Clean Crisp Slate) */
+  --bg:              #F8FAFC;
+  --bg-alt:          #F1F5F9;
   --surface:         #FFFFFF;
+  --surface-hover:   #F8FAFC;
   --surface-2:       #F1F5F9;
   --surface-3:       #E2E8F0;
   --border:          #E2E8F0;
   --border-light:    #F1F5F9;
+  --border-focus:    #0F766E;
 
   /* Colors — Text */
   --text:            #0F172A;
@@ -38,19 +45,19 @@
   --text-on-primary: #FFFFFF;
 
   /* Colors — Status */
-  --success:  #059669;
-  --warning:  #D97706;
-  --error:    #DC2626;
-  --info:     #0284C7;
+  --success:         #059669;
+  --warning:         #D97706;
+  --error:           #DC2626;
+  --info:            #0284C7;
 
-  /* Colors — Boycott/Alert */
-  --boycott:  #FEF2F2;
-  --boycott-border: #FECACA;
-  --boycott-text:   #991B1B;
+  /* Colors — Boycott/Alert (Subtle Rose/Crimson) */
+  --boycott:         #FFF1F2;
+  --boycott-border:  #FECDD3;
+  --boycott-text:    #BE123C;
 
   /* Typography */
-  --font-sans:    "Inter", "Noto Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --text-xs:   0.75rem;    /* 12px */
   --text-sm:   0.875rem;   /* 14px */
@@ -77,51 +84,62 @@
   --space-24: 6rem;
 
   /* Border radius */
-  --radius-sm:   0.375rem;
+  --radius-xs:   0.25rem;
+  --radius-sm:   0.5rem;
   --radius-md:   0.75rem;
   --radius-lg:   1rem;
-  --radius-xl:   1.5rem;
-  --radius-2xl:  2rem;
+  --radius-xl:   1.25rem;
+  --radius-2xl:  1.75rem;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-  --shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
-  --shadow-glow: 0 0 0 3px rgb(13 148 136 / 0.2);
+  /* Refined Modern Shadows */
+  --shadow-xs:  0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-sm:  0 2px 4px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md:  0 6px 16px -2px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-lg:  0 12px 28px -4px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.05);
+  --shadow-xl:  0 24px 48px -12px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 0 3px rgba(15, 118, 110, 0.22);
+  --shadow-card-hover: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
 
   /* Transitions */
-  --transition-fast:   150ms ease;
-  --transition-base:   200ms ease;
-  --transition-slow:   300ms ease;
+  --transition-fast:   140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Layout */
-  --max-width: 1200px;
-  --nav-height: 64px;
+  --max-width: 1240px;
+  --nav-height: 68px;
 }
 
-/* ━━━━━━━━━━━━━━━━ DARK MODE ━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━ MODERN OBSIDIAN DARK MODE ━━━━━━━━━━━━━━━━ */
 [data-theme="dark"] {
   --primary:         #2DD4BF;
+  --primary-hover:   #5EEAD4;
   --primary-dark:    #14B8A6;
-  --primary-light:   #134E4A;
-  --primary-subtle:  #0D2B28;
+  --primary-light:   rgba(45, 212, 191, 0.16);
+  --primary-subtle:  #0C1E24;
+  --primary-glow:    rgba(45, 212, 191, 0.25);
+
   --accent:          #818CF8;
+  --accent-hover:    #A5B4FC;
+  --accent-light:    rgba(129, 140, 248, 0.15);
+  --accent-glow:     rgba(129, 140, 248, 0.25);
 
-  --bg:              #0A1628;
-  --bg-alt:          #0F172A;
-  --surface:         #1E293B;
-  --surface-2:       #263548;
-  --surface-3:       #334155;
-  --border:          #334155;
-  --border-light:    #263548;
+  --bg:              #090E17;
+  --bg-alt:          #0F1623;
+  --surface:         #131B2B;
+  --surface-hover:   #182337;
+  --surface-2:       #1A253A;
+  --surface-3:       #24334D;
+  --border:          #1E2C44;
+  --border-light:    #182438;
+  --border-focus:    #2DD4BF;
 
-  --text:            #F1F5F9;
+  --text:            #F8FAFC;
   --text-secondary:  #CBD5E1;
   --text-muted:      #94A3B8;
   --text-subtle:     #64748B;
-  --text-on-primary: #0F172A;
+  --text-on-primary: #090E17;
 
   --score-excellent: #34D399;
   --score-good-high: #6EE7B7;
@@ -130,14 +148,17 @@
   --score-concerning:#FB923C;
   --score-poor:      #F87171;
 
-  --boycott:        #450A0A;
-  --boycott-border: #7F1D1D;
-  --boycott-text:   #FCA5A5;
+  --boycott:         #2A0E13;
+  --boycott-border:  #5C1420;
+  --boycott-text:    #FDA4AF;
 
-  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-  --shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  --shadow-xs:  0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm:  0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md:  0 6px 18px -2px rgba(0, 0, 0, 0.6), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg:  0 14px 32px -4px rgba(0, 0, 0, 0.7);
+  --shadow-xl:  0 28px 56px -12px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 0 3px rgba(45, 212, 191, 0.3);
+  --shadow-card-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(45, 212, 191, 0.25);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -254,33 +275,53 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  padding: 0.625rem 1.25rem;
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: 600;
   transition: all var(--transition-base);
   white-space: nowrap;
   user-select: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1.25;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: #fff;
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px var(--primary-glow);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 .btn-primary:hover {
-  background: var(--primary-dark);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+  box-shadow: 0 4px 14px var(--primary-glow);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--primary);
-  border: 2px solid var(--primary);
+  border: 1.5px solid var(--primary);
 }
 .btn-outline:hover {
   background: var(--primary-subtle);
+  border-color: var(--primary-hover);
+  color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: var(--surface-3);
+  border-color: var(--text-subtle);
 }
 
 .btn-ghost {
@@ -293,17 +334,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-sm {
-  padding: var(--space-2) var(--space-4);
+  padding: 0.375rem 0.75rem;
   font-size: var(--text-xs);
+  gap: 0.375rem;
+}
+
+.btn-xs {
+  padding: 0.25rem 0.5rem;
+  font-size: 11px;
+  gap: 0.25rem;
 }
 
 .btn-lg {
-  padding: var(--space-4) var(--space-8);
+  padding: 0.875rem 1.75rem;
   font-size: var(--text-base);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   CARDS
+   CARDS & GLASS
 ════════════════════════════════════════════════════════════════════════════ */
 
 .card {
@@ -311,14 +359,27 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   overflow: hidden;
+  position: relative;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-card-hover);
   transform: translateY(-2px);
-  border-color: var(--primary-light);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(19, 27, 43, 0.78);
+  border-color: rgba(30, 44, 68, 0.8);
 }
 
 .card-body {
@@ -333,15 +394,18 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
+  padding: 3px 9px;
   border-radius: var(--radius-full);
-  font-size: var(--text-xs);
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .badge-halal {
   background: #DCFCE7;
   color: #15803D;
+  border: 1px solid #BBF7D0;
 }
 .badge-boycott {
   background: var(--boycott);
@@ -356,15 +420,18 @@ h1, h2, h3, h4, h5, h6 {
 .badge-new {
   background: #EFF6FF;
   color: #1D4ED8;
+  border: 1px solid #BFDBFE;
 }
 
 [data-theme="dark"] .badge-halal {
-  background: #14532D;
+  background: rgba(22, 101, 52, 0.25);
   color: #4ADE80;
+  border-color: rgba(34, 197, 94, 0.3);
 }
 [data-theme="dark"] .badge-new {
-  background: #1E3A5F;
+  background: rgba(30, 58, 138, 0.3);
   color: #93C5FD;
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════

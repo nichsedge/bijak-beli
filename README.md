@@ -9,7 +9,7 @@ A modern Next.js 16 + React 19 web application that decodes consumer brands in I
 ## ✨ Features
 
 - 🔍 **Brand-to-Oligarch Transparency**: Look up consumer products (Indomie, Mie Sedaap, Mayora, Unilever, Gojek) and see who actually owns and profits from them.
-- 🏢 **Retail Conglomerate Directory (`/conglomerates`)**: Explore Indonesia's FMCG landscape by tycoon empire (Salim, Wings, Mayora, Unilever, Danone, Djarum, Sinar Mas, Wilmar, Musim Mas, etc.).
+- 🏢 **Retail Conglomerate Directory (`/conglomerates`)**: Explore Indonesia's consumer market across 38 tycoon business groups (Salim, Wings, Mayora, Unilever, Danone, Djarum, Sinar Mas, Wilmar, MAP, Rekso, Ultrajaya, Kalbe, Tempo Scan, etc.) with 100% brand coverage.
 - 🏛️ **IDX-BEI Quantitative Integration**: Synchronizes ownership data, shareholding percentages, and Power200 tycoon ranks directly from `~/Projects/idx-bei`.
 - 📷 **Real-Time Barcode & Product Scanner**: Scan physical barcodes with device camera (BarcodeDetector API), flashlight/torch toggle, photo file upload fallback, or manual EAN-13 input.
 - ⚡ **Turbopack & Modern Stack**: Next.js 16 (App Router), React 19, TypeScript, Drizzle ORM (LibSQL), Lucide icons.

@@ -226,6 +226,9 @@ const BRAND_ALIASES: Record<string, string> = {
   "roma kelapa": "roma-kelapa",
   roma: "roma-kelapa",
   kopiko: "kopiko",
+  gojek: "gojek",
+  goto: "gojek",
+  grab: "grab",
 };
 
 export async function resolveBarcode(barcode: string): Promise<BarcodeResolution> {

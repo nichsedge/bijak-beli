@@ -146,7 +146,8 @@ export const brands: Brand[] = [
     ],
     "halalCertId": "ID00410000021510221",
     "bpomId": "BPOM RI MD 231513017019",
-    "conglomerateId": "wings-group"
+    "conglomerateId": "wings-group",
+    "powerMapRank": 28
   },
   {
     "id": "sarimi",
@@ -292,7 +293,9 @@ export const brands: Brand[] = [
       }
     ],
     "halalCertId": "ID00410000054210321",
-    "bpomId": "BPOM RI MD 500328001001"
+    "bpomId": "BPOM RI MD 500328001001",
+    "conglomerateId": "nestle",
+    "powerMapRank": 52
   },
   {
     "id": "mayora",
@@ -439,7 +442,8 @@ export const brands: Brand[] = [
     "halalCertId": "ID00410000210910421",
     "idxTicker": "MAPB",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MAPB",
-    "powerMapRank": 84
+    "powerMapRank": 84,
+    "conglomerateId": "map-group"
   },
   {
     "id": "mcdonald",
@@ -509,7 +513,9 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "halalCertId": "ID00410000000880120"
+    "halalCertId": "ID00410000000880120",
+    "conglomerateId": "rekso-group",
+    "powerMapRank": 44
   },
   {
     "id": "kopi-kenangan",
@@ -567,7 +573,9 @@ export const brands: Brand[] = [
         "date": "2021-12-27"
       }
     ],
-    "halalCertId": "ID00410000028710321"
+    "halalCertId": "ID00410000028710321",
+    "conglomerateId": "kenangan-brands",
+    "powerMapRank": 95
   },
   {
     "id": "unilever",
@@ -706,7 +714,8 @@ export const brands: Brand[] = [
     ],
     "halalCertId": "ID00410000000180120",
     "bpomId": "BPOM RI NA 18201900120",
-    "conglomerateId": "paragon"
+    "conglomerateId": "paragon",
+    "powerMapRank": 38
   },
   {
     "id": "emina",
@@ -769,7 +778,8 @@ export const brands: Brand[] = [
     ],
     "halalCertId": "ID00410000000180120",
     "bpomId": "BPOM RI NA 18201900121",
-    "conglomerateId": "paragon"
+    "conglomerateId": "paragon",
+    "powerMapRank": 38
   },
   {
     "id": "zara",
@@ -828,7 +838,8 @@ export const brands: Brand[] = [
     ],
     "idxTicker": "MAPI",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/MAPI",
-    "powerMapRank": 84
+    "powerMapRank": 84,
+    "conglomerateId": "map-group"
   },
   {
     "id": "hm",
@@ -883,7 +894,9 @@ export const brands: Brand[] = [
         "confidence": "medium",
         "date": "2024-02-15"
       }
-    ]
+    ],
+    "conglomerateId": "hm-group",
+    "powerMapRank": 72
   },
   {
     "id": "gojek",
@@ -940,7 +953,9 @@ export const brands: Brand[] = [
       }
     ],
     "idxTicker": "GOTO",
-    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOTO"
+    "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/GOTO",
+    "conglomerateId": "goto-group",
+    "powerMapRank": 16
   },
   {
     "id": "grab",
@@ -985,7 +1000,9 @@ export const brands: Brand[] = [
         "documentId": "SEC-CIK-1855631",
         "date": "2024-04-26"
       }
-    ]
+    ],
+    "conglomerateId": "grab-group",
+    "powerMapRank": 33
   },
   {
     "id": "samsung",
@@ -1041,7 +1058,9 @@ export const brands: Brand[] = [
         "confidence": "medium",
         "date": "2024-03-15"
       }
-    ]
+    ],
+    "conglomerateId": "samsung-group",
+    "powerMapRank": 3
   },
   {
     "id": "oppo",
@@ -1087,7 +1106,9 @@ export const brands: Brand[] = [
         "documentId": "TKDN-OPPO-INDONESIA",
         "date": "2024-01-10"
       }
-    ]
+    ],
+    "conglomerateId": "bbk-electronics",
+    "powerMapRank": 36
   },
   {
     "id": "janji-jiwa",
@@ -1137,7 +1158,9 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "halalCertId": "ID00410000085410321"
+    "halalCertId": "ID00410000085410321",
+    "conglomerateId": "jiwa-group",
+    "powerMapRank": 105
   },
   {
     "id": "pocari-sweat",
@@ -1207,7 +1230,9 @@ export const brands: Brand[] = [
       }
     ],
     "halalCertId": "ID00410000008120120",
-    "bpomId": "BPOM RI MD 266810001007"
+    "bpomId": "BPOM RI MD 266810001007",
+    "conglomerateId": "otsuka-group",
+    "powerMapRank": 58
   },
   {
     "id": "aqua",
@@ -1283,7 +1308,8 @@ export const brands: Brand[] = [
         "date": "2025-01-10"
       }
     ],
-    "conglomerateId": "danone"
+    "conglomerateId": "danone",
+    "powerMapRank": 54
   },
   {
     "id": "le-minerale",
@@ -1481,7 +1507,9 @@ export const brands: Brand[] = [
         "documentId": "BPOM-RI-MD-268310005001",
         "date": "2025-01-10"
       }
-    ]
+    ],
+    "conglomerateId": "rekso-group",
+    "powerMapRank": 44
   },
   {
     "id": "ultra-milk",
@@ -1547,7 +1575,9 @@ export const brands: Brand[] = [
         "documentId": "ID00410000000620120",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "ultrajaya",
+    "powerMapRank": 49
   },
   {
     "id": "teh-kotak",
@@ -1612,7 +1642,9 @@ export const brands: Brand[] = [
         "documentId": "ID00410000000620120",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "ultrajaya",
+    "powerMapRank": 49
   },
   {
     "id": "kapal-api",
@@ -1676,7 +1708,8 @@ export const brands: Brand[] = [
         "date": "2025-01-10"
       }
     ],
-    "conglomerateId": "kapal-api"
+    "conglomerateId": "kapal-api",
+    "powerMapRank": 41
   },
   {
     "id": "good-day",
@@ -1730,13 +1763,14 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "kapal-api"
+    "conglomerateId": "kapal-api",
+    "powerMapRank": 41
   },
   {
     "id": "tolak-angin",
     "name": "Tolak Angin",
     "logo": "/logos/tolak-angin.svg",
-    "category": "food-beverage",
+    "category": "pharmacy",
     "subcategory": "Herbal Health",
     "tagline": "Standardized herbal supplement for immune and digestive health",
     "taglineId": "Obat herbal terstandar untuk masuk angin dan daya tahan tubuh",
@@ -1805,13 +1839,14 @@ export const brands: Brand[] = [
         "documentId": "ID00410000000330120",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "sido-muncul-group"
   },
   {
     "id": "antangin",
     "name": "Antangin",
     "logo": "/logos/antangin.svg",
-    "category": "food-beverage",
+    "category": "pharmacy",
     "subcategory": "Herbal Health",
     "tagline": "Natural herbal medicine with real ginger and honey",
     "taglineId": "Herbal alami dengan jahe dan madu asli",
@@ -1867,13 +1902,15 @@ export const brands: Brand[] = [
         "documentId": "ID00410000001880120",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "deltomed-group",
+    "powerMapRank": 78
   },
   {
     "id": "so-klin",
     "name": "So Klin",
     "logo": "/logos/so-klin.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Household Detergent",
     "tagline": "Leading Indonesian fabric care and laundry detergent",
     "taglineId": "Deterjen pembersih dan perawatan pakaian nomor satu Indonesia",
@@ -1924,13 +1961,14 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "wings-group"
+    "conglomerateId": "wings-group",
+    "powerMapRank": 28
   },
   {
     "id": "daia",
     "name": "Daia",
     "logo": "/logos/daia.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Household Detergent",
     "tagline": "Affordable scented laundry detergent by Wings",
     "taglineId": "Deterjen wangi busa melimpah dan terjangkau dari Wings",
@@ -1980,7 +2018,8 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "wings-group"
+    "conglomerateId": "wings-group",
+    "powerMapRank": 28
   },
   {
     "id": "pepsodent",
@@ -2132,7 +2171,7 @@ export const brands: Brand[] = [
     "id": "rinso",
     "name": "Rinso",
     "logo": "/logos/rinso.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Household Detergent",
     "tagline": "Indonesia's first detergent brand: Berani Kotor Itu Baik",
     "taglineId": "Pelopor deterjen di Indonesia: Berani Kotor Itu Baik",
@@ -2398,7 +2437,8 @@ export const brands: Brand[] = [
         "documentId": "ID00410000000120120",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "salim-group"
   },
   {
     "id": "chitato",
@@ -2529,7 +2569,8 @@ export const brands: Brand[] = [
         "date": "2025-01-10"
       }
     ],
-    "conglomerateId": "orang-tua"
+    "conglomerateId": "orang-tua",
+    "powerMapRank": 47
   },
   {
     "id": "teh-gelas",
@@ -2583,7 +2624,8 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "orang-tua"
+    "conglomerateId": "orang-tua",
+    "powerMapRank": 47
   },
   {
     "id": "chocolatos",
@@ -2649,7 +2691,8 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "garudafood"
+    "conglomerateId": "garudafood",
+    "powerMapRank": 112
   },
   {
     "id": "kacang-garuda",
@@ -2714,7 +2757,8 @@ export const brands: Brand[] = [
         "date": "2025-01-15"
       }
     ],
-    "conglomerateId": "garudafood"
+    "conglomerateId": "garudafood",
+    "powerMapRank": 112
   },
   {
     "id": "bimoli",
@@ -2727,7 +2771,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT Salim Ivomas Pratama Tbk / Indofood Agri",
     "conglomerateId": "salim-group",
-    "ultimateOwner": "Anthony Salim & Franciscus Welirang (Power200 #17)",
+    "ultimateOwner": "Moleonoto (Paulus Moleonoto) (Power200 #18) / Indofood Agri Resources Ltd (73.46%), PT. Indofood Sukses Makmur Tbk (6.68%)",
     "ownerCountry": "ID",
     "foundedYear": 1968,
     "halalCertified": true,
@@ -2736,7 +2780,7 @@ export const brands: Brand[] = [
     "bpomId": "MD 208109001007",
     "idxTicker": "SIMP",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/SIMP",
-    "powerMapRank": 17,
+    "powerMapRank": 18,
     "scores": {
       "halal": 98,
       "ethical": 68,
@@ -2784,7 +2828,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT SMART Tbk (Sinar Mas Agro)",
     "conglomerateId": "sinar-mas",
-    "ultimateOwner": "Widjaja Family (Power200 #5)",
+    "ultimateOwner": "Franky Oesman Widjaja (Power200 #59) / PURIMAS SASMITA, PT (92.4%), Masyarakat Warkat (0.05%)",
     "ownerCountry": "ID",
     "foundedYear": 1991,
     "halalCertified": true,
@@ -2793,7 +2837,7 @@ export const brands: Brand[] = [
     "bpomId": "MD 208109012015",
     "idxTicker": "SMAR",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/SMAR",
-    "powerMapRank": 5,
+    "powerMapRank": 59,
     "scores": {
       "halal": 98,
       "ethical": 70,
@@ -2988,7 +3032,9 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-02-01"
       }
-    ]
+    ],
+    "conglomerateId": "nestle",
+    "powerMapRank": 52
   },
   {
     "id": "sgm",
@@ -3041,7 +3087,8 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "powerMapRank": 54
   },
   {
     "id": "frisian-flag",
@@ -3094,7 +3141,9 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "frieslandcampina",
+    "powerMapRank": 60
   },
   {
     "id": "indomilk",
@@ -3107,7 +3156,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT Indolakto / PT Indofood CBP Sukses Makmur Tbk",
     "conglomerateId": "salim-group",
-    "ultimateOwner": "Anthony Salim / Franciscus Welirang (Power200 #17)",
+    "ultimateOwner": "Franciscus Welirang (Power200 #17) / PT Indofood Sukses Makmur Tbk (80.53%), Masyarakat Warkat",
     "ownerCountry": "ID",
     "foundedYear": 1967,
     "halalCertified": true,
@@ -3203,7 +3252,9 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-01-20"
       }
-    ]
+    ],
+    "conglomerateId": "kraft-heinz",
+    "powerMapRank": 65
   },
   {
     "id": "dua-belibis",
@@ -3255,7 +3306,9 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "conglomerateId": "anggana-group",
+    "powerMapRank": 92
   },
   {
     "id": "kecap-sedaap",
@@ -3315,14 +3368,14 @@ export const brands: Brand[] = [
     "id": "sunlight",
     "name": "Sunlight",
     "logo": "/logos/sunlight.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Home & Dish Care",
     "tagline": "Indonesia's undisputed leader in lime dishwashing liquid",
     "taglineId": "Pembersih lemak dan piring nomor 1 di Indonesia dengan ekstrak jeruk nipis",
     "country": "ID",
     "parentCompany": "PT Unilever Indonesia Tbk",
     "conglomerateId": "unilever-indonesia",
-    "ultimateOwner": "Unilever PLC (Power200 #42)",
+    "ultimateOwner": "Ignasius Jonan (Power200 #93) / Unilever Indonesia Holding B.V. (84.99%), Saham Treasury (0.44%)",
     "ownerCountry": "GB",
     "foundedYear": 1980,
     "halalCertified": true,
@@ -3331,7 +3384,7 @@ export const brands: Brand[] = [
     "bpomId": "PKD 20301910015",
     "idxTicker": "UNVR",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/UNVR",
-    "powerMapRank": 42,
+    "powerMapRank": 93,
     "scores": {
       "halal": 98,
       "ethical": 70,
@@ -3371,7 +3424,7 @@ export const brands: Brand[] = [
     "id": "mama-lemon",
     "name": "Mama Lemon",
     "logo": "/logos/mama-lemon.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Home & Dish Care",
     "tagline": "Tough on grease, gentle on hands by Lion Wings",
     "taglineId": "Pembersih lemak piring ampuh dan higienis dari Lion Wings",
@@ -3418,13 +3471,14 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2025-01-15"
       }
-    ]
+    ],
+    "powerMapRank": 28
   },
   {
     "id": "ekonomi",
     "name": "Ekonomi",
     "logo": "/logos/ekonomi.svg",
-    "category": "personal-care",
+    "category": "household",
     "subcategory": "Home & Dish Care",
     "tagline": "Affordable dishwashing paste and liquid by Wings Group",
     "taglineId": "Sabun cuci piring dan colek ekonomis andalan Wings Group",
@@ -3485,7 +3539,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT Mayora Indah Tbk",
     "conglomerateId": "mayora-group",
-    "ultimateOwner": "Jogi Hendra Atmadja (Power200 #86)",
+    "ultimateOwner": "Hendra Kurniawan (Power200 #86) / UNITA BRANINDO (32.93%), MAYORA DHANA UTAMA (26.14%)",
     "ownerCountry": "ID",
     "foundedYear": 1984,
     "halalCertified": true,
@@ -3541,7 +3595,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT Mayora Indah Tbk",
     "conglomerateId": "mayora-group",
-    "ultimateOwner": "Jogi Hendra Atmadja (Power200 #86)",
+    "ultimateOwner": "Hendra Kurniawan (Power200 #86) / UNITA BRANINDO (32.93%), MAYORA DHANA UTAMA (26.14%)",
     "ownerCountry": "ID",
     "foundedYear": 1977,
     "halalCertified": true,
@@ -3597,7 +3651,7 @@ export const brands: Brand[] = [
     "country": "ID",
     "parentCompany": "PT Mayora Indah Tbk",
     "conglomerateId": "mayora-group",
-    "ultimateOwner": "Jogi Hendra Atmadja (Power200 #86)",
+    "ultimateOwner": "Hendra Kurniawan (Power200 #86) / UNITA BRANINDO (32.93%), MAYORA DHANA UTAMA (26.14%)",
     "ownerCountry": "ID",
     "foundedYear": 1982,
     "halalCertified": true,
@@ -3651,7 +3705,7 @@ export const brands: Brand[] = [
     "category": "food-beverage",
     "country": "ID",
     "parentCompany": "PT Sumber Kopi Prima",
-    "ultimateOwner": "Djarum / Hartono Group",
+    "ultimateOwner": "Santoso (Power200 #147) / PT Dwimuria Investama Andalan (54.942%), Saham Treasury (0.351%)",
     "conglomerateId": "djarum-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3659,7 +3713,7 @@ export const brands: Brand[] = [
     "bpomId": "BPOM RI MD 267011001548",
     "idxTicker": "BBCA",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/BBCA",
-    "powerMapRank": 1,
+    "powerMapRank": 147,
     "scores": {
       "halal": 98,
       "ethical": 82,
@@ -3715,7 +3769,7 @@ export const brands: Brand[] = [
     "category": "food-beverage",
     "country": "ID",
     "parentCompany": "PT Sumber Kopi Prima",
-    "ultimateOwner": "Djarum / Hartono Group",
+    "ultimateOwner": "Santoso (Power200 #147) / PT Dwimuria Investama Andalan (54.942%), Saham Treasury (0.351%)",
     "conglomerateId": "djarum-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3723,7 +3777,7 @@ export const brands: Brand[] = [
     "bpomId": "BPOM RI MD 267011002548",
     "idxTicker": "BBCA",
     "idxUrl": "https://www.idx.co.id/id/perusahaan-tercatat/profil-perusahaan-tercatat/BBCA",
-    "powerMapRank": 1,
+    "powerMapRank": 147,
     "scores": {
       "halal": 98,
       "ethical": 82,
@@ -3779,7 +3833,7 @@ export const brands: Brand[] = [
     "taglineId": "Air Kelapa Asli Bernutrisi Indonesia",
     "country": "ID",
     "parentCompany": "PT Kalbe Farma Tbk",
-    "ultimateOwner": "Boenjamin Setiawan Family (Kalbe Farma Group)",
+    "ultimateOwner": "Bina Arta Charisma, PT (8.213%), Diptanala Bahana, PT (9.297%)",
     "conglomerateId": "kalbe-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3833,7 +3887,7 @@ export const brands: Brand[] = [
     "taglineId": "Ahlinya Lambung Nomor 1 Indonesia",
     "country": "ID",
     "parentCompany": "PT Kalbe Farma Tbk",
-    "ultimateOwner": "Boenjamin Setiawan Family (Kalbe Farma Group)",
+    "ultimateOwner": "Bina Arta Charisma, PT (8.213%), Diptanala Bahana, PT (9.297%)",
     "conglomerateId": "kalbe-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3886,7 +3940,7 @@ export const brands: Brand[] = [
     "taglineId": "Pilihan Terpercaya Redakan Sakit Kepala",
     "country": "ID",
     "parentCompany": "PT Tempo Scan Pacific Tbk",
-    "ultimateOwner": "Kartini Muljadi & Handojo Muljadi (Tempo Scan Group)",
+    "ultimateOwner": "PT BOGAMULIA NAGADI (90.95%), Masyarakat Warkat (0.07%)",
     "conglomerateId": "tempo-scan",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3939,7 +3993,7 @@ export const brands: Brand[] = [
     "taglineId": "Hand & Body Lotion Nomor 1 Pilihan Remaja Indonesia",
     "country": "ID",
     "parentCompany": "PT Tempo Scan Pacific Tbk",
-    "ultimateOwner": "Kartini Muljadi & Handojo Muljadi (Tempo Scan Group)",
+    "ultimateOwner": "PT BOGAMULIA NAGADI (90.95%), Masyarakat Warkat (0.07%)",
     "conglomerateId": "tempo-scan",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -3991,7 +4045,7 @@ export const brands: Brand[] = [
     "taglineId": "Susu Segar & Yogurt Nikmat Berkualitas",
     "country": "ID",
     "parentCompany": "PT Cisarua Mountain Dairy Tbk",
-    "ultimateOwner": "Bambang Sutantio (Cimory Group)",
+    "ultimateOwner": "General Atlantic Singapore CMR Pte Ltd (5.64%), Masyarakat Non Warkat (19.28%)",
     "conglomerateId": "cimory-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -4045,7 +4099,7 @@ export const brands: Brand[] = [
     "taglineId": "Sosis Premium Halal Siap Santap",
     "country": "ID",
     "parentCompany": "PT Macroprima Panganutama",
-    "ultimateOwner": "Bambang Sutantio (Cimory Group)",
+    "ultimateOwner": "General Atlantic Singapore CMR Pte Ltd (5.64%), Masyarakat Non Warkat (19.28%)",
     "conglomerateId": "cimory-group",
     "halalCertified": true,
     "halalCertifier": "BPJPH / MUI",
@@ -4341,7 +4395,8 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2024-04-18"
       }
-    ]
+    ],
+    "conglomerateId": "rodamas-group"
   },
   {
     "id": "milku",
@@ -4542,6 +4597,8 @@ export const brands: Brand[] = [
         "confidence": "high",
         "date": "2024-02-15"
       }
-    ]
+    ],
+    "conglomerateId": "borden-eagle",
+    "powerMapRank": 81
   }
 ];

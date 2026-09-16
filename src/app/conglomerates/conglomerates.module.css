@@ -266,3 +266,20 @@
 .powerLink:hover {
   text-decoration: underline;
 }
+
+[data-theme="dark"] .hero {
+  background: linear-gradient(160deg, rgba(45, 212, 191, 0.08) 0%, var(--surface) 100%);
+}
+
+[data-theme="dark"] .powerBadge {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.35);
+}
+
+[data-theme="dark"] .tickerTag {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.35);
+  color: #93c5fd;
+}
+
