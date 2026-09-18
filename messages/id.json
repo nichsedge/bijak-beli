@@ -46,7 +46,20 @@
     "verifyDoc": "Verifikasi Dokumen",
     "disputeTitle": "Transparansi & Hak Jawab",
     "disputeDesc": "Seluruh data dirujuk dari pendaftaran resmi regulator (BEI, BPOM, BPJPH, KPK, pengadilan). Ada bukti pembaruan?",
-    "disputeBtn": "Ajukan Bukti Verifikasi"
+    "disputeBtn": "Ajukan Bukti Verifikasi",
+    "differentGroupAlternatives": "Alternatif Kelompok Usaha Berbeda",
+    "differentGroupAlternativesDesc": "Brand dari kelompok usaha tercatat yang berbeda untuk subkategori ini. Catatan: Kelompok usaha berbeda bukan bukti independensi mutlak (kerja sama usaha/joint venture dapat terjadi).",
+    "sameOwnerAlternatives": "Satu Konglomerasi / Induk Usaha yang Sama",
+    "sameOwnerWarning": "Perhatian: Brand di bawah ini bernaung di bawah kelompok bisnis atau induk usaha tercatat yang sama. Bukan alternatif jika Anda bermaksud memisahkan kepemilikan korporasi.",
+    "unknownGroupAlternatives": "Kelompok Usaha Belum Tercatat",
+    "unknownGroupAlternativesDesc": "Brand dengan kelompok bisnis atau induk usaha yang belum tercatat dalam basis data.",
+    "noAlternativesFound": "Belum Ada Alternatif Tercatat",
+    "noAlternativesDesc": "Katalog saat ini belum memuat alternatif tercatat untuk subkategori spesifik ini.",
+    "emptyStateNote": "Ketiadaan data alternatif dalam katalog mencerminkan cakupan pencatatan data saat ini, bukan ketiadaan pilihan di pasar.",
+    "sameOwnerBadge": "Satu Grup Bisnis",
+    "differentGroupBadge": "Grup Berbeda",
+    "unknownGroupBadge": "Grup Belum Tercatat",
+    "matchingSubcategory": "Subkategori Sesuai"
   },
   "scores": {
     "overall": "Skor Keseluruhan",

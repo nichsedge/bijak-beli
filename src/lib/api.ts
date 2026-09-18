@@ -22,6 +22,22 @@ type DbBrandRecord = typeof schema.brands.$inferSelect & {
   }>;
 };
 
+function normalizeDateString(val: Date | string | number): string {
+  if (val instanceof Date) return val.toISOString().slice(0, 10);
+  if (typeof val === "number") {
+    const ms = val < 10_000_000_000 ? val * 1000 : val;
+    return new Date(ms).toISOString().slice(0, 10);
+  }
+  return new Date(val).toISOString().slice(0, 10);
+}
+
+const CANONICAL_SUBCATEGORIES: Record<string, string> = {
+  indomie: "Instant Noodles",
+  "mie-sedaap": "Instant Noodles",
+  sarimi: "Instant Noodles",
+  ciptadent: "Oral Care",
+};
+
 function mapDbBrandToBrand(dbBrand: DbBrandRecord): Brand {
   return {
     id: dbBrand.id,
@@ -29,7 +45,7 @@ function mapDbBrandToBrand(dbBrand: DbBrandRecord): Brand {
     nameId: dbBrand.nameId || undefined,
     logo: dbBrand.logo,
     category: dbBrand.categoryId,
-    subcategory: dbBrand.subcategory || undefined,
+    subcategory: dbBrand.subcategory || CANONICAL_SUBCATEGORIES[dbBrand.id] || undefined,
     tagline: dbBrand.tagline,
     taglineId: dbBrand.taglineId,
     country: dbBrand.country,
@@ -63,13 +79,13 @@ function mapDbBrandToBrand(dbBrand: DbBrandRecord): Brand {
       docType: (s.docType as DocType) || undefined,
       confidence: (s.confidence as "high" | "medium" | "low") || "high",
       documentId: s.documentId || undefined,
-      date: s.date instanceof Date ? s.date.toISOString().slice(0, 10) : new Date(s.date).toISOString().slice(0, 10)
+      date: normalizeDateString(s.date)
     })) || [],
     communityVotes: {
       up: dbBrand.communityVotesUp,
       down: dbBrand.communityVotesDown,
     },
-    lastUpdated: dbBrand.lastUpdated instanceof Date ? dbBrand.lastUpdated.toISOString().slice(0, 10) : new Date(dbBrand.lastUpdated).toISOString().slice(0, 10),
+    lastUpdated: normalizeDateString(dbBrand.lastUpdated),
     description: dbBrand.description,
     descriptionId: dbBrand.descriptionId,
     boycottActive: Boolean(dbBrand.boycottActive),

@@ -46,7 +46,20 @@
     "verifyDoc": "Verify Document",
     "disputeTitle": "Transparency & Right of Reply",
     "disputeDesc": "All facts reference official public registries (IDX, BPOM, BPJPH, KPK, court filings). Found an update or dispute?",
-    "disputeBtn": "Submit Verified Correction"
+    "disputeBtn": "Submit Verified Correction",
+    "differentGroupAlternatives": "Different Corporate Group Alternatives",
+    "differentGroupAlternativesDesc": "Brands from different recorded corporate groups matching this subcategory. Note: A separate recorded group is not proof of total independence (joint ventures or corporate ties may exist).",
+    "sameOwnerAlternatives": "Same Conglomerate / Corporate Group",
+    "sameOwnerWarning": "Advisory: The following brands belong to the same recorded corporate group or parent company. They are not alternatives if seeking corporate separation.",
+    "unknownGroupAlternatives": "Unrecorded Corporate Group",
+    "unknownGroupAlternativesDesc": "Brands whose corporate group or ultimate parent is not yet recorded in the database.",
+    "noAlternativesFound": "No Cataloged Alternatives",
+    "noAlternativesDesc": "The catalog currently does not have recorded alternatives for this specific subcategory.",
+    "emptyStateNote": "Absence of cataloged alternatives reflects current database coverage, not market absence.",
+    "sameOwnerBadge": "Same Business Group",
+    "differentGroupBadge": "Different Group",
+    "unknownGroupBadge": "Group Unrecorded",
+    "matchingSubcategory": "Matching Subcategory"
   },
   "scores": {
     "overall": "Overall Score",

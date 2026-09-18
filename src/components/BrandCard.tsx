@@ -1,20 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, CheckCircle, Flag, Scale, Crown } from "lucide-react";
+import { AlertTriangle, CheckCircle, Flag, Scale, Crown, Building2, HelpCircle } from "lucide-react";
 import { useApp } from "./AppProvider";
 import { calculateAlignment } from "@/lib/scoring";
 import { ScorePill } from "./ScoreBadge";
 import { conglomerates } from "@/data/conglomerates";
 import type { Brand } from "@/lib/types";
+import type { OwnershipRelation } from "@/lib/brand-alternatives";
 import styles from "./BrandCard.module.css";
 
 interface BrandCardProps {
   brand: Brand;
   compact?: boolean;
+  relationType?: OwnershipRelation;
+  sameGroupExplanation?: string;
+  productMatch?: string;
 }
 
-export default function BrandCard({ brand, compact = false }: BrandCardProps) {
+export default function BrandCard({
+  brand,
+  compact = false,
+  relationType,
+  sameGroupExplanation,
+  productMatch,
+}: BrandCardProps) {
   const { prefs, lang, toggleCompare, t } = useApp();
   const isComparing = prefs.compareIds?.includes(brand.id);
   const result = calculateAlignment(brand, prefs.weights);
@@ -36,6 +46,31 @@ export default function BrandCard({ brand, compact = false }: BrandCardProps) {
               • {brand.boycottReason.split(".")[0]}
             </span>
           )}
+        </div>
+      )}
+
+      {/* Alternative relation band */}
+      {relationType === "same-group" && (
+        <div className={styles.sameGroupBand}>
+          <AlertTriangle size={12} />
+          <span>
+            {t("brand", "sameOwnerBadge")}
+            {sameGroupExplanation ? ` • ${sameGroupExplanation}` : ""}
+          </span>
+        </div>
+      )}
+      {relationType === "different-group" && (
+        <div className={styles.differentGroupBand}>
+          <Building2 size={12} />
+          <span>{t("brand", "differentGroupBadge")}</span>
+          {productMatch && <span className={styles.productMatchShort}>• {productMatch}</span>}
+        </div>
+      )}
+      {relationType === "unknown" && (
+        <div className={styles.unknownGroupBand}>
+          <HelpCircle size={12} />
+          <span>{t("brand", "unknownGroupBadge")}</span>
+          {productMatch && <span className={styles.productMatchShort}>• {productMatch}</span>}
         </div>
       )}
 

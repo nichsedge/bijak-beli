@@ -5,7 +5,8 @@ import Link from "next/link";
 import { 
   CheckCircle, ThumbsUp, ThumbsDown, ShoppingBag, 
   ChevronRight, Building2, Shield, AlertTriangle,
-  ExternalLink, FileText, ShieldCheck, Scale, Crown
+  ExternalLink, FileText, ShieldCheck, Scale, Crown,
+  HelpCircle, Info
 } from "lucide-react";
 import { useApp } from "@/components/AppProvider";
 import ScoreBadge from "@/components/ScoreBadge";
@@ -17,6 +18,7 @@ import { getBrandScoreAudit } from "@/lib/scoring";
 import { BrandOwnershipGraph } from "@/components/OwnershipGraph";
 import { conglomerates } from "@/data/conglomerates";
 import { brands } from "@/data/brands";
+import { filterAndClassifyAlternatives } from "@/lib/brand-alternatives";
 import type { Controversy, Brand, AlignmentResult } from "@/lib/types";
 import styles from "../app/brand/[id]/brand.module.css";
 
@@ -503,14 +505,116 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
           </div>
         )}
 
-        {activeTab === "alternatives" && (
-          <div className={styles.alternativesContent}>
-            <p className={styles.altIntro}>{t("common", "alternatives")}</p>
-            <div className={styles.altGrid}>
-              {alternatives.map((alt) => alt && <BrandCard key={alt.id} brand={alt} />)}
+        {activeTab === "alternatives" && (() => {
+          const { sameGroup, differentGroup, unknownGroup, allValidAlternatives } = filterAndClassifyAlternatives(
+            brand,
+            alternatives
+          );
+
+          return (
+            <div className={styles.alternativesContent}>
+              {/* Different Corporate Group Alternatives Section */}
+              {differentGroup.length > 0 && (
+                <div>
+                  <div className={styles.altSectionHeader}>
+                    <h3 className={styles.altSectionTitle}>
+                      <Building2 size={18} color="var(--primary)" />
+                      <span>{t("brand", "differentGroupAlternatives")}</span>
+                    </h3>
+                    <p className={styles.altSectionDesc}>
+                      {t("brand", "differentGroupAlternativesDesc")}
+                    </p>
+                  </div>
+
+                  <div className={styles.altGrid}>
+                    {differentGroup.map((alt) => (
+                      <BrandCard
+                        key={alt.id}
+                        brand={alt}
+                        relationType="different-group"
+                        productMatch={alt.subcategory}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Unrecorded Ownership Alternatives Section */}
+              {unknownGroup.length > 0 && (
+                <div>
+                  <div className={styles.altSectionHeader}>
+                    <h3 className={styles.altSectionTitle}>
+                      <HelpCircle size={18} color="var(--text-muted)" />
+                      <span>{t("brand", "unknownGroupAlternatives")}</span>
+                    </h3>
+                    <p className={styles.altSectionDesc}>
+                      {t("brand", "unknownGroupAlternativesDesc")}
+                    </p>
+                  </div>
+
+                  <div className={styles.altGrid}>
+                    {unknownGroup.map((alt) => (
+                      <BrandCard
+                        key={alt.id}
+                        brand={alt}
+                        relationType="unknown"
+                        productMatch={alt.subcategory}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Same Conglomerate / Corporate Group Advisory Section */}
+              {sameGroup.length > 0 && (
+                <div className={styles.sameGroupWarningCard}>
+                  <div>
+                    <div className={styles.sameGroupHeader}>
+                      <AlertTriangle size={16} />
+                      <span>{t("brand", "sameOwnerAlternatives")}</span>
+                    </div>
+                    <p className={styles.sameGroupText}>
+                      {t("brand", "sameOwnerWarning")}
+                    </p>
+                  </div>
+                  <div className={styles.altGrid}>
+                    {sameGroup.map((alt) => (
+                      <BrandCard
+                        key={alt.id}
+                        brand={alt}
+                        relationType="same-group"
+                        sameGroupExplanation={conglomerate?.name || brand.parentCompany}
+                        productMatch={alt.subcategory}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Honest empty state when no matching alternatives found */}
+              {allValidAlternatives.length === 0 && (
+                <div className={styles.altEmptyCard}>
+                  <HelpCircle size={36} color="var(--text-muted)" />
+                  <div className={styles.altEmptyTitle}>
+                    {t("brand", "noAlternativesFound")}
+                  </div>
+                  <p className={styles.altEmptyDesc}>
+                    {t("brand", "noAlternativesDesc")}
+                  </p>
+                  <div className={styles.altDistinguishBox}>
+                    <div className={styles.altDistinguishBadge}>
+                      <Info size={12} />
+                      <span>{brand.subcategory || brand.category}</span>
+                    </div>
+                    <p className={styles.altDistinguishText}>
+                      {t("brand", "emptyStateNote")}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
     </>
   );
