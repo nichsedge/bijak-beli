@@ -10,6 +10,7 @@ interface AppContextType {
   setWeights: (weights: UserPreferences["weights"]) => void;
   setPreset: (preset: string) => void;
   toggleCompare: (id: string) => void;
+  setComparePair: (id1: string, id2: string) => void;
   clearComparison: () => void;
   recordPurchase: (id: string) => void;
   clearPurchases: () => void;
@@ -131,6 +132,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     savePrefs({ ...prefs, compareIds: updated });
   }
 
+  function setComparePair(id1: string, id2: string) {
+    savePrefs({ ...prefs, compareIds: [id1, id2] });
+  }
+
   function clearComparison() {
     savePrefs({ ...prefs, compareIds: [] });
   }
@@ -158,6 +163,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setWeights,
       setPreset,
       toggleCompare,
+      setComparePair,
       clearComparison,
       recordPurchase,
       clearPurchases,

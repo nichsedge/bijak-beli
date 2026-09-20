@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AlertTriangle, CheckCircle, Flag, Scale, Crown, Building2, HelpCircle } from "lucide-react";
 import { useApp } from "./AppProvider";
 import { calculateAlignment } from "@/lib/scoring";
@@ -16,6 +17,7 @@ interface BrandCardProps {
   relationType?: OwnershipRelation;
   sameGroupExplanation?: string;
   productMatch?: string;
+  directCompareWith?: { id: string; name: string };
 }
 
 export default function BrandCard({
@@ -24,8 +26,10 @@ export default function BrandCard({
   relationType,
   sameGroupExplanation,
   productMatch,
+  directCompareWith,
 }: BrandCardProps) {
-  const { prefs, lang, toggleCompare, t } = useApp();
+  const router = useRouter();
+  const { prefs, lang, toggleCompare, setComparePair, t } = useApp();
   const isComparing = prefs.compareIds?.includes(brand.id);
   const result = calculateAlignment(brand, prefs.weights);
   const upPercent = Math.round((brand.communityVotes.up / (brand.communityVotes.up + brand.communityVotes.down + 1)) * 100);
@@ -165,6 +169,26 @@ export default function BrandCard({
             <span className={styles.communityPct}>
               {upPercent}% {lang === "id" ? "positif" : "positive"}
             </span>
+          </div>
+        )}
+
+        {/* Direct 1-Click Alternative Comparison CTA */}
+        {directCompareWith && (
+          <div className={styles.directCompareWrap}>
+            <button
+              type="button"
+              className={styles.directCompareBtn}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setComparePair(directCompareWith.id, brand.id);
+                router.push("/compare");
+              }}
+              title={`${t("brand", "compareVs")} ${directCompareWith.name}`}
+            >
+              <Scale size={13} />
+              <span>{t("brand", "compareDirect")}</span>
+            </button>
           </div>
         )}
       </div>

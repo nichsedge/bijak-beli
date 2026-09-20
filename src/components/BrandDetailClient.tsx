@@ -533,6 +533,7 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                         brand={alt}
                         relationType="different-group"
                         productMatch={alt.subcategory}
+                        directCompareWith={{ id: brand.id, name: brand.name }}
                       />
                     ))}
                   </div>
@@ -559,6 +560,7 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                         brand={alt}
                         relationType="unknown"
                         productMatch={alt.subcategory}
+                        directCompareWith={{ id: brand.id, name: brand.name }}
                       />
                     ))}
                   </div>
@@ -585,6 +587,7 @@ export default function BrandDetailClient({ brand, brandControversies, alternati
                         relationType="same-group"
                         sameGroupExplanation={conglomerate?.name || brand.parentCompany}
                         productMatch={alt.subcategory}
+                        directCompareWith={{ id: brand.id, name: brand.name }}
                       />
                     ))}
                   </div>

@@ -7,6 +7,7 @@ import { useApp } from "@/components/AppProvider";
 import BrandCard from "@/components/BrandCard";
 import { fetchAllBrands, fetchCategories } from "@/lib/api";
 import { sortBrands } from "@/lib/scoring";
+import { filterBrands } from "@/lib/brand-search";
 import type { Brand, Category } from "@/lib/types";
 import styles from "./search.module.css";
 
@@ -43,24 +44,13 @@ function SearchContent() {
     if (paramCat !== "all") setCategory(paramCat);
   }
 
-  // Filter brands locally
-  const queryLower = query.toLowerCase();
-  
-  let results: Brand[] = [...brands];
-  
-  if (queryLower) {
-    results = results.filter(b => 
-      b.name.toLowerCase().includes(queryLower) ||
-      b.parentCompany?.toLowerCase().includes(queryLower) ||
-      b.category.toLowerCase().includes(queryLower)
-    );
-  } else if (category !== "all") {
-    results = results.filter(b => b.category === category);
-  }
-
-  if (filterHalal) results = results.filter((b) => b.halalCertified);
-  if (filterBoycott === "active") results = results.filter((b) => b.boycottActive);
-  if (filterBoycott === "none") results = results.filter((b) => !b.boycottActive);
+  // Filter brands using omnisearch across tycoons, tickers, subcategories, and joint categories
+  let results: Brand[] = filterBrands(brands, {
+    query,
+    category,
+    halalOnly: filterHalal,
+    boycottStatus: filterBoycott,
+  });
 
   // Sort
   if (sortBy === "score") results = sortBrands(results, prefs.weights);
@@ -70,10 +60,10 @@ function SearchContent() {
   const title: Record<string, { id: string; en: string }> = {
     "food-beverage": { id: "Makanan & Minuman", en: "Food & Beverage" },
     "personal-care": { id: "Perawatan Diri", en: "Personal Care" },
-    fashion: { id: "Mode & Pakaian", en: "Fashion & Apparel" },
+    household: { id: "Pembersih & Rumah Tangga", en: "Household & Cleaning" },
+    pharmacy: { id: "Kesehatan & Obat", en: "Health & Pharmacy" },
     technology: { id: "Teknologi", en: "Technology" },
-    transportation: { id: "Transportasi", en: "Transportation" },
-    finance: { id: "Keuangan", en: "Finance" },
+    fashion: { id: "Mode & Pakaian", en: "Fashion & Apparel" },
     all: { id: "Semua Brand", en: "All Brands" },
   };
 

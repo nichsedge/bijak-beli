@@ -17,7 +17,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Data Model & Conglomerates**:
   - Brands (`src/data/brands.ts`) are categorized and linked to business groups via `conglomerateId`.
   - Conglomerate records are defined in `src/data/conglomerates.ts` with tycoons and Power200 rankings.
+- **Testing & Verification**:
+  - Run unit test suite: `bun run test` (covers strict alternatives classification and omnisearch query matching).
 - **Barcode & Camera Engine**:
   - Canonical barcodes are mapped in `src/lib/barcode-resolver.ts`.
   - Scanners support native `BarcodeDetector`, WebRTC video streams, torch/flash controls, and image file uploads.
+- **Omnisearch & Civic Linkages**:
+  - Multi-field search (`src/lib/brand-search.ts`) indexes brand names, tickers, subcategories, ultimate owners, tycoons, and conglomerates.
+  - Conglomerate cards (`/conglomerates`) and Power200 insiders (`/power`) cross-link seamlessly to retail brands and power graphs.
+
 

@@ -217,10 +217,15 @@ function ConglomeratesContent() {
                   </div>
                 </div>
                 {c.powerMapRank && (
-                  <span className={styles.powerBadge}>
+                  <Link
+                    href={`/power?tab=power200&q=${encodeURIComponent(c.tycoon.split("&")[0].split("/")[0].trim())}`}
+                    className={styles.powerBadge}
+                    title={lang === "id" ? "Buka profil di Jaringan Kekuasaan (Power Map)" : "Open profile in Power Map"}
+                  >
                     <ShieldAlert size={12} />
-                    Power200 #{c.powerMapRank}
-                  </span>
+                    <span>Power200 #{c.powerMapRank}</span>
+                    <ExternalLink size={10} />
+                  </Link>
                 )}
               </div>
 

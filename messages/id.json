@@ -59,7 +59,9 @@
     "sameOwnerBadge": "Satu Grup Bisnis",
     "differentGroupBadge": "Grup Berbeda",
     "unknownGroupBadge": "Grup Belum Tercatat",
-    "matchingSubcategory": "Subkategori Sesuai"
+    "matchingSubcategory": "Subkategori Sesuai",
+    "compareDirect": "Bandingkan Langsung",
+    "compareVs": "Bandingkan vs"
   },
   "scores": {
     "overall": "Skor Keseluruhan",

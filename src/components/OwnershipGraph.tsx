@@ -385,13 +385,20 @@ export function MacroPowerExplorer({ initialPower200 = [], lang = "id" }: MacroP
               : `Holding boardroom governance seats across issuers: ${selectedInsider.companies.join(", ")}. Sourced directly from official IDX company disclosures.`}
           </div>
           <div className={styles.inspectorLinks}>
+            <Link
+              href={`/search?q=${encodeURIComponent(selectedInsider.insider)}`}
+              className="btn btn-primary btn-sm"
+            >
+              <ShoppingBag size={12} />
+              <span>{lang === "id" ? "Cari Brand Terkait" : "Find Related Brands"}</span>
+            </Link>
             <a
               href="https://www.idx.co.id"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline btn-sm"
             >
-              <span>{lang === "id" ? "Verifikasi di BEI (idx.co.id)" : "Verify on IDX (idx.co.id)"}</span>
+              <span>{lang === "id" ? "Verifikasi di BEI" : "Verify on IDX"}</span>
               <ExternalLink size={12} />
             </a>
           </div>

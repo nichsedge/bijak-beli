@@ -1,10 +1,17 @@
 import type { Category } from "@/lib/types";
+import { brands } from "./brands";
 
-export const categories: Category[] = [
-  { id: "food-beverage",  name: "Food & Beverage",     nameId: "Makanan & Minuman",         icon: "🍜", brandCount: 49 },
-  { id: "personal-care",  name: "Personal Care",        nameId: "Perawatan Diri",            icon: "🧴", brandCount: 9  },
-  { id: "household",      name: "Household & Cleaning", nameId: "Pembersih & Rumah Tangga",  icon: "🧼", brandCount: 7  },
-  { id: "pharmacy",       name: "Health & Pharmacy",    nameId: "Kesehatan & Obat",          icon: "💊", brandCount: 5  },
-  { id: "technology",     name: "Technology",           nameId: "Teknologi",                 icon: "📱", brandCount: 4  },
-  { id: "fashion",        name: "Fashion & Apparel",    nameId: "Mode & Pakaian",            icon: "👗", brandCount: 2  },
+const rawCategories: Omit<Category, "brandCount">[] = [
+  { id: "food-beverage",  name: "Food & Beverage",     nameId: "Makanan & Minuman",         icon: "🍜" },
+  { id: "personal-care",  name: "Personal Care",        nameId: "Perawatan Diri",            icon: "🧴" },
+  { id: "household",      name: "Household & Cleaning", nameId: "Pembersih & Rumah Tangga",  icon: "🧼" },
+  { id: "pharmacy",       name: "Health & Pharmacy",    nameId: "Kesehatan & Obat",          icon: "💊" },
+  { id: "technology",     name: "Technology",           nameId: "Teknologi",                 icon: "📱" },
+  { id: "fashion",        name: "Fashion & Apparel",    nameId: "Mode & Pakaian",            icon: "👗" },
 ];
+
+export const categories: Category[] = rawCategories.map((cat) => ({
+  ...cat,
+  brandCount: brands.filter((b) => b.category === cat.id).length,
+}));
+

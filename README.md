@@ -37,6 +37,9 @@ bun run dev
 # Run linter
 bun run lint
 
+# Run unit tests
+bun run test
+
 # Build production bundle
 bun run build
 ```

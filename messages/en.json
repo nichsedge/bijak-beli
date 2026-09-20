@@ -59,7 +59,9 @@
     "sameOwnerBadge": "Same Business Group",
     "differentGroupBadge": "Different Group",
     "unknownGroupBadge": "Group Unrecorded",
-    "matchingSubcategory": "Matching Subcategory"
+    "matchingSubcategory": "Matching Subcategory",
+    "compareDirect": "Compare Directly",
+    "compareVs": "Compare vs"
   },
   "scores": {
     "overall": "Overall Score",

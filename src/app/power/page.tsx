@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { 
   Landmark, 
   Users, 
@@ -86,12 +87,19 @@ function formatNameTitleCase(name: string): string {
     .join(" ");
 }
 
-export default function PowerPage() {
+function PowerContent() {
+  const searchParams = useSearchParams();
+  const paramTab = searchParams.get("tab") as "politicians" | "ormas" | "power200" | null;
+  const paramQ = searchParams.get("q") || "";
+
+  const [prevParams, setPrevParams] = useState({ tab: paramTab, q: paramQ });
   const [data, setData] = useState<PowerMapData | null>(null);
-  const [activeTab, setActiveTab] = useState<"politicians" | "ormas" | "power200">("politicians");
+  const [activeTab, setActiveTab] = useState<"politicians" | "ormas" | "power200">(
+    paramTab === "power200" ? "power200" : paramTab === "ormas" ? "ormas" : "politicians"
+  );
 
   // Politicians controls
-  const [polSearch, setPolSearch] = useState("");
+  const [polSearch, setPolSearch] = useState(paramTab !== "power200" && paramTab !== "ormas" ? paramQ : "");
   const [polBranch, setPolBranch] = useState<"all" | "Eksekutif" | "Legislatif">("all");
   const [polSort, setPolSort] = useState<"wealth-desc" | "wealth-asc" | "name-asc">("wealth-desc");
 
@@ -100,7 +108,19 @@ export default function PowerPage() {
   const [ormasCategory, setOrmasCategory] = useState<"all" | "religious" | "adat" | "kepemudaan" | "motor" | "lsm">("all");
 
   // Power200 controls
-  const [powerSearch, setPowerSearch] = useState("");
+  const [powerSearch, setPowerSearch] = useState(paramTab === "power200" ? paramQ : "");
+
+  // Render-time state adjustment when searchParams changes (React 19 / Next.js 16 compliant)
+  if (prevParams.tab !== paramTab || prevParams.q !== paramQ) {
+    setPrevParams({ tab: paramTab, q: paramQ });
+    if (paramTab === "power200" || paramTab === "ormas" || paramTab === "politicians") {
+      setActiveTab(paramTab);
+    }
+    if (paramQ) {
+      if (paramTab === "power200") setPowerSearch(paramQ);
+      if (paramTab !== "power200" && paramTab !== "ormas") setPolSearch(paramQ);
+    }
+  }
 
   useEffect(() => {
     fetch("/power_map_export.json")
@@ -685,3 +705,12 @@ export default function PowerPage() {
     </div>
   );
 }
+
+export default function PowerPage() {
+  return (
+    <Suspense fallback={<div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>Memuat Peta Kekuasaan...</div>}>
+      <PowerContent />
+    </Suspense>
+  );
+}
+
