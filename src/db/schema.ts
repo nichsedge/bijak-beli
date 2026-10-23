@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, primaryKey } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, primaryKey, index } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
 
 export const categories = sqliteTable("categories", {
@@ -62,7 +62,12 @@ export const brands = sqliteTable("brands", {
   boycottActive: integer("boycott_active", { mode: "boolean" }).notNull(),
   boycottReason: text("boycott_reason"),
   boycottReasonId: text("boycott_reason_id"),
-});
+}, (t) => ({
+  categoryIdx: index("idx_brands_category_id").on(t.categoryId),
+  subcategoryIdx: index("idx_brands_subcategory").on(t.subcategory),
+  conglomerateIdx: index("idx_brands_conglomerate_id").on(t.conglomerateId),
+  boycottIdx: index("idx_brands_boycott_active").on(t.boycottActive),
+}));
 
 export const controversies = sqliteTable("controversies", {
   id: text("id").primaryKey(),
@@ -99,7 +104,9 @@ export const brandCertifications = sqliteTable("brand_certifications", {
     .notNull()
     .references(() => brands.id),
   certification: text("certification").notNull(),
-});
+}, (t) => ({
+  brandIdx: index("idx_brand_certifications_brand_id").on(t.brandId),
+}));
 
 export const sources = sqliteTable("sources", {
   id: text("id")
@@ -116,7 +123,9 @@ export const sources = sqliteTable("sources", {
   brandId: text("brand_id")
     .notNull()
     .references(() => brands.id),
-});
+}, (t) => ({
+  brandIdx: index("idx_sources_brand_id").on(t.brandId),
+}));
 
 export const brandAlternatives = sqliteTable(
   "brand_alternatives",

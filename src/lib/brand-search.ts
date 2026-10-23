@@ -76,29 +76,24 @@ export function filterBrands(
     conglomerateMap = DEFAULT_CONGLOMERATE_MAP,
   } = options;
 
-  let filtered = brands;
+  const trimmedQuery = query.trim();
+  const hasQuery = Boolean(trimmedQuery);
+  const filterCat = Boolean(category && category !== "all");
 
-  // 1. Category filter (concurrent, never dropped by query)
-  if (category && category !== "all") {
-    filtered = filtered.filter((b) => b.category === category);
-  }
+  return brands.filter((b) => {
+    // 1. Fast-path predicate: category filter
+    if (filterCat && b.category !== category) return false;
 
-  // 2. Omnisearch query filter
-  if (query.trim()) {
-    filtered = filtered.filter((b) => matchesBrandQuery(b, query, conglomerateMap));
-  }
+    // 2. Fast-path predicate: halal filter
+    if (halalOnly && !b.halalCertified) return false;
 
-  // 3. Halal filter
-  if (halalOnly) {
-    filtered = filtered.filter((b) => b.halalCertified);
-  }
+    // 3. Fast-path predicate: boycott filter
+    if (boycottStatus === "active" && !b.boycottActive) return false;
+    if (boycottStatus === "none" && b.boycottActive) return false;
 
-  // 4. Boycott status filter
-  if (boycottStatus === "active") {
-    filtered = filtered.filter((b) => b.boycottActive);
-  } else if (boycottStatus === "none") {
-    filtered = filtered.filter((b) => !b.boycottActive);
-  }
+    // 4. Omnisearch query filter (evaluated only after passing fast filters)
+    if (hasQuery && !matchesBrandQuery(b, trimmedQuery, conglomerateMap)) return false;
 
-  return filtered;
+    return true;
+  });
 }
